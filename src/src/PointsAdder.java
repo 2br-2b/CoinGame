@@ -8,12 +8,11 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
-	private HashMap<User, OffsetDateTime> coolingDown = new HashMap<User, OffsetDateTime>();
+	private HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
 	public static final int COOLDOWN_SECONDS = 60;
 	private static final int MONEY_PER_MESSAGE = 1;
 
@@ -22,23 +21,23 @@ public class PointsAdder extends ListenerAdapter {
 		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
 			return;
 
-		if (coolingDown.containsKey(e.getAuthor())) {
+		if (coolingDown.containsKey(e.getAuthor().getId())) {
 			if (e.getMessage().getCreationTime()
-					.isAfter(coolingDown.get(e.getAuthor()).plusSeconds(COOLDOWN_SECONDS))) {
+					.isAfter(coolingDown.get(e.getAuthor().getId()).plusSeconds(COOLDOWN_SECONDS))) {
 
 				if (e.getMessage().getContentRaw().equalsIgnoreCase(Main.GET_MONEY_STRING))
 					return;
 
 				int boost = 0;
-				if (Main.upgrades.containsKey(e.getAuthor())) {
-					ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor());
+				if (Main.upgrades.containsKey(e.getAuthor().getId())) {
+					ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 					for (Upgrade u : list) {
 						boost += u.getBoost();
 					}
 				}
 
-				addCoins(e.getAuthor(), MONEY_PER_MESSAGE + boost);
-				coolingDown.put(e.getAuthor(), e.getMessage().getCreationTime());
+				addCoins(e.getAuthor().getId(), MONEY_PER_MESSAGE + boost);
+				coolingDown.put(e.getAuthor().getId(), e.getMessage().getCreationTime());
 			} else
 				return;
 		} else {
@@ -46,33 +45,33 @@ public class PointsAdder extends ListenerAdapter {
 				return;
 
 			int boost = 0;
-			if (Main.upgrades.containsKey(e.getAuthor())) {
-				ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor());
+			if (Main.upgrades.containsKey(e.getAuthor().getId())) {
+				ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 				for (Upgrade u : list) {
 					boost += u.getBoost();
 				}
 			}
 
-			addCoins(e.getAuthor(), MONEY_PER_MESSAGE + boost);
-			coolingDown.put(e.getAuthor(), e.getMessage().getCreationTime());
+			addCoins(e.getAuthor().getId(), MONEY_PER_MESSAGE + boost);
+			coolingDown.put(e.getAuthor().getId(), e.getMessage().getCreationTime());
 
 		}
 	}
 
-	public static void addCoins(User u, long amount) {
-		if (Main.bal.containsKey(u)) {
-			Main.bal.put(u, Main.bal.get(u) + amount);
+	public static void addCoins(String id, long amount) {
+		if (Main.bal.containsKey(id)) {
+			Main.bal.put(id, Main.bal.get(id) + amount);
 		} else {
-			Main.bal.put(u, 1000000 + amount);
+			Main.bal.put(id, 1000000 + amount);
 		}
 	}
 
-	public static boolean payCoins(User u, long amount) {
-		if (Main.bal.containsKey(u)) {
-			if (Main.bal.get(u) < amount) {
+	public static boolean payCoins(String id, long amount) {
+		if (Main.bal.containsKey(id)) {
+			if (Main.bal.get(id) < amount) {
 				return false;
 			} else {
-				Main.bal.put(u, Main.bal.get(u) - amount);
+				Main.bal.put(id, Main.bal.get(id) - amount);
 				return true;
 			}
 		} else {

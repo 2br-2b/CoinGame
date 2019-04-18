@@ -60,7 +60,7 @@ public class Store extends ListenerAdapter {
 			buySomething(message.substring(Main.GET_BUY_STRING.length() + 1), e.getAuthor());
 		} else if (message.contains(Main.GET_ADD_STRING)) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
-				PointsAdder.addCoins(e.getAuthor(),
+				PointsAdder.addCoins(e.getAuthor().getId(),
 						Long.parseLong(message.substring(Main.GET_ADD_STRING.length() + 1)));
 			}
 		}
@@ -81,8 +81,8 @@ public class Store extends ListenerAdapter {
 	public void buySomething(String thingToPurchase, User u) {
 		ArrayList<Upgrade> list;
 
-		if (Main.upgrades.containsKey(u)) {
-			list = Main.upgrades.get(u);
+		if (Main.upgrades.containsKey(u.getId())) {
+			list = Main.upgrades.get(u.getId());
 		} else {
 			list = new ArrayList<Upgrade>();
 		}
@@ -99,9 +99,9 @@ public class Store extends ListenerAdapter {
 		if (toBuy == null) {
 			c.sendMessage("Couldn't find any `" + thingToPurchase + "`s in the store!").queue();
 		} else {
-			if (PointsAdder.payCoins(u, toBuy.getCost())) {
+			if (PointsAdder.payCoins(u.getId(), toBuy.getCost())) {
 
-				boughtOne(u, toBuy, list);
+				giveUserUpgrade(u, toBuy, list);
 
 				c.sendMessage(
 						u.getAsMention() + " bought one " + toBuy.getName() + " for " + toBuy.getCost() + Main.CURRENCY)
@@ -112,11 +112,11 @@ public class Store extends ListenerAdapter {
 			}
 		}
 
-		Main.upgrades.put(u, list);
+		Main.upgrades.put(u.getId(), list);
 
 	}
 
-	private void boughtOne(User u, Upgrade toBuy, ArrayList<Upgrade> list) {
+	private void giveUserUpgrade(User u, Upgrade toBuy, ArrayList<Upgrade> list) {
 		boolean found = false;
 		for (int i = 0; i < list.size(); i++) {
 			Upgrade up = list.get(i);
@@ -135,5 +135,25 @@ public class Store extends ListenerAdapter {
 		if (toBuy.getQuantity() < 1) {
 			store.remove(toBuy);
 		}
+	}
+
+	public static void giveUserUpgrade(String id, Upgrade toBuy) {
+		ArrayList<Upgrade> list = Main.upgrades.get(id);
+
+		boolean found = false;
+		for (int i = 0; i < list.size(); i++) {
+			Upgrade up = list.get(i);
+			if (up.getName().equals(toBuy.getName())) {
+				found = true;
+				up.plusOne();
+				break;
+			}
+		}
+
+		if (!found) {
+			list.add(new Upgrade(toBuy));
+		}
+
+		Main.upgrades.put(id, list);
 	}
 }

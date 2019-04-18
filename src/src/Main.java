@@ -6,7 +6,6 @@ import java.util.HashMap;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
 
 public class Main {
 
@@ -20,8 +19,8 @@ public class Main {
 	public static final String[] STRINGS = { GET_MONEY_STRING, GET_BUY_STRING, GET_STORE_STRING, GET_INVENTORY_STRING,
 			GET_HELP_STRING };
 	public static final String CURRENCY = ":moneybag:";
-	public static HashMap<User, Long> bal = new HashMap<User, Long>();
-	public static HashMap<User, ArrayList<Upgrade>> upgrades = new HashMap<User, ArrayList<Upgrade>>();
+	public static HashMap<String, Long> bal = new HashMap<String, Long>();
+	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
 	public static final boolean BOTS_ALLOWED = false;
 	public static TextChannel botData;
 
@@ -32,7 +31,6 @@ public class Main {
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
-		jda.addEventListener(new ForFun());
 		jda.addEventListener(new PlayGames());
 
 	}
