@@ -1,45 +1,59 @@
 
 package src;
 
+import java.io.IOException;
+
 public class Commands {
 
 	public static void interpretCommand(String command) {
-		try {
-			String[] commandAsList = command.split(" ");
 
-			String initialCommand = commandAsList[0];
+		if (command.substring(0, Main.PREFIX.length()).equals(Main.PREFIX)) {
+			command = command.substring(Main.PREFIX.length());
+		}
 
-			String userID;
+		String[] commandAsList = command.split(" ");
 
-			switch (initialCommand) {
+		String initialCommand = commandAsList[0];
 
-			// giveitem <userID> <item_boost> <item_name>
-			case "giveitem":
-				userID = commandAsList[1];
+		String userID;
+		int amount;
 
-				String name = commandAsList[3];
+		switch (initialCommand) {
 
-				for (int i = 4; i < commandAsList.length; i++) {
-					name += " " + commandAsList[i];
-				}
+		// giveitem <userID> <item_boost> <item_name>
+		case "giveitem":
+			userID = commandAsList[1];
 
-				Store.giveUserUpgrade(userID, new Upgrade(name, 0, Integer.parseInt(commandAsList[2])));
-				break;
+			String name = commandAsList[3];
 
-			// givemoney <userID> <amount>
-			case "givemoney":
-				userID = commandAsList[1];
-
-				int amount = Integer.parseInt(commandAsList[2]);
-
-				PointsAdder.addCoins(userID, amount);
-				break;
-
-			default:
-				break;
+			for (int i = 4; i < commandAsList.length; i++) {
+				name += " " + commandAsList[i];
 			}
-		} catch (Exception ex) {
+
+			Store.giveUserUpgrade(userID, new Upgrade(name, 0, Integer.parseInt(commandAsList[2])));
+			break;
+
+		// givemoney <userID> <amount>
+		case "givemoney":
+			userID = commandAsList[1];
+
+			amount = Integer.parseInt(commandAsList[2]);
+
+			PointsAdder.addCoins(userID, amount);
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+	public static void addCommand(String string) {
+		try {
+			FileManager.writeFiles(string);
+		} catch (IOException ex) {
 			System.err.println(ex);
 		}
+
 	}
 }

@@ -27,7 +27,7 @@ public class GetStuff extends ListenerAdapter {
 
 		if (message.equals(Main.GET_MONEY_STRING)) {
 			String str = e.getAuthor().getName() + " has " + Main.bal.get(e.getAuthor().getId()) + Main.CURRENCY;
-			System.out.println(str);
+			// System.out.println(str);
 			c.sendMessage(str).queue();
 
 		} else if (message.equals(Main.GET_INVENTORY_STRING)) {
@@ -46,7 +46,7 @@ public class GetStuff extends ListenerAdapter {
 
 			str += "\nTotal boost: " + boost;
 
-			System.out.println(str);
+			// System.out.println(str);
 			c.sendMessage(str).queue();
 
 		}

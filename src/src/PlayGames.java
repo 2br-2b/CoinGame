@@ -18,7 +18,7 @@ public class PlayGames extends ListenerAdapter {
 		c = e.getChannel();
 
 		try {
-			System.out.println(m.substring(0, (Main.PREFIX.length() + 4)));
+
 			if (m.substring(0, (Main.PREFIX.length() + 4)).equals(Main.PREFIX + "play")) {
 				String game = m.substring(Main.PREFIX.length() + 5);
 

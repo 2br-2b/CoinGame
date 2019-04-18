@@ -9,18 +9,18 @@ package src;
  */
 public class Upgrade implements Comparable<Upgrade> {
 	private String name;
-	private int cost;
+	private long cost;
 	private int boostRate;
 	private int quantity;
 
-	public Upgrade(String name, int cost, int boostRate) {
+	public Upgrade(String name, long cost, int boostRate) {
 		this.name = name;
 		this.cost = cost;
 		this.boostRate = boostRate;
 		this.quantity = 1;
 	}
 
-	public Upgrade(String name, int cost, int boostRate, int quantity) {
+	public Upgrade(String name, long cost, int boostRate, int quantity) {
 		this(name, cost, boostRate);
 		this.quantity = quantity;
 	}
@@ -46,7 +46,7 @@ public class Upgrade implements Comparable<Upgrade> {
 		return name;
 	}
 
-	public int getCost() {
+	public long getCost() {
 		return cost;
 	}
 

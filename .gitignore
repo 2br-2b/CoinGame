@@ -23,3 +23,6 @@
 hs_err_pid*
 
 /bin/
+*.class
+*.class
+bin/src/GetStuff.class

@@ -28,6 +28,8 @@ public class Main {
 		System.out.println("Coin Games");
 		JDA jda = new JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XLfUYQ.8cH2XWlfY-mRWZB2cY8M_aS5g_Y").build();
 
+		FileManager f = new FileManager();
+
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
