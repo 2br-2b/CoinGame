@@ -19,6 +19,12 @@ public class GetStuff extends ListenerAdapter {
 		String message = e.getMessage().getContentRaw();
 		c = e.getChannel();
 
+		// my private channel
+		if (c.getId().equals("568466205590159361")) {
+			Commands.interpretCommand(message);
+			return;
+		}
+
 		if (message.equals(Main.GET_MONEY_STRING)) {
 			String str = e.getAuthor().getName() + " has " + Main.bal.get(e.getAuthor().getId()) + Main.CURRENCY;
 			System.out.println(str);
