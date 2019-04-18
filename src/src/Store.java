@@ -18,6 +18,23 @@ public class Store extends ListenerAdapter {
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	static OffsetDateTime lastRandomized;
+	public static Upgrade[] randomStuff = { new Upgrade("Batterang", 10000, 7, 1000),
+			new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
+			new Upgrade("Darth Vader’s Helmet", 2000000, 1138, 1), new Upgrade("All of the Pokémon", 1000000, 809, 151),
+			new Upgrade("Mario’s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 100),
+			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Nuclear Missile", 5900000, 10, 5),
+			new Upgrade("Baby Shark", 2639860696L, 50000, 15), new Upgrade("Smash Ball", 500000, 30, 10),
+			new Upgrade("Captain America’s Shield", 17871941, 30, 1), new Upgrade("Death Star", 1138000, 100, 2),
+			new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 666666, 2),
+			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 100), new Upgrade("Popcorn", 1000, 1, 10000),
+			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
+			new Upgrade("Ring of Power", 100000, 100, 19), new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
+			new Upgrade("Debug Byte", 1, 0, Integer.MAX_VALUE),
+			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
+					(int) (Math.random() * 30)),
+			new Upgrade("Easy Button", 10000, 13, 10), new Upgrade("Cookie", 100, 30, 10),
+			new Upgrade("Hax", 1, 500, 1), new Upgrade("Lol", 42, 24, 1), new Upgrade("Yay", 30, 1, 20),
+			new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1) };
 
 	public Store() {
 
@@ -28,22 +45,6 @@ public class Store extends ListenerAdapter {
 		int randomItems = 5;
 
 		// Name, cost, boost, inventory
-		Upgrade[] randomStuff = { new Upgrade("Batterang", 10000, 1, 1000),
-				new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
-				new Upgrade("Darth Vader’s Helmet", 2000000, 0, 1),
-				new Upgrade("All of the Pokémon", 1000000, 809, 151), new Upgrade("Mario's Hat", 100000, 10, 1),
-				new Upgrade("Rocket", 100000, 1, 100), new Upgrade("Nuclear Bomb", 190000, 3, 5),
-				new Upgrade("Nuclear Missile", 5900000, 10, 5), new Upgrade("Baby Shark", 2639860696L, 5, 15),
-				new Upgrade("Smash Ball", 500000, 30, 10), new Upgrade("Captain America's Shield", 17871941, 30, 1),
-				new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 66, 2),
-				new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 100), new Upgrade("Popcorn", 1000, 1, 10000),
-				new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 100),
-				new Upgrade("Ring of Power", 100000, 100, 19),
-				new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1), new Upgrade("Debug Byte", 1, 0, 10000000),
-				new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
-						(int) (Math.random() * 30)),
-				new Upgrade("Easy Button", 10000, 13, 10), };
-
 		store = new ArrayList<Upgrade>();
 		store.clear();
 
@@ -88,7 +89,7 @@ public class Store extends ListenerAdapter {
 
 	}
 
-	public static void showStore() {
+	public static void showStore(MessageChannel messageChannel) {
 		String str = "";
 
 		for (Upgrade u : store) {
@@ -96,7 +97,7 @@ public class Store extends ListenerAdapter {
 		}
 
 		// System.out.println(str);
-		c.sendMessage(str).queue();
+		messageChannel.sendMessage(str).queue();
 	}
 
 	public void buySomething(String thingToPurchase, User u) {

@@ -34,7 +34,7 @@ public class GetStuff extends ListenerAdapter {
 			c.sendMessage(str).queue();
 		} else if (message.toLowerCase().contains(Main.GET_STORE_STRING)) {
 			// System.out.println("Show the store");
-			Store.showStore();
+			Store.showStore(e.getChannel());
 		} else if (message.equals(Main.GET_MONEY_STRING)) {
 			String str = e.getAuthor().getName() + " has " + Main.addCommas(Main.bal.get(e.getAuthor().getId()))
 					+ Main.CURRENCY;

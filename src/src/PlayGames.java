@@ -55,7 +55,6 @@ public class PlayGames extends ListenerAdapter {
 	}
 
 	private void playMath(MessageReceivedEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
