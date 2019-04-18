@@ -37,12 +37,13 @@ public class Store extends ListenerAdapter {
 				new Upgrade("Smash Ball", 5000000, 30, 10), new Upgrade("Captain America's Shield", 17870000, 3, 1),
 				new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 66, 2),
 				new Upgrade("Fire-Breathing Rubber Duckie", 100000, 1, 100), new Upgrade("Easter Egg", 1000000, 1, 100),
-				new Upgrade("Popcorn", 10000, 0, 10000), };
+				new Upgrade("Popcorn", 10000, 0, 10000), new Upgrade("Sword", 10000, 0, 100),
+				new Upgrade("Shield", 10000, 0, 100), new Upgrade("Rings of Power", 100000, 0, 19),
+				new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1) };
 
 		store = new ArrayList<Upgrade>();
 
 		store.add(new Upgrade("Debug Byte", 1, 0, 10000000));
-		store.add(new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1));
 
 		for (int i = 0; i < randomItems; i++) {
 			Upgrade randomUpgrade = randomStuff[(int) (Math.random() * randomStuff.length)];
@@ -72,17 +73,7 @@ public class Store extends ListenerAdapter {
 			randomizeStore();
 		}
 
-		if (message.toLowerCase().contains(Main.GET_HELP_STRING)) {
-			String str = "List of commands:";
-			for (String s : Main.STRINGS) {
-				str += "\n" + s;
-			}
-
-			c.sendMessage(str).queue();
-		} else if (message.toLowerCase().contains(Main.GET_STORE_STRING)) {
-			// System.out.println("Show the store");
-			showStore();
-		} else if (message.contains(Main.GET_BUY_STRING)) {
+		if (message.contains(Main.GET_BUY_STRING)) {
 			buySomething(message.substring(Main.GET_BUY_STRING.length() + 1), e.getAuthor());
 		} else if (message.contains(Main.GET_ADD_STRING)) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
@@ -93,7 +84,7 @@ public class Store extends ListenerAdapter {
 
 	}
 
-	public void showStore() {
+	public static void showStore() {
 		String str = "";
 
 		for (Upgrade u : store) {
@@ -129,9 +120,8 @@ public class Store extends ListenerAdapter {
 
 				giveUserUpgrade(u, toBuy, list);
 
-				c.sendMessage(
-						u.getAsMention() + " bought one " + toBuy.getName() + " for " + toBuy.getCost() + Main.CURRENCY)
-						.queue();
+				c.sendMessage(u.getAsMention() + " bought one " + toBuy.getName() + " for " + toBuy.getCostString()
+						+ Main.CURRENCY).queue();
 
 			} else {
 				c.sendMessage("You don't have enough to buy that!").queue();

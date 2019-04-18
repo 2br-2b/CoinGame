@@ -31,10 +31,10 @@ public class Upgrade implements Comparable<Upgrade> {
 
 	@Override
 	public String toString() {
-		String str = "`" + quantity + "x` " + getName() + " (" + getCost() + Main.CURRENCY;
+		String str = "`" + quantity + "x` " + getName() + " (" + getCostString() + Main.CURRENCY;
 
 		if (getBoost() != 0) {
-			str += ", provides a boost of " + boostRate + Main.CURRENCY;
+			str += ", provides a boost of " + Main.addCommas(boostRate) + Main.CURRENCY;
 		}
 
 		str += ")";
@@ -48,6 +48,10 @@ public class Upgrade implements Comparable<Upgrade> {
 
 	public long getCost() {
 		return cost;
+	}
+
+	public String getCostString() {
+		return Main.addCommas(cost);
 	}
 
 	public int getBoost() {

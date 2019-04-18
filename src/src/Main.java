@@ -16,12 +16,10 @@ public class Main {
 	public static final String GET_INVENTORY_STRING = PREFIX + "inv";
 	public static final String GET_ADD_STRING = PREFIX + "add";
 	public static final String GET_HELP_STRING = PREFIX + "help";
-	public static final String[] STRINGS = { GET_MONEY_STRING, GET_BUY_STRING, GET_STORE_STRING, GET_INVENTORY_STRING,
-			GET_HELP_STRING };
 	public static final String CURRENCY = ":moneybag:";
 	public static HashMap<String, Long> bal = new HashMap<String, Long>();
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
-	public static final boolean BOTS_ALLOWED = true;
+	public static final boolean BOTS_ALLOWED = false;
 	public static TextChannel botData;
 
 	public static void main(String args[]) throws Exception {
@@ -35,6 +33,10 @@ public class Main {
 
 		new FileManager();
 
+	}
+
+	public static String addCommas(long n) {
+		return String.format("%,d", n);
 	}
 
 }

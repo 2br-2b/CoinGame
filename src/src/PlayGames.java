@@ -33,6 +33,7 @@ public class PlayGames extends ListenerAdapter {
 				switch (game) {
 
 				case "lotto":
+				case "lottery":
 					playLotto(e);
 					break;
 
@@ -62,10 +63,13 @@ public class PlayGames extends ListenerAdapter {
 					e1.printStackTrace();
 				}
 
-				int winnings = (int) (COST * peopleInLotto.size() * (1 + Math.random() * 5));
+				int winnings = (int) (COST * peopleInLotto.size() + COST * Math.random());
 
-				e.getChannel().sendMessage("<@" + winner + ">!\nYou won " + winnings + Main.CURRENCY + "!").queue();
+				e.getChannel()
+						.sendMessage("<@" + winner + ">!\nYou won " + Main.addCommas(winnings) + Main.CURRENCY + "!")
+						.queue();
 				PointsAdder.addCoins(winner, winnings);
+				Store.giveUserUpgrade(winner, new Upgrade("Winning Lottery ticket", COST, 1));
 
 				peopleInLotto.clear();
 
@@ -77,13 +81,11 @@ public class PlayGames extends ListenerAdapter {
 		} else {
 			if (PointsAdder.payCoins(authorID, COST)) {
 				peopleInLotto.add(authorID);
-				e.getChannel()
-						.sendMessage(
-								e.getAuthor().getAsMention() + " was added to the lottery for " + COST + Main.CURRENCY)
-						.queue();
+				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was added to the lottery for "
+						+ Main.addCommas(COST) + Main.CURRENCY).queue();
 			} else {
-				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " doesn't have the " + COST + Main.CURRENCY
-						+ " he needs to join the lottery!").queue();
+				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " doesn't have the " + Main.addCommas(COST)
+						+ Main.CURRENCY + " he needs to join the lottery!").queue();
 			}
 		}
 	}

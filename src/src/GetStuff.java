@@ -25,14 +25,25 @@ public class GetStuff extends ListenerAdapter {
 			return;
 		}
 
-		if (message.equals(Main.GET_MONEY_STRING)) {
-			String str = e.getAuthor().getName() + " has " + Main.bal.get(e.getAuthor().getId()) + Main.CURRENCY;
+		if (message.toLowerCase().contains(Main.GET_HELP_STRING)) {
+			String str = "List of commands:\n`" + Main.PREFIX + "store` shows the store.\n`" + Main.PREFIX
+					+ "buy <name>` to buy something\n`" + Main.PREFIX
+					+ "play <game name>` to play a game.  Current games:\n\t`lotto`\n`" + Main.PREFIX
+					+ "inv` shows your collection!";
+
+			c.sendMessage(str).queue();
+		} else if (message.toLowerCase().contains(Main.GET_STORE_STRING)) {
+			// System.out.println("Show the store");
+			Store.showStore();
+		} else if (message.equals(Main.GET_MONEY_STRING)) {
+			String str = e.getAuthor().getName() + " has " + Main.addCommas(Main.bal.get(e.getAuthor().getId()))
+					+ Main.CURRENCY;
 			// System.out.println(str);
 			c.sendMessage(str).queue();
 
 		} else if (message.equals(Main.GET_INVENTORY_STRING)) {
-			String str = e.getAuthor().getName() + "'s inventory:\n" + Main.bal.get(e.getAuthor().getId())
-					+ Main.CURRENCY;
+			String str = e.getAuthor().getName() + "'s inventory:\n"
+					+ Main.addCommas(Main.bal.get(e.getAuthor().getId())) + Main.CURRENCY;
 
 			int boost = 0;
 
@@ -44,7 +55,7 @@ public class GetStuff extends ListenerAdapter {
 				}
 			}
 
-			str += "\nTotal boost: " + boost;
+			str += "\nTotal boost: " + Main.addCommas(boost);
 
 			// System.out.println(str);
 			c.sendMessage(str).queue();
