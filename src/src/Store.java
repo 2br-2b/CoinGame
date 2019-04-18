@@ -36,8 +36,8 @@ public class Store extends ListenerAdapter {
 				new Upgrade("Nuclear Missile", 590000000, 0, 5), new Upgrade("Baby Shark", 2639860696L, 5, 15),
 				new Upgrade("Smash Ball", 5000000, 30, 10), new Upgrade("Captain America's Shield", 17870000, 3, 1),
 				new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 66, 2),
-				new Upgrade("Fire-Breathing Rubber Duckie", 100000, 1, 100),
-				new Upgrade("Easter egg", 1000000, 1, 100) };
+				new Upgrade("Fire-Breathing Rubber Duckie", 100000, 1, 100), new Upgrade("Easter Egg", 1000000, 1, 100),
+				new Upgrade("Popcorn", 10000, 0, 10000), };
 
 		store = new ArrayList<Upgrade>();
 

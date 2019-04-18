@@ -21,19 +21,19 @@ public class Main {
 	public static final String CURRENCY = ":moneybag:";
 	public static HashMap<String, Long> bal = new HashMap<String, Long>();
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
-	public static final boolean BOTS_ALLOWED = false;
+	public static final boolean BOTS_ALLOWED = true;
 	public static TextChannel botData;
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
 		JDA jda = new JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XLfUYQ.8cH2XWlfY-mRWZB2cY8M_aS5g_Y").build();
 
-		FileManager f = new FileManager();
-
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
+
+		new FileManager();
 
 	}
 
