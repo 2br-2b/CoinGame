@@ -9,11 +9,13 @@ public class Commands {
 
 			String initialCommand = commandAsList[0];
 
+			String userID;
+
 			switch (initialCommand) {
 
 			// giveitem <userID> <item_boost> <item_name>
 			case "giveitem":
-				String userID = commandAsList[1];
+				userID = commandAsList[1];
 
 				String name = commandAsList[3];
 
@@ -22,6 +24,15 @@ public class Commands {
 				}
 
 				Store.giveUserUpgrade(userID, new Upgrade(name, 0, Integer.parseInt(commandAsList[2])));
+				break;
+
+			// givemoney <userID> <amount>
+			case "givemoney":
+				userID = commandAsList[1];
+
+				int amount = Integer.parseInt(commandAsList[2]);
+
+				PointsAdder.addCoins(userID, amount);
 				break;
 
 			default:
