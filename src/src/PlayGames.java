@@ -29,12 +29,17 @@ public class PlayGames extends ListenerAdapter {
 
 			if (m.substring(0, (Main.PREFIX.length() + 4)).equals(Main.PREFIX + "play")) {
 				String game = m.substring(Main.PREFIX.length() + 5);
+				// String nameOf game
 
 				switch (game) {
 
 				case "lotto":
 				case "lottery":
 					playLotto(e);
+					break;
+
+				case "math":
+					playMath(e);
 					break;
 
 				default:
@@ -49,8 +54,16 @@ public class PlayGames extends ListenerAdapter {
 
 	}
 
+	private void playMath(MessageReceivedEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
 	private void playLotto(MessageReceivedEvent e) {
-		final int COST = 100000;
+		playLotto(e, 100000);
+	}
+
+	private void playLotto(MessageReceivedEvent e, int COST) {
 		String authorID = e.getAuthor().getId();
 
 		if (peopleInLotto.contains(authorID)) {

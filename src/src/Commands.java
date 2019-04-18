@@ -42,6 +42,10 @@ public class Commands {
 			PointsAdder.addCoins(userID, amount);
 			break;
 
+		case "shufflestore":
+			Store.randomizeStore();
+			break;
+
 		default:
 			break;
 		}

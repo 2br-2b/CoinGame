@@ -13,7 +13,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
 	private HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
-	public static final int COOLDOWN_SECONDS = 60;
+	public static final int COOLDOWN_SECONDS = 5;
 	private static final int MONEY_PER_MESSAGE = 1;
 
 	@Override
