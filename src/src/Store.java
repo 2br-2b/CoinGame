@@ -200,7 +200,7 @@ public class Store extends ListenerAdapter {
 	public static void userGiveUserUpgrade(String idgiver, String togive, String idgiven, MessageChannel c) {
 		for (Upgrade up : Main.upgrades.get(idgiver)) {
 
-			if (up.getName().equals(togive)) {
+			if (up.getName().toLowerCase().equals(togive.toLowerCase())) {
 
 				up.minusOne();
 				Commands.addCommand("remove " + idgiver + " " + togive);
@@ -220,7 +220,7 @@ public class Store extends ListenerAdapter {
 
 	public static boolean removeItem(String idgiver, String upgradeName) {
 		for (Upgrade up : Main.upgrades.get(idgiver)) {
-			if (up.getName().equals(upgradeName)) {
+			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
 				up.minusOne();
 				Commands.addCommand("remove " + idgiver + " " + upgradeName);
 				if (up.getQuantity() < 1) {

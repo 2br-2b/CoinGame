@@ -14,7 +14,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
 	private HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
-	public static final int COOLDOWN_SECONDS = 100;
+	public static final int COOLDOWN_SECONDS = 10;
 	private static final int MONEY_PER_MESSAGE = 1;
 
 	@Override
@@ -27,12 +27,13 @@ public class PointsAdder extends ListenerAdapter {
 
 		if (mList[0].equals(Main.PREFIX + "pay")) {
 			try {
-				if (userGiveUserCoins(e.getAuthor().getId(), Integer.parseInt(mList[2]), mList[1])) {
-					e.getChannel().sendMessage(
-							e.getAuthor().getAsMention() + " paid <@" + mList[1] + "> " + mList[2] + Main.CURRENCY)
+				if (userGiveUserCoins(e.getAuthor().getId(), Integer.parseInt(mList[2]), mList[1].substring(2, 20))) {
+					e.getChannel()
+							.sendMessage(
+									e.getAuthor().getAsMention() + " paid " + mList[1] + " " + mList[2] + Main.CURRENCY)
 							.queue();
 				} else {
-					e.getChannel().sendMessage("You can't pay that much money!").queue();
+					e.getChannel().sendMessage("Something went wrong.  Please try again.").queue();
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
