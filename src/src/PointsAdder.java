@@ -51,7 +51,7 @@ public class PointsAdder extends ListenerAdapter {
 				if (Main.upgrades.containsKey(e.getAuthor().getId())) {
 					ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 					for (Upgrade u : list) {
-						boost += u.getBoost();
+						boost += u.getTotalBoost();
 					}
 				}
 
