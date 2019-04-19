@@ -1,3 +1,8 @@
+/**
+ * @author GreedyVagabond
+ * @author 2br-2b
+ */
+
 package src;
 
 import java.util.ArrayList;

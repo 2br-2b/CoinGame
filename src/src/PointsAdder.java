@@ -1,5 +1,6 @@
 /**
  * @author GreedyVagabond
+ * @author 2br-2b
  */
 
 package src;
@@ -13,13 +14,30 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
 	private HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
-	public static final int COOLDOWN_SECONDS = 5;
+	public static final int COOLDOWN_SECONDS = 100;
 	private static final int MONEY_PER_MESSAGE = 1;
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent e) {
 		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
 			return;
+
+		String message = e.getMessage().getContentRaw();
+		String[] mList = message.split(" ");
+
+		if (mList[0].equals(Main.PREFIX + "pay")) {
+			try {
+				if (userGiveUserCoins(e.getAuthor().getId(), Integer.parseInt(mList[2]), mList[1])) {
+					e.getChannel().sendMessage(
+							e.getAuthor().getAsMention() + " paid <@" + mList[1] + "> " + mList[2] + Main.CURRENCY)
+							.queue();
+				} else {
+					e.getChannel().sendMessage("You can't pay that much money!").queue();
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
 
 		if (coolingDown.containsKey(e.getAuthor().getId())) {
 			if (e.getMessage().getCreationTime()
@@ -81,5 +99,13 @@ public class PointsAdder extends ListenerAdapter {
 			return false;
 		}
 
+	}
+
+	public static boolean userGiveUserCoins(String giver, long amount, String given) {
+		if (payCoins(giver, amount)) {
+			addCoins(given, amount);
+			return true;
+		}
+		return false;
 	}
 }

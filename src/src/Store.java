@@ -1,6 +1,3 @@
-/**
- * @author GreedyVagabond
- */
 
 package src;
 
@@ -22,7 +19,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 					(int) (Math.random() * 30)),
 			new Upgrade("Batterang", 10000, 7, 1000), new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
-			new Upgrade("Darth Vader’s Helmet", 2000000, 1138, 1), new Upgrade("All of the Pokémon", 1000000, 809, 151),
+			new Upgrade("Darth Vader’s Helmet", 2000000, 1138, 1), new Upgrade("All of the Pokemon", 1000000, 809, 151),
 			new Upgrade("Mario’s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 100),
 			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Nuclear Missile", 5900000, 10, 5),
 			new Upgrade("Baby Shark", 2639860696L, 50000, 15), new Upgrade("Smash Ball", 500000, 30, 10),
@@ -31,11 +28,10 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 100), new Upgrade("Popcorn", 1000, 1, 10000),
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
 			new Upgrade("Ring of Power", 100000, 100, 19), new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
-			new Upgrade("Debug Byte", 1, 0, Integer.MAX_VALUE),
-
-			new Upgrade("Easy Button", 10000, 13, 10), new Upgrade("Cookie", 100, 30, 10),
-			new Upgrade("Hax", 1, 500, 1), new Upgrade("Lol", 42, 24, 1), new Upgrade("Yay", 30, 1, 20),
-			new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1) };
+			new Upgrade("Debug Byte", 1, 0, Integer.MAX_VALUE), new Upgrade("Easy Button", 10000, 13, 10),
+			new Upgrade("Cookie", 100, 30, 10), new Upgrade("Hax", 1, 500, 1), new Upgrade("Lol", 42, 24, 1),
+			new Upgrade("Yay", 30, 1, 20), new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1),
+			new Upgrade("Limited-Edition Collector's Edition Easter Egg", 1000, 100, 5) };
 
 	public Store() {
 
@@ -43,15 +39,13 @@ public class Store extends ListenerAdapter {
 	}
 
 	public static void randomizeStore() {
-		int randomItems = 5;
+		int randomItems = 7;
 		randomStuff[0] = new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 				(int) (Math.random() * 30));
 
 		// Name, cost, boost, inventory
 		store = new ArrayList<Upgrade>();
 		store.clear();
-
-		store.add(new Upgrade("Limited-Edition Collector's Edition Easter Egg", 1000, 100, 5));
 
 		for (int i = 0; i < randomItems; i++) {
 			Upgrade randomUpgrade = randomStuff[(int) (Math.random() * randomStuff.length)];
@@ -81,7 +75,14 @@ public class Store extends ListenerAdapter {
 			randomizeStore();
 		}
 
-		if (message.contains(Main.GET_BUY_STRING)) {
+		if (message.contains(Main.PREFIX + "give")) {
+			String[] messageSplit = message.split(" ");
+			String nameOfObj = messageSplit[2];
+			for (int i = 3; i < messageSplit.length; i++) {
+				nameOfObj += " " + messageSplit[i];
+			}
+			userGiveUserUpgrade(e.getAuthor().getId(), nameOfObj, messageSplit[1]);
+		} else if (message.contains(Main.GET_BUY_STRING)) {
 			buySomething(message.substring(Main.GET_BUY_STRING.length() + 1), e.getAuthor());
 		} else if (message.contains(Main.GET_ADD_STRING)) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
@@ -202,7 +203,7 @@ public class Store extends ListenerAdapter {
 			if (up.getName().equals(togive)) {
 
 				up.minusOne();
-				Commands.addCommand("remove " + idgiver + " " + toGive);
+				Commands.addCommand("remove " + idgiver + " " + togive);
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(idgiver).remove(up);
 				}

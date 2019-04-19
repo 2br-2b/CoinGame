@@ -1,12 +1,5 @@
-/**
- * 
- */
 package src;
 
-/**
- * @author johnwuller
- *
- */
 public class Upgrade implements Comparable<Upgrade> {
 	private String name;
 	private long cost;
