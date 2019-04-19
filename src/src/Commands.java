@@ -47,6 +47,32 @@ public class Commands {
 				Store.randomizeStore();
 				break;
 
+			// makegive <id_giver> <id_given> <name of object>
+			case "makegive":
+				String giverID = commandAsList[1];
+				String givenID = commandAsList[2];
+
+				String nameOfObj = commandAsList[3];
+
+				for (int i = 4; i < commandAsList.length; i++) {
+					nameOfObj += " " + commandAsList[i];
+				}
+
+				Store.userGiveUserUpgrade(giverID, nameOfObj, givenID);
+				break;
+
+			// remove <id> <name of object>
+			case "remove":
+				String id = commandAsList[1];
+				String objectName = commandAsList[2];
+
+				for (int i = 3; i < commandAsList.length; i++) {
+					objectName += " " + commandAsList[i];
+				}
+
+				Store.removeItem(id, objectName);
+				break;
+
 			default:
 				break;
 			}

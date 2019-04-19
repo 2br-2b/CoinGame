@@ -18,8 +18,10 @@ public class Store extends ListenerAdapter {
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	static OffsetDateTime lastRandomized;
-	public static Upgrade[] randomStuff = { new Upgrade("Batterang", 10000, 7, 1000),
-			new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
+	public static Upgrade[] randomStuff = {
+			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
+					(int) (Math.random() * 30)),
+			new Upgrade("Batterang", 10000, 7, 1000), new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
 			new Upgrade("Darth Vader’s Helmet", 2000000, 1138, 1), new Upgrade("All of the Pokémon", 1000000, 809, 151),
 			new Upgrade("Mario’s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 100),
 			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Nuclear Missile", 5900000, 10, 5),
@@ -30,8 +32,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
 			new Upgrade("Ring of Power", 100000, 100, 19), new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
 			new Upgrade("Debug Byte", 1, 0, Integer.MAX_VALUE),
-			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
-					(int) (Math.random() * 30)),
+
 			new Upgrade("Easy Button", 10000, 13, 10), new Upgrade("Cookie", 100, 30, 10),
 			new Upgrade("Hax", 1, 500, 1), new Upgrade("Lol", 42, 24, 1), new Upgrade("Yay", 30, 1, 20),
 			new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1) };
@@ -43,6 +44,8 @@ public class Store extends ListenerAdapter {
 
 	public static void randomizeStore() {
 		int randomItems = 5;
+		randomStuff[0] = new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
+				(int) (Math.random() * 30));
 
 		// Name, cost, boost, inventory
 		store = new ArrayList<Upgrade>();
@@ -187,5 +190,55 @@ public class Store extends ListenerAdapter {
 		Main.upgrades.put(id, list);
 
 		Commands.addCommand("giveitem " + id + " " + toBuy.getBoost() + " " + toBuy.getName());
+	}
+
+	public static void userGiveUserUpgrade(String idgiver, String togive, String idgiven) {
+		userGiveUserUpgrade(idgiver, togive, idgiven, c);
+	}
+
+	public static void userGiveUserUpgrade(String idgiver, String togive, String idgiven, MessageChannel c) {
+		for (Upgrade up : Main.upgrades.get(idgiver)) {
+
+			if (up.getName().equals(togive)) {
+
+				up.minusOne();
+				Commands.addCommand("remove " + idgiver + " " + toGive);
+				if (up.getQuantity() < 1) {
+					Main.upgrades.get(idgiver).remove(up);
+				}
+
+				giveUserUpgrade(idgiven, up);
+
+				c.sendMessage("<@" + idgiver + "> gave <@" + idgiven + "> a " + up.getName() + "!").queue();
+				return;
+			}
+		}
+		c.sendMessage("<@" + idgiver + "> doesn't have a " + togive + " to give!").queue();
+
+	}
+
+	public static boolean removeItem(String idgiver, String upgradeName) {
+		for (Upgrade up : Main.upgrades.get(idgiver)) {
+			if (up.getName().equals(upgradeName)) {
+				up.minusOne();
+				Commands.addCommand("remove " + idgiver + " " + upgradeName);
+				if (up.getQuantity() < 1) {
+					Main.upgrades.get(idgiver).remove(up);
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public static Upgrade getUpgradeOfName(String name) {
+		for (Upgrade u : randomStuff) {
+			if (u.getName().equals(name)) {
+				return u;
+			}
+		}
+		System.out.println("Couldn't find it!");
+		return null;
 	}
 }

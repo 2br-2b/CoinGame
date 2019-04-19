@@ -38,10 +38,6 @@ public class PlayGames extends ListenerAdapter {
 					playLotto(e);
 					break;
 
-				case "math":
-					playMath(e);
-					break;
-
 				default:
 					c.sendMessage("No game called " + game + " found!").queue();
 					break;
@@ -51,10 +47,6 @@ public class PlayGames extends ListenerAdapter {
 		} catch (Exception ex) {
 
 		}
-
-	}
-
-	private void playMath(MessageReceivedEvent e) {
 
 	}
 
