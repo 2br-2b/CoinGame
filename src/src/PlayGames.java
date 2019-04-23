@@ -16,6 +16,7 @@ public class PlayGames extends ListenerAdapter {
 	public PlayGames() {
 		games = new ArrayList<Game>();
 		games.add(new Lottery());
+		games.add(new CoinFlip());
 	}
 
 	@Override
@@ -33,15 +34,16 @@ public class PlayGames extends ListenerAdapter {
 			}
 			c.sendMessage(str).queue();
 		}
-		Game g = null;
-		try {
 
+		try {
 			if (m.substring(0, (Main.PREFIX.length() + 4)).equals(Main.PREFIX + "play")) {
 				String game = m.substring(Main.PREFIX.length() + 5);
 				// String nameOf game
 
 				if (game.contains("lotto") || game.contains("lottery")) {
-					g = games.get(0);
+					games.get(0).play(e);
+				} else if (game.contains("flip")) {
+					games.get(1).play(e);
 				} else {
 					c.sendMessage("No game called " + game + " found!").queue();
 					return;
@@ -49,9 +51,7 @@ public class PlayGames extends ListenerAdapter {
 
 			}
 		} catch (Exception ex) {
-
 		}
-		g.play(e);
 
 	}
 }
