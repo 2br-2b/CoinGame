@@ -27,6 +27,7 @@ public class Lottery extends Game {
 			if (peopleInLotto.size() > 1) {
 				String winner = peopleInLotto.get((int) (Math.random() * peopleInLotto.size()));
 				e.getChannel().sendMessage("And the winner is…").queue();
+				e.getChannel().sendTyping();
 				try {
 					Thread.sleep(3000);
 				} catch (InterruptedException e1) {
@@ -39,7 +40,9 @@ public class Lottery extends Game {
 						.sendMessage("<@" + winner + ">!\nYou won " + Main.addCommas(winnings) + Main.CURRENCY + "!")
 						.queue();
 				PointsAdder.addCoins(winner, winnings);
-				Store.giveUserUpgrade(winner, new Upgrade("Winning Lottery ticket", cost, 1));
+
+				Store.removeItem(e.getAuthor().getId(), "Lottery Ticket");
+				Store.giveUserUpgrade(winner, new Upgrade("Winning Lottery Ticket", cost, 1));
 
 				peopleInLotto.clear();
 
@@ -53,6 +56,7 @@ public class Lottery extends Game {
 				peopleInLotto.add(authorID);
 				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was added to the lottery for "
 						+ Main.addCommas(cost) + Main.CURRENCY).queue();
+				Store.giveUserUpgrade(e.getAuthor().getId(), new Upgrade("Lottery Ticket", cost, 0));
 			} else {
 				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " doesn't have the " + Main.addCommas(cost)
 						+ Main.CURRENCY + " he needs to join the lottery!").queue();
