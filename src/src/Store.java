@@ -33,6 +33,11 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Yay", 30, 1, 20), new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1),
 			new Upgrade("Limited-Edition Collector's Edition Easter Egg", 1000, 100, 5) };
 
+	public static Upgrade[] infinityStones = { new Upgrade("Soul Stone", 1000000, 1000, 1),
+			new Upgrade("Mind Stone", 1000000, 1000, 1), new Upgrade("Reality Stone", 1000000, 1000, 1),
+			new Upgrade("Space Stone", 1000000, 1000, 1), new Upgrade("Soul Stone", 1000000, 1000, 1),
+			new Upgrade("Power Stone", 1000000, 1000, 1) };
+
 	public Store() {
 
 		randomizeStore();
@@ -57,6 +62,8 @@ public class Store extends ListenerAdapter {
 			store.add(randomUpgrade);
 
 		}
+
+		store.add(infinityStones[(int) (Math.random() * 6)]);
 
 		Collections.sort(store);
 		lastRandomized = OffsetDateTime.now();
@@ -218,13 +225,13 @@ public class Store extends ListenerAdapter {
 
 	}
 
-	public static boolean removeItem(String idgiver, String upgradeName) {
-		for (Upgrade up : Main.upgrades.get(idgiver)) {
+	public static boolean removeItem(String id, String upgradeName) {
+		for (Upgrade up : Main.upgrades.get(id)) {
 			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
 				up.minusOne();
-				Commands.addCommand("remove " + idgiver + " " + upgradeName);
+				Commands.addCommand("remove " + id + " " + upgradeName);
 				if (up.getQuantity() < 1) {
-					Main.upgrades.get(idgiver).remove(up);
+					Main.upgrades.get(id).remove(up);
 					return true;
 				}
 			}
