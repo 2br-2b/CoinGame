@@ -1,6 +1,8 @@
 package src;
 
-public class Upgrade implements Comparable<Upgrade> {
+public class Upgrade implements Comparable<Upgrade>, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private long cost;
 	private int boostRate;
