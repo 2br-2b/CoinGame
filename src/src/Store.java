@@ -18,7 +18,7 @@ public class Store extends ListenerAdapter {
 	public static Upgrade[] randomStuff = {
 			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 					(int) (Math.random() * 30)),
-			new Upgrade("Batterang", 10000, 7, 10), new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
+			new Upgrade("Batarang", 10000, 7, 10), new Upgrade("Crisp $1,000,000,000 bill", 999999999, 0, 100),
 			new Upgrade("Darth Vader’s Helmet", 2000000, 1138, 1), new Upgrade("All of the Pokemon", 1510000, 809, 1),
 			new Upgrade("Mario’s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 10),
 			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Nuclear Missile", 5900000, 10, 5),
@@ -33,7 +33,8 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Yay", 30, 1, 20), new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1),
 			new Upgrade("Limited-Edition Collector's Edition Easter Egg", 1000, 100, 5),
 			new Upgrade("A bad feeling about this", 120000, 1138, 11), new Upgrade("Blender (for food)", 10000, 2, 7),
-			new Upgrade("Blender (the program)", 100000, 28, 10) };
+			new Upgrade("Blender (the program)", 100000, 28, 10), new Upgrade("Kirk's Glasses", 1701, 10, 1),
+			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4) };
 
 	public static Upgrade[] infinityStones = { new Upgrade("Soul Stone", 1000000, 1000, 1),
 			new Upgrade("Mind Stone", 1000000, 1000, 1), new Upgrade("Reality Stone", 1000000, 1000, 1),
