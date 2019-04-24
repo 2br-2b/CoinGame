@@ -78,7 +78,7 @@ public class GetStuff extends ListenerAdapter {
 			oos.writeObject(Main.bal);
 			oos.close();
 			fos.close();
-			System.out.printf("Serialized HashMap data is saved in CoinGameBal.ser");
+			System.out.println("Serialized HashMap data is saved in CoinGameBal.ser");
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
@@ -89,7 +89,7 @@ public class GetStuff extends ListenerAdapter {
 			oos.writeObject(Main.upgrades);
 			oos.close();
 			fos.close();
-			System.out.printf("Serialized HashMap data is saved in CoinGameUpgrades.ser");
+			System.out.println("Serialized HashMap data is saved in CoinGameUpgrades.ser");
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}

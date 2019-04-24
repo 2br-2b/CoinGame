@@ -59,16 +59,16 @@ public class HangmanGame {
 	}
 
 	public String guessLetter(String l) {
-		System.out.println("guessLetter " + l);
+		// System.out.println("guessLetter " + l);
 
 		l = l.toLowerCase();
 		if (!lettersToGuess.contains(l.charAt(0))) {
 			return "Either you already guessed that, or that is an invalid character.  Please try again!";
 		}
 
-		System.out.println("a");
+		// System.out.println("a");
 		// System.out.println(lettersToGuess.remove(l.charAt(0)));
-		System.out.println("b");
+		// System.out.println("b");
 
 		boolean found = false;
 		for (int i = 0; i < wordList.length; i++) {
@@ -87,7 +87,7 @@ public class HangmanGame {
 			}
 		} else {
 			livesLeft--;
-			System.out.println("nope!");
+			// System.out.println("nope!");
 			if (livesLeft < 1) {
 				return "\u0000`" + l + "` was not found!\nYou are out of lives!\nThe word was `" + word + "`";
 			} else {
