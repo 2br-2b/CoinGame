@@ -29,14 +29,15 @@ public class FileManager {
 
 		while (word != null) {
 			commands.add(word);
+			writeFiles(word);
 			word = keywordReader.readLine();
 		}
 
 		keywordReader.close();
 
-		for (String str : commands) {
-			Commands.interpretCommand(str);
-		}
+		/*
+		 * for (String str : commands) { Commands.interpretCommand(str); }
+		 */
 
 		keywordWriter = new BufferedWriter(new FileWriter(fileName));
 		writeFiles();

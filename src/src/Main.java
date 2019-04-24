@@ -39,9 +39,8 @@ public class Main {
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
 
-		// new FileManager();
+		new FileManager();
 		serializeStuff();
-		//
 
 	}
 
