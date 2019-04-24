@@ -5,6 +5,9 @@
 
 package src;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,67 +38,58 @@ public class Main {
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
-		
-		try
-	      {
-	         FileInputStream fis = new FileInputStream("CoinGameBal.ser");
-	         ObjectInputStream ois = new ObjectInputStream(fis);
-	         bal = (HashMap<String,Long>) ois.readObject();
-	         ois.close();
-	         fis.close();
-	      }catch(IOException ioe)
-	      {
-	         ioe.printStackTrace();
-	         return;
-	      }catch(ClassNotFoundException c)
-	      {
-	         System.out.println("Class not found");
-	         c.printStackTrace();
-	         return;
-	      }
-		
-		try
-	      {
-	         FileInputStream fis = new FileInputStream("CoinGameUpgrades.ser");
-	         ObjectInputStream ois = new ObjectInputStream(fis);
-	         upgrades = (HashMap<String,ArrayList<Upgrade>>) ois.readObject();
-	         ois.close();
-	         fis.close();
-	      }catch(IOException ioe)
-	      {
-	         ioe.printStackTrace();
-	         return;
-	      }catch(ClassNotFoundException c)
-	      {
-	         System.out.println("Class not found");
-	         c.printStackTrace();
-	         return;
-	      }
-		
-		try
-	      {
-	         FileInputStream fis = new FileInputStream("CoinGameCoolingDown.ser");
-	         ObjectInputStream ois = new ObjectInputStream(fis);
-	         PointsAdder.coolingDown = (HashMap<String, OffsetDateTime>) ois.readObject();
-	         ois.close();
-	         fis.close();
-	      }catch(IOException ioe)
-	      {
-	         ioe.printStackTrace();
-	         return;
-	      }catch(ClassNotFoundException c)
-	      {
-	         System.out.println("Class not found");
-	         c.printStackTrace();
-	         return;
-	      }
 
-		//new FileManager();
+		// new FileManager();
+		serializeStuff();
+		//
 
 	}
 
 	public static String addCommas(long n) {
 		return String.format("%,d", n);
+	}
+
+	private static void serializeStuff() {
+
+		try {
+			FileInputStream fis = new FileInputStream("CoinGameBal.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			bal = (HashMap<String, Long>) ois.readObject();
+			ois.close();
+			fis.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return;
+		} catch (ClassNotFoundException c) {
+			System.out.println("Class not found");
+			c.printStackTrace();
+			return;
+		}
+
+		try {
+			FileInputStream fis = new FileInputStream("CoinGameUpgrades.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			upgrades = (HashMap<String, ArrayList<Upgrade>>) ois.readObject();
+			ois.close();
+			fis.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return;
+		} catch (ClassNotFoundException c) {
+			System.out.println("Class not found");
+			c.printStackTrace();
+			return;
+		}
+
+		/*
+		 * try { FileInputStream fis = new FileInputStream("CoinGameCoolingDown.ser");
+		 * ObjectInputStream ois = new ObjectInputStream(fis); PointsAdder.coolingDown =
+		 * (HashMap<String, OffsetDateTime>) ois.readObject(); ois.close(); fis.close();
+		 * } catch (IOException ioe) { ioe.printStackTrace(); return; } catch
+		 * (ClassNotFoundException c) { System.out.println("Class not found");
+		 * c.printStackTrace(); return; }
+		 */
+
 	}
 
 }

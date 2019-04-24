@@ -1,6 +1,9 @@
 
 package src;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -63,34 +66,32 @@ public class GetStuff extends ListenerAdapter {
 			c.sendMessage(str).queue();
 
 		}
-		
-		try
-	        {
-	               FileOutputStream fos =
-	                  new FileOutputStream("CoinGameBal.ser");
-	               ObjectOutputStream oos = new ObjectOutputStream(fos);
-	               oos.writeObject(Main.bal);
-	               oos.close();
-	               fos.close();
-	               System.out.printf("Serialized HashMap data is saved in CoinGameBal.ser");
-	        }catch(IOException ioe)
-	         {
-	               ioe.printStackTrace();
-	         }
-			
-			try
-	        {
-	               FileOutputStream fos =
-	                  new FileOutputStream("CoinGameUpgrades.ser");
-	               ObjectOutputStream oos = new ObjectOutputStream(fos);
-	               oos.writeObject(Main.upgrades);
-	               oos.close();
-	               fos.close();
-	               System.out.printf("Serialized HashMap data is saved in CoinGameUpgrades.ser");
-	        }catch(IOException ioe)
-	         {
-	               ioe.printStackTrace();
-	         }
 
+		serializeStuff();
+
+	}
+
+	private void serializeStuff() {
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameBal.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Main.bal);
+			oos.close();
+			fos.close();
+			System.out.printf("Serialized HashMap data is saved in CoinGameBal.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameUpgrades.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Main.upgrades);
+			oos.close();
+			fos.close();
+			System.out.printf("Serialized HashMap data is saved in CoinGameUpgrades.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 }

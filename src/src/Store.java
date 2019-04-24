@@ -25,7 +25,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Baby Shark", 2639860696L, 50000, 1), new Upgrade("Smash Ball", 500000, 30, 6),
 			new Upgrade("Captain America’s Shield", 17871941, 30, 1), new Upgrade("Death Star", 1138000, 100, 2),
 			new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 666666, 1),
-			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 100), new Upgrade("Popcorn", 1000, 1, 100),
+			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 10), new Upgrade("Popcorn", 1000, 1, 100),
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
 			new Upgrade("Ring of Power", 100000, 100, 19), new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
 			new Upgrade("Debug Byte", 1, 0, 256), new Upgrade("Easy Button", 10000, 13, 10),

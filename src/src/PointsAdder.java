@@ -5,6 +5,9 @@
 
 package src;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +17,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
 	private HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
-	public static final int COOLDOWN_SECONDS = 10;
+	public static final int COOLDOWN_SECONDS = 20;
 	private static final int MONEY_PER_MESSAGE = 1;
 
 	@Override
@@ -75,48 +78,43 @@ public class PointsAdder extends ListenerAdapter {
 			coolingDown.put(e.getAuthor().getId(), e.getMessage().getCreationTime());
 
 		}
-		
-		try
-	        {
-	               FileOutputStream fos =
-	                  new FileOutputStream("CoinGameBal.ser");
-	               ObjectOutputStream oos = new ObjectOutputStream(fos);
-	               oos.writeObject(Main.bal);
-	               oos.close();
-	               fos.close();
-	               System.out.printf("Serialized HashMap data is saved in CoinGameBal.ser");
-	        }catch(IOException ioe)
-	         {
-	               ioe.printStackTrace();
-	         }
-			
-			try
-	        {
-	               FileOutputStream fos =
-	                  new FileOutputStream("CoinGameUpgrades.ser");
-	               ObjectOutputStream oos = new ObjectOutputStream(fos);
-	               oos.writeObject(Main.upgrades);
-	               oos.close();
-	               fos.close();
-	               System.out.printf("Serialized HashMap data is saved in CoinGameUpgrades.ser");
-	        }catch(IOException ioe)
-	         {
-	               ioe.printStackTrace();
-	         }
-			
-			try
-	        {
-	               FileOutputStream fos =
-	                  new FileOutputStream("CoinGameCoolingDown.ser");
-	               ObjectOutputStream oos = new ObjectOutputStream(fos);
-	               oos.writeObject(coolingDown);
-	               oos.close();
-	               fos.close();
-	               System.out.printf("Serialized HashMap data is saved in CoinGameCoolingDown.ser");
-	        }catch(IOException ioe)
-	         {
-	               ioe.printStackTrace();
-	         }
+
+		serializeStuff();
+	}
+
+	private void serializeStuff() {
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameBal.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Main.bal);
+			oos.close();
+			fos.close();
+			System.out.printf("Serialized HashMap data is saved in CoinGameBal.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameUpgrades.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Main.upgrades);
+			oos.close();
+			fos.close();
+			System.out.printf("Serialized HashMap data is saved in CoinGameUpgrades.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameCoolingDown.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(coolingDown);
+			oos.close();
+			fos.close();
+			System.out.printf("Serialized HashMap data is saved in CoinGameCoolingDown.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	public static void addCoins(String id, long amount) {
