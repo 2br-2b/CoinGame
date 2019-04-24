@@ -65,7 +65,7 @@ public class Lottery extends Game {
 
 	}
 
-	@Override
+	// @Override
 	public ArrayList<String> getUsers() {
 		return peopleInLotto;
 	}

@@ -20,7 +20,7 @@ public class CoinFlip extends Game {
 
 		try {
 			paid = Integer.parseInt(m[2]);
-			System.out.println(paid);
+			// System.out.println(paid);
 		} catch (NumberFormatException ex) {
 			e.getChannel().sendMessage(m[2] + " is not a valid number.  Please try again.").queue();
 			return;
@@ -45,6 +45,7 @@ public class CoinFlip extends Game {
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
+
 			double rand = Math.random();
 
 			if (rand > 0.5) {
@@ -66,7 +67,7 @@ public class CoinFlip extends Game {
 
 	}
 
-	@Override
+	// @Override
 	public ArrayList<String> getUsers() {
 		return new ArrayList<String>();
 	}

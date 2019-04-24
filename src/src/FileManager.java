@@ -13,6 +13,10 @@ public class FileManager {
 	static BufferedWriter keywordWriter;
 	private static String allCommands;
 
+	static BufferedReader dictionaryFile;
+
+	public static ArrayList<String> dictionary;
+
 	public FileManager() throws IOException {
 
 		keywordReader = new BufferedReader(new FileReader(fileName));
@@ -37,6 +41,20 @@ public class FileManager {
 		keywordWriter = new BufferedWriter(new FileWriter(fileName));
 		writeFiles();
 
+		// Dictionary
+		dictionaryFile = new BufferedReader(new FileReader("words.txt"));
+		dictionary = new ArrayList<String>();
+		dictionary.clear();
+
+		word = dictionaryFile.readLine();
+
+		while (word != null) {
+			if (word.length() > 4) {
+				dictionary.add(word);
+			}
+			word = dictionaryFile.readLine();
+		}
+
 	}
 
 	public static void writeFiles() throws IOException {
@@ -57,6 +75,10 @@ public class FileManager {
 		}
 		writeFiles();
 
+	}
+
+	public static String getWord() {
+		return dictionary.get((int) (Math.random() * dictionary.size()));
 	}
 
 }

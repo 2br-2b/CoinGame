@@ -17,6 +17,7 @@ public class PlayGames extends ListenerAdapter {
 		games = new ArrayList<Game>();
 		games.add(new Lottery());
 		games.add(new CoinFlip());
+		games.add(new HangmanHandler());
 	}
 
 	@Override
@@ -44,6 +45,8 @@ public class PlayGames extends ListenerAdapter {
 					games.get(0).play(e);
 				} else if (game.contains("flip")) {
 					games.get(1).play(e);
+				} else if (game.contains("hangman")) {
+					games.get(2).play(e);
 				} else {
 					c.sendMessage("No game called " + game + " found!").queue();
 					return;

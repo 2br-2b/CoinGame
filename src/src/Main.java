@@ -29,7 +29,7 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
-		JDA jda = new JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XLfUYQ.8cH2XWlfY-mRWZB2cY8M_aS5g_Y").build();
+		JDA jda = new JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
 
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
