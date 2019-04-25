@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Lottery extends Game {
 
 	private static ArrayList<String> peopleInLotto;
-	int cost;
+	static int cost;
 
 	public Lottery() {
 		this(10000);
