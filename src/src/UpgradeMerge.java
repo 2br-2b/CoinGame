@@ -1,13 +1,18 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class UpgradeMerge extends ListenerAdapter {
 
 	public static ArrayList<Mergable> possibleMerges;
+	public static final EventWaiter waiter = new EventWaiter();
 
 	public UpgradeMerge() {
 		possibleMerges.add(new Mergable("Sword", "Shield", new Upgrade("Knight", 10000, 30, 1)));
@@ -36,8 +41,21 @@ public class UpgradeMerge extends ListenerAdapter {
 	}
 
 	@Override
-	public void onMessageReceived(MessageReceivedEvent e) {
-
+	public void onMessageReceived(MessageReceivedEvent e) 
+	{
+		e.getChannel().sendMessage("Give me the first mergable upgrade.").queue();
+		waiter.waitForEvent(GuildMessageReceivedEvent.class, event -> event.getAuthor().equals(e.getAuthor()) && event.getChannel().equals(e.getChannel()), event -> {
+            
+			//here is where you implement the code for buying the first upgrade.
+			
+			event.getChannel().sendMessage("Give me the second mergable upgrade.").queue();
+			waiter.waitForEvent(GuildMessageReceivedEvent.class, event2 -> event2.getAuthor().equals(event.getAuthor()) && event2.getChannel().equals(event.getChannel()), event2 -> {
+	            
+				//here is where you implement the code for buying the second upgrade.
+				
+				event2.getChannel().sendMessage(event2.getAuthor().getAsMention() + " bought a " /*code to get the merged upgrade*/).queue();
+			}, 30, TimeUnit.SECONDS, () -> e.getChannel().sendMessage("You did not give me a second Upgrade. Try again.").queue());
+		}, 30, TimeUnit.SECONDS, () -> e.getChannel().sendMessage("You did not give me an Upgrade. Try again.").queue());
 	}
 
 	private class Mergable {
