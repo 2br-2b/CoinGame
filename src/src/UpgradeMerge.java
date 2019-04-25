@@ -7,16 +7,18 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class UpgradeMerge extends ListenerAdapter {
 
-	public static ArrayList<Mergable> merges;
+	public static ArrayList<Mergable> possibleMerges;
 
 	public UpgradeMerge() {
-		merges.add(new Mergable("Sword", "Shield", new Upgrade("Knight", 10000, 30, 1)));
-		merges.add(new Mergable("Winning Lottery Ticket", "Easy Button", new Upgrade("A Disaster", 10000, 0, 1)));
-		merges.add(new Mergable("Hax", "Lottery Ticket", new Upgrade("Winning Lottery Ticket", Lottery.cost, 1)));
+		possibleMerges.add(new Mergable("Sword", "Shield", new Upgrade("Knight", 10000, 30, 1)));
+		possibleMerges
+				.add(new Mergable("Winning Lottery Ticket", "Easy Button", new Upgrade("A Disaster", 10000, 0, 1)));
+		possibleMerges
+				.add(new Mergable("Hax", "Lottery Ticket", new Upgrade("Winning Lottery Ticket", Lottery.cost, 1)));
 	}
 
-	public static Upgrade merge(Upgrade u1, Upgrade u2) {
-		for (Mergable m : merges) {
+	public static Upgrade getNewUpgrade(Upgrade u1, Upgrade u2) {
+		for (Mergable m : possibleMerges) {
 			if (m.isMerge(u1.getName(), u2.getName())) {
 				return new Upgrade(m.getUpgrade());
 			}
