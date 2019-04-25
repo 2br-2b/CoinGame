@@ -12,9 +12,17 @@ public class UpgradeMerge extends ListenerAdapter {
 	public UpgradeMerge() {
 		possibleMerges.add(new Mergable("Sword", "Shield", new Upgrade("Knight", 10000, 30, 1)));
 		possibleMerges
-				.add(new Mergable("Winning Lottery Ticket", "Easy Button", new Upgrade("A Disaster", 10000, 0, 1)));
+				.add(new Mergable("Winning Lottery Ticket", "Easy Button", new Upgrade("An Easy Win", 100000, 100, 1)));
 		possibleMerges
 				.add(new Mergable("Hax", "Lottery Ticket", new Upgrade("Winning Lottery Ticket", Lottery.cost, 1)));
+		// Nuclear Missile
+		possibleMerges.add(new Mergable("Nuclear Bomb", "Rocket", new Upgrade(Store.randomStuff[8])));
+		possibleMerges.add(new Mergable("Popcorn", "Rocket", new Upgrade("Popped Popcorn", 10000, 10)));
+		possibleMerges.add(new Mergable("Kirk" + Store.apostrophe + "s Glasses", "Mario" + Store.apostrophe + "s Hat",
+				new Upgrade("A Great Disguise", 10000000, 500)));
+		possibleMerges.add(new Mergable("Nuclear Missile", "Easy Button", new Upgrade("Nuclear War", 0, 1)));
+		possibleMerges.add(new Mergable("Blender (for food)", "Blender (the program)",
+				new Upgrade("Blender (the world)", 279, 280)));
 	}
 
 	public static Upgrade getNewUpgrade(Upgrade u1, Upgrade u2) {
