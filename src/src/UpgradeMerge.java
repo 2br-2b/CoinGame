@@ -30,6 +30,7 @@ public class UpgradeMerge extends ListenerAdapter {
 		possibleMerges.add(new Mergable("Nuclear Missile", "Easy Button", new Upgrade("Nuclear War", 0, 1)));
 		possibleMerges.add(new Mergable("Blender (for food)", "Blender (the program)",
 				new Upgrade("Blender (the world)", 279, 280)));
+		possibleMerges.add(new Mergable("Hmm", "Hax", new Upgrade("Ham", 300, 500)));
 	}
 
 	public static Upgrade getNewUpgrade(Upgrade u1, Upgrade u2) {
