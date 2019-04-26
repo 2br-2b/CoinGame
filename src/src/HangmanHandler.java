@@ -40,6 +40,22 @@ public class HangmanHandler extends Game {
 			} else if (messageList[2].equals("remain")) {
 				e.getChannel().sendMessage(games.get(e.getAuthor().getId()).getGuessable()).queue();
 			}
+		} else if (messageList[2].equals("hard")) {
+			int c = 5000;
+			if (PointsAdder.payCoins(e.getAuthor().getId(), c)) {
+				String word;
+				do {
+					word = FileManager.getWord();
+
+				} while (word.length() < 15);
+
+				games.put(e.getAuthor().getId(), new HangmanGame(word));
+				e.getChannel().sendMessage("Hard mode activated:\n" + games.get(e.getAuthor().getId()).getVisible())
+						.queue();
+			} else {
+				e.getChannel().sendMessage("You don't have the " + c + Main.CURRENCY + " you need to play Hard Mode!")
+						.queue();
+			}
 		} else {
 			games.put(e.getAuthor().getId(), new HangmanGame(FileManager.getWord()));
 			e.getChannel().sendMessage(games.get(e.getAuthor().getId()).getVisible()).queue();
