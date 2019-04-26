@@ -31,8 +31,9 @@ public class GetStuff extends ListenerAdapter {
 		if (message.toLowerCase().contains(Main.GET_HELP_STRING)) {
 			String str = "List of commands:\n`" + Main.PREFIX + "store` shows the store.\n`" + Main.PREFIX
 					+ "buy <name>` to buy something\n`" + Main.PREFIX
-					+ "play <game_name>` to play a game.  Current games:\n\t`lotto`\n`" + Main.PREFIX
-					+ "inv` shows your collection!\n`" + Main.PREFIX
+					+ "play <game_name>` to play a game.  Current games:\n\t`lotto`\n" + "\t`flip <wager>`\n"
+					+ "\t`hangman <letter>`\n`" + Main.PREFIX + "inv` shows your collection, or `" + Main.PREFIX
+					+ "bal` just shows your balance.\n`" + Main.PREFIX
 					+ "give <user_id> <item_name>` gives the user the item!\n`" + Main.PREFIX
 					+ "pay @mention <amount>` pays the other person!";
 

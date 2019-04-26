@@ -26,8 +26,8 @@ public class CoinFlip extends Game {
 			return;
 		}
 
-		if (paid < 0) {
-			e.getChannel().sendMessage("You have to pay more than 0" + Main.CURRENCY + " to play!").queue();
+		if (paid < 100) {
+			e.getChannel().sendMessage("You have to pay 100" + Main.CURRENCY + " or more to play!").queue();
 			return;
 		} else if (paid > maxPay) {
 			e.getChannel().sendMessage("You can only pay up to " + Main.addCommas(maxPay) + Main.CURRENCY + "!")
@@ -58,7 +58,7 @@ public class CoinFlip extends Game {
 				e.getChannel().sendMessage("Tails!  Better luck next time!").queue();
 
 			}
-			Store.giveUserUpgrade(e.getAuthor().getId(), new Upgrade("Coin", 0, 1));
+			Store.giveUserUpgrade(e.getAuthor().getId(), new Upgrade("Coin", 10, 1));
 
 		} else {
 			e.getChannel().sendMessage("You don't have " + Main.addCommas(paid) + Main.CURRENCY + "!").queue();

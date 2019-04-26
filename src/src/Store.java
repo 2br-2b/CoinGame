@@ -16,6 +16,7 @@ public class Store extends ListenerAdapter {
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	static OffsetDateTime lastRandomized;
+
 	public static Upgrade[] randomStuff = {
 			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 					(int) (Math.random() * 30)),
@@ -31,9 +32,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
 			new Upgrade("Ring of Power", 100000, 100, 19), new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
 			new Upgrade("Debug Byte", 1, 0, 256), new Upgrade("Easy Button", 10000, 13, 10),
-			new Upgrade("Cookie", 100, 30, 10), new Upgrade("Hax", 1, 500, 1), new Upgrade("Lol", 42, 24, 1),
-			new Upgrade("Yay", 30, 1, 20), new Upgrade("Hmm", 10, 10, 1), new Upgrade("Stormbreaker", 100000, 1000, 1),
-			new Upgrade("Limited-Edition Collector" + apostrophe + "s Edition Easter Egg", 1000, 100, 5),
+			new Upgrade("Cookie", 100, 30, 10), new Upgrade("Stormbreaker", 100000, 1000, 1),
 			new Upgrade("A bad feeling about this", 120000, 1138, 1), new Upgrade("Blender (for food)", 10000, 2, 7),
 			new Upgrade("Blender (the program)", 100000, 28, 10),
 			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1),
@@ -102,6 +101,40 @@ public class Store extends ListenerAdapter {
 				PointsAdder.addCoins(e.getAuthor().getId(),
 						Long.parseLong(message.substring(Main.GET_ADD_STRING.length() + 1)));
 			}
+		} else if (message.contains(Main.PREFIX + "sell")) {
+			sellUpgrade(e);
+		}
+
+	}
+
+	private void sellUpgrade(MessageReceivedEvent e) {
+		String[] mList = e.getMessage().getContentRaw().split(" ");
+
+		String name = mList[1];
+
+		for (int i = 2; i < mList.length; i++) {
+			name += " " + mList[i];
+		}
+
+		Upgrade theUpgrade = null;
+
+		for (Upgrade up : Main.upgrades.get(e.getAuthor().getId())) {
+			if (up.getName().toLowerCase().equals(name.toLowerCase())) {
+				theUpgrade = up;
+				break;
+			}
+		}
+
+		if (removeItem(e.getAuthor().getId(), name)) {
+			int paid = (int) (theUpgrade.getCost() * (Math.random() * 0.2 + 0.85));
+			if (paid == 0) {
+				paid = (int) (10000 * (Math.random() * 0.2 + 0.85));
+			}
+			PointsAdder.addCoins(e.getAuthor().getId(), paid);
+			e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was paid " + paid + Main.CURRENCY + " for his "
+					+ theUpgrade.getName() + ".").queue();
+		} else {
+			e.getChannel().sendMessage("Couldn't remove " + name).queue();
 		}
 
 	}
@@ -238,8 +271,8 @@ public class Store extends ListenerAdapter {
 				Commands.addCommand("remove " + id + " " + upgradeName);
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
-					return true;
 				}
+				return true;
 			}
 		}
 
@@ -255,4 +288,9 @@ public class Store extends ListenerAdapter {
 		System.out.println("Couldn't find it!");
 		return null;
 	}
+
+	private static Upgrade[] pastUpgrades = {
+			new Upgrade("Limited-Edition Collector" + apostrophe + "s Edition Easter Egg", 1000, 100, 5),
+			new Upgrade("Yay", 30, 1, 20), new Upgrade("Hmm", 10, 10, 1), new Upgrade("Hax", 1, 500, 1),
+			new Upgrade("Lol", 42, 24, 1) };
 }

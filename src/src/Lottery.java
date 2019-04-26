@@ -56,7 +56,7 @@ public class Lottery extends Game {
 				peopleInLotto.add(authorID);
 				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was added to the lottery for "
 						+ Main.addCommas(cost) + Main.CURRENCY).queue();
-				Store.giveUserUpgrade(e.getAuthor().getId(), new Upgrade("Lottery Ticket", cost, 0));
+				Store.giveUserUpgrade(e.getAuthor().getId(), new Upgrade("Lottery Ticket", cost / 1000, 0));
 			} else {
 				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " doesn't have the " + Main.addCommas(cost)
 						+ Main.CURRENCY + " he needs to join the lottery!").queue();
