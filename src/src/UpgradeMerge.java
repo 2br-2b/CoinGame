@@ -15,6 +15,8 @@ public class UpgradeMerge extends ListenerAdapter {
 	public static final EventWaiter waiter = new EventWaiter();
 
 	public UpgradeMerge() {
+		possibleMerges = new ArrayList<Mergable>();
+		possibleMerges.clear();
 		possibleMerges.add(new Mergable("Sword", "Shield", new Upgrade("Knight", 10000, 30, 1)));
 		possibleMerges
 				.add(new Mergable("Winning Lottery Ticket", "Easy Button", new Upgrade("An Easy Win", 100000, 100, 1)));
@@ -31,8 +33,12 @@ public class UpgradeMerge extends ListenerAdapter {
 	}
 
 	public static Upgrade getNewUpgrade(Upgrade u1, Upgrade u2) {
+		return getNewUpgrade(u1.getName(), u2.getName());
+	}
+
+	public static Upgrade getNewUpgrade(String u1, String u2) {
 		for (Mergable m : possibleMerges) {
-			if (m.isMerge(u1.getName(), u2.getName())) {
+			if (m.isMerge(u1, u2)) {
 				return new Upgrade(m.getUpgrade());
 			}
 		}
@@ -41,21 +47,65 @@ public class UpgradeMerge extends ListenerAdapter {
 	}
 
 	@Override
-	public void onMessageReceived(MessageReceivedEvent e) 
-	{
-		e.getChannel().sendMessage("Give me the first mergable upgrade.").queue();
-		waiter.waitForEvent(GuildMessageReceivedEvent.class, event -> event.getAuthor().equals(e.getAuthor()) && event.getChannel().equals(e.getChannel()), event -> {
-            
-			//here is where you implement the code for buying the first upgrade.
-			
-			event.getChannel().sendMessage("Give me the second mergable upgrade.").queue();
-			waiter.waitForEvent(GuildMessageReceivedEvent.class, event2 -> event2.getAuthor().equals(event.getAuthor()) && event2.getChannel().equals(event.getChannel()), event2 -> {
-	            
-				//here is where you implement the code for buying the second upgrade.
-				
-				event2.getChannel().sendMessage(event2.getAuthor().getAsMention() + " bought a " /*code to get the merged upgrade*/).queue();
-			}, 30, TimeUnit.SECONDS, () -> e.getChannel().sendMessage("You did not give me a second Upgrade. Try again.").queue());
-		}, 30, TimeUnit.SECONDS, () -> e.getChannel().sendMessage("You did not give me an Upgrade. Try again.").queue());
+	public void onMessageReceived(MessageReceivedEvent e) {
+		if (e.getMessage().getContentRaw().contains(Main.PREFIX + "merge")) {
+			System.out.print("1");
+			e.getChannel().sendMessage("Give me the first mergable upgrade.").queue();
+			System.out.print("2");
+			waiter.waitForEvent(GuildMessageReceivedEvent.class,
+					event -> event.getAuthor().equals(e.getAuthor()) && event.getChannel().equals(e.getChannel()),
+					event -> {
+						System.out.print("3");
+
+						System.out.println("OneDone");
+						String number1 = event.getMessage().getContentRaw();
+						if (!Store.hasItem(event.getAuthor().getId(), number1)) {
+							event.getChannel().sendMessage("You don't have a `" + number1 + "`!").queue();
+							return;
+						}
+
+						event.getChannel().sendMessage("Give me the second mergable upgrade.").queue();
+						waiter.waitForEvent(GuildMessageReceivedEvent.class,
+								event2 -> event2.getAuthor().equals(event.getAuthor())
+										&& event2.getChannel().equals(event.getChannel()),
+								event2 -> {
+
+									System.out.println("TwoDone");
+									String number2 = event2.getMessage().getContentRaw();
+									if (!Store.hasItem(event.getAuthor().getId(), number2)) {
+										event.getChannel().sendMessage("You don't have a `" + number2 + "`!").queue();
+										return;
+									}
+
+									if (getNewUpgrade(number1, number2) != null) {
+										System.out.println("Yay!");
+
+										if (Store.removeItem(e.getAuthor().getId(), number1)
+												&& Store.removeItem(e.getAuthor().getId(), number2)) {
+
+											Store.giveUserUpgrade(e.getAuthor().getId(),
+													getNewUpgrade(number1, number2));
+
+											event2.getChannel()
+													.sendMessage(event2.getAuthor().getAsMention() + " merged a "
+															+ number1 + " and a " + number2 + " to make a "
+															+ getNewUpgrade(number1, number2).getName() + "!")
+													.queue();
+										} else {
+											event2.getChannel().sendMessage("Something went wrong.").queue();
+										}
+									} else {
+										event2.getChannel()
+												.sendMessage("You can't merge a " + number1 + " and a " + number2 + "!")
+												.queue();
+										return;
+									}
+
+								}, 30, TimeUnit.SECONDS, () -> e.getChannel()
+										.sendMessage("You did not give me a second Upgrade. Try again.").queue());
+					}, 30, TimeUnit.SECONDS,
+					() -> e.getChannel().sendMessage("You did not give me an Upgrade. Try again.").queue());
+		}
 	}
 
 	private class Mergable {

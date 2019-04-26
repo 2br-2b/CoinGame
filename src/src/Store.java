@@ -279,6 +279,16 @@ public class Store extends ListenerAdapter {
 		return false;
 	}
 
+	public static boolean hasItem(String id, String upgradeName) {
+		for (Upgrade up : Main.upgrades.get(id)) {
+			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public static Upgrade getUpgradeOfName(String name) {
 		for (Upgrade u : randomStuff) {
 			if (u.getName().equals(name)) {

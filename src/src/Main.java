@@ -38,6 +38,7 @@ public class Main {
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
+		jda.addEventListener(new UpgradeMerge());
 
 		new FileManager();
 		serializeStuff();
