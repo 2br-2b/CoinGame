@@ -43,6 +43,20 @@ public class Main {
 		new FileManager();
 		serializeStuff();
 
+		for (Upgrade u : Store.randomStuff) {
+			replaceAllEverywhere(u);
+		}
+
+		for (Upgrade u : Store.pastUpgrades) {
+			replaceAllEverywhere(u);
+		}
+
+		for (Mergable m : MergableHandler.possibleMerges) {
+			replaceAllEverywhere(m.getUpgrade());
+		}
+
+		// replaceAllEverywhere("Batterang", new Upgrade("Batarang", 10000, 7, 10));
+
 	}
 
 	public static String addCommas(long n) {
@@ -90,6 +104,28 @@ public class Main {
 		 * c.printStackTrace(); return; }
 		 */
 
+	}
+
+	public static void replaceAllEverywhere(Upgrade upgrade) {
+		replaceAllEverywhere(upgrade.getName(), upgrade);
+	}
+
+	public static void replaceAllEverywhere(String oldUpgradeName, Upgrade newUpgrade) {
+		for (String id : upgrades.keySet()) {
+
+			ArrayList<Upgrade> upgradeList = upgrades.get(id);
+
+			for (Upgrade u : upgradeList) {
+				if (u.getName().toLowerCase().equals(oldUpgradeName.toLowerCase())) {
+					int q = u.getQuantity();
+					upgradeList.remove(u);
+					for (int i = 0; i < q; i++) {
+						Store.giveUserUpgrade(id, newUpgrade);
+					}
+					break;
+				}
+			}
+		}
 	}
 
 }
