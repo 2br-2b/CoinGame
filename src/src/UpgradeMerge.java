@@ -7,6 +7,7 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class UpgradeMerge extends Command {
@@ -37,6 +38,7 @@ public class UpgradeMerge extends Command {
 	public UpgradeMerge(EventWaiter w) {
 		this();
 		super.name = "merge";
+		super.hidden = true;
 		waiter = w;
 	}
 
@@ -56,7 +58,7 @@ public class UpgradeMerge extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
-		Boolean didExecute = false;
+
 		event.reply("Ok! Now give me the first upgrade to merge.");
 		waiter.waitForEvent(GuildMessageReceivedEvent.class,
 				e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
@@ -66,24 +68,43 @@ public class UpgradeMerge extends Command {
 						e.getChannel().sendMessage("You don't have a `" + firstUpgrade + "`!").queue();
 						return;
 					}
-					didExecute = true;
+
 					event.reply("Ok! Now give me the second upgrade to merge."); // Only do this if the purchase was
 																					// successful
+
+					waiter.waitForEvent(GuildMessageReceivedEvent.class, ev -> ev.getAuthor().equals(event.getAuthor())
+							&& ev.getChannel().equals(event.getChannel()), ev -> {
+								String secondUpgrade = ev.getMessage().getContentRaw();
+								if (!Store.hasItem(ev.getAuthor().getId(), secondUpgrade)) {
+									ev.getChannel().sendMessage("You don't have a `" + secondUpgrade + "`!").queue();
+									return;
+								}
+
+								completeMerge(firstUpgrade, secondUpgrade, event.getChannel(),
+										event.getAuthor().getId());
+
+							}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
 				}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
 
-		if (didExecute) {
-			waiter.waitForEvent(GuildMessageReceivedEvent.class,
-					e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
-						String secondUpgrade = e.getMessage().getContentRaw();
-						if (!Store.hasItem(e.getAuthor().getId(), secondUpgrade)) {
-							e.getChannel().sendMessage("You don't have a `" + secondUpgrade + "`!").queue();
-							return;
-						}
-
-					}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
-		}
-
 		// make sure you serialize the new data.
+	}
+
+	public static void completeMerge(String item1, String item2, MessageChannel c, String authorID) {
+		if (getNewUpgrade(item1, item2) != null) {
+
+			if (Store.removeItem(authorID, item1) && Store.removeItem(authorID, item2)) {
+
+				Store.giveUserUpgrade(authorID, UpgradeMerge.getNewUpgrade(item1, item2));
+
+				c.sendMessage("<@" + authorID + "> merged a `" + item1 + "` and a `" + item2 + "` to make a `"
+						+ UpgradeMerge.getNewUpgrade(item1, item2).getName() + "`!").queue();
+			} else {
+				c.sendMessage("Something went wrong.").queue();
+			}
+		} else {
+			c.sendMessage("You can't merge a `" + item1 + "` and a `" + item2 + "`!").queue();
+			return;
+		}
 	}
 
 }

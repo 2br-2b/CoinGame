@@ -15,6 +15,7 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -36,7 +37,10 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
-		JDA jda = new JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
+		// JDA jda = new
+		// JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
+		JDA jda = new JDABuilder(AccountType.BOT)
+				.setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
 
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
