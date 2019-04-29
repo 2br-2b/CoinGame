@@ -45,6 +45,19 @@ public class Store extends ListenerAdapter {
 			new Upgrade("**\u221E**", "Power Stone", 1000000, 1000, 1), new Upgrade("iPhone XR", 100000, 1, 1),
 			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Bowcaster", 150000, 4, 10),
 			new Upgrade(":gem:", "Diamond Armor", 5307786900L, 1000, 1),
+			new Upgrade(":gem:", "Lightsaber", 8000000000L, 1977, 1), new Upgrade("Tank", 8580000, 150, 10),
+			new Upgrade("Pet Dragon", 10000000, 3000, 5), new Upgrade("Mjolnir", 449000000, 3000),
+			new Upgrade("The Ultimate Ultimate Weapon", 123000000, 1640),
+			new Upgrade("The Tumbler Batmobile", 18000000, 493), new Upgrade("Wayne Manor", 800000000, 150000),
+			new Upgrade("Because I" + apostrophe + "m Batman!", 682450750, 54321),
+			new Upgrade(":gem:", "Hubble Telescope", 2870000000L, 199000),
+			new Upgrade(":gem:", "International Space Station", 50400000000L, 1961990),
+			new Upgrade("1963 Ferrari GTO", 52000000, 1963, 5),
+			new Upgrade("Gold Plated Bugatti Veyron", 10000000, 1500),
+			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
+			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
+			new Upgrade("Crystal Piano", 3200000, 2008),
+			new Upgrade(":gem:", "Gram of Antimatter", 62500000000L, 7654321, 10), };
 
 	public Store() {
 
@@ -52,7 +65,7 @@ public class Store extends ListenerAdapter {
 	}
 
 	public static void randomizeStore() {
-		int randomItems = 7;
+		int randomItems = 8;
 		randomStuff[0] = new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 				(int) (Math.random() * 30));
 
