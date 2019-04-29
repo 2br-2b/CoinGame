@@ -18,6 +18,7 @@ public class HangmanGame {
 	private int livesLeft;
 
 	private ArrayList<Character> lettersToGuess;
+	private ArrayList<Character> lettersGuessed;
 
 	public HangmanGame(String word, int lives) {
 		this.word = word;
@@ -32,6 +33,8 @@ public class HangmanGame {
 		for (char l : allLetters) {
 			lettersToGuess.add(l);
 		}
+		lettersGuessed = new ArrayList<Character>();
+		lettersGuessed.clear();
 	}
 
 	public HangmanGame(String word) {
@@ -63,8 +66,13 @@ public class HangmanGame {
 
 		l = l.toLowerCase();
 		if (!lettersToGuess.contains(l.charAt(0))) {
-			return "Either you already guessed that, or that is an invalid character.  Please try again!";
+			return "Invalid character.  Please try again!";
 		}
+
+		if (lettersGuessed.contains(l.charAt(0))) {
+			return "You already guessed that!\n`" + getVisible() + "`";
+		}
+		lettersGuessed.add(l.charAt(0));
 
 		// System.out.println("a");
 		// System.out.println(lettersToGuess.remove(l.charAt(0)));
