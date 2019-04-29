@@ -36,12 +36,14 @@ public class Store extends ListenerAdapter {
 			new Upgrade("A bad feeling about this", 120000, 1138, 1), new Upgrade("Blender (for food)", 10000, 2, 7),
 			new Upgrade("Blender (the program)", 100000, 28, 10),
 			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1),
-			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4) };
-
-	public static Upgrade[] infinityStones = { new Upgrade("Soul Stone", 1000000, 1000, 1),
-			new Upgrade("Mind Stone", 1000000, 1000, 1), new Upgrade("Reality Stone", 1000000, 1000, 1),
-			new Upgrade("Space Stone", 1000000, 1000, 1), new Upgrade("Time Stone", 1000000, 1000, 1),
-			new Upgrade("Power Stone", 1000000, 1000, 1) };
+			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4), new Upgrade("iPhone XR", 100000, 1, 1),
+			new Upgrade("Soul Stone", 1000000, 1000, 1), new Upgrade("Mind Stone", 1000000, 1000, 1),
+			new Upgrade("Reality Stone", 1000000, 1000, 1), new Upgrade("Space Stone", 1000000, 1000, 1),
+			new Upgrade("Time Stone", 1000000, 1000, 1), new Upgrade("Power Stone", 1000000, 1000, 1),
+			new Upgrade("iPhone XR", 100000, 1, 1),
+			new Upgrade("The answer to life, the universe, and everything in it", 424242, 42, 42),
+			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Bowcaster", 150000, 4, 10),
+			new Upgrade("Diamond Armor", 5307786900L, 1000, 1) };
 
 	public Store() {
 
@@ -67,8 +69,6 @@ public class Store extends ListenerAdapter {
 			store.add(randomUpgrade);
 
 		}
-
-		store.add(infinityStones[(int) (Math.random() * 6)]);
 
 		Collections.sort(store);
 		lastRandomized = OffsetDateTime.now();
