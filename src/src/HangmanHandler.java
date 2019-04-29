@@ -40,7 +40,7 @@ public class HangmanHandler extends Game {
 			} else if (messageList[2].equals("remain")) {
 				e.getChannel().sendMessage(games.get(e.getAuthor().getId()).getGuessable()).queue();
 			}
-		} else if (messageList[2].equals("hard")) {
+		} else if (messageList.length > 2 && messageList[2].equals("hard")) {
 			int c = 5000;
 			if (PointsAdder.payCoins(e.getAuthor().getId(), c)) {
 				String word;
