@@ -160,24 +160,352 @@ givemoney 351804839820525570 208
 givemoney 410124830969561088 101
 givemoney 410124830969561088 -100000
 givemoney 351804
-givemoney 351804839820525570 7028
-givemoney 351804839820525570 32389
+giveitem 351804839820525570 60 This is random
+giveitem 351804839820525570 60 This is random
+giveitem 351804839820525570 60 This is random
+giveitem 351804839820525570 60 This is random
+giveitem 351804839820525570 60 This is random
+giveitem 351804839820525570 60 This is random
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 7 Batarang
+giveitem 351804839820525570 19 Nuclear Bomb
+giveitem 351804839820525570 19 Nuclear Bomb
+giveitem 351804839820525570 19 Nuclear Bomb
+giveitem 351804839820525570 19 Nuclear Bomb
+giveitem 351804839820525570 19 Nuclear Bomb
+giveitem 351804839820525570 19 Nuclear Bomb
+giveitem 410124830969561088 100 Ring of Power
+giveitem <@!410124830969561088> 30 Cookie
+giveitem 544600923112996901 30 Cookie
+giveitem 410124830969561088 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem 351804839820525570 30 Cookie
+giveitem !56536607377221222 30 Cookie
+giveitem 351804839820525570 1000 Stormbreaker
+giveitem 351804839820525570 1000 Stormbreaker
+giveitem 351804839820525570 1000 Stormbreaker
+giveitem 351804839820525570 1000 Stormbreaker
+giveitem 351804839820525570 1000 Stormbreaker
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 351804839820525570 1138 A bad feeling about this
+giveitem 482006096337174529 10 Kirk's Glasses
+giveitem 351804839820525570 10 Shark Repellent Bat Spray
+giveitem 351804839820525570 10 Shark Repellent Bat Spray
+giveitem 351804839820525570 10 Shark Repellent Bat Spray
+giveitem 351804839820525570 10 Shark Repellent Bat Spray
+giveitem 351804839820525570 1 iPhone XR
+giveitem 351804839820525570 1000 Soul Stone
+giveitem 544600923112996901 1000 Mind Stone
+giveitem 351804839820525570 1000 Mind Stone
+giveitem 351804839820525570 1000 Mind Stone
+giveitem 351804839820525570 1000 Space Stone
+giveitem 351804839820525570 1000 Time Stone
+giveitem 351804839820525570 1000 Time Stone
+giveitem 351804839820525570 1000 Power Stone
+giveitem 351804839820525570 1 iPhone XR
+giveitem 354403279079473154 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 410124830969561088 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 351804839820525570 100 Limited-Edition Collector's Edition Easter Egg
+giveitem 544600923112996901 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 1 Yay
+giveitem 410124830969561088 10 Hmm
+giveitem 354403279079473154 500 Hax
+giveitem 410124830969561088 500 Hax
+giveitem 351804839820525570 500 Hax
+giveitem 351804839820525570 500 Hax
+giveitem 351804839820525570 500 Hax
+giveitem 410124830969561088 24 Lol
+giveitem 410124830969561088 24 Lol
+giveitem 351804839820525570 1000 Nuclear War
+giveitem 351804839820525570 280 Blender (the world)
+giveitem 351804839820525570 280 Blender (the world)
+giveitem 351804839820525570 280 Blender (the world)
+giveitem 351804839820525570 280 Blender (the world)
+giveitem 351804839820525570 280 Blender (the world)
+givemoney 351804839820525570 9146
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 12000
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 5000
+givemoney 351804839820525570 -5000
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 27000
+givemoney 351804839820525570 36542
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 20796
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 23221
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 21070
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 20337
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 24612
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 20996
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 21456
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 20321
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 24961
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 20216
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 36562
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 20346
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 24764
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 22250
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 22886
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 24455
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 22261
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+givemoney 351804839820525570 23503
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 -10000
+giveitem 351804839820525570 1 Coin
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 -5000
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 27000
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 -5000
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 -1000
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 13000
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 -5000
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 36575
+givemoney 351804839820525570 -1000
+givemoney 482006096337174529 12
+givemoney 482006096337174529 13
+givemoney 544600923112996901 1032
+givemoney 351804839820525570 36575
+givemoney 544600923112996901 1032
+givemoney 351804839820525570 36575
 givemoney 544600923112996901 1032
 givemoney 544600923112996901 1032
-givemoney 351804839820525570 32389
-givemoney 351804839820525570 32389
-remove 351804839820525570 Easy Button
-remove 351804839820525570 Nuclear Missile
-giveitem 351804839820525570 1 Nuclear War
-givemoney 544600923112996901 1032
-givemoney 351804839820525570 32367
-givemoney 544600923112996901 1032
-givemoney 544600923112996901 1032
-givemoney 351804839820525570 32367
-givemoney 544600923112996901 1032
-givemoney 410124830969561088 768
-givemoney 410124830969561088 4723
-givemoney 544600923112996901 1032
-givemoney 351804839820525570 32367
-givemoney 410124830969561088 4723
-givemoney 544600923112996901 1032
+givemoney 351804839820525570 36575
