@@ -5,30 +5,42 @@ import java.io.Serializable;
 public class Upgrade implements Comparable<Upgrade>, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private String name, prefix;
 	private long cost;
 	private int boostRate;
 	private int quantity;
 
-	public Upgrade(String name, long cost, int boostRate) {
+	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
+		this.prefix = prefix;
 		this.name = name;
 		this.cost = cost;
 		this.boostRate = boostRate;
-		this.quantity = 1;
-	}
-
-	public Upgrade(String name, long cost, int boostRate, int quantity) {
-		this(name, cost, boostRate);
 		this.quantity = quantity;
 	}
 
+	public Upgrade(String prefix, String name, long cost, int boostRate) {
+		this(prefix, name, cost, boostRate, 1);
+	}
+
+	public Upgrade(String name, long cost, int boostRate, int quantity) {
+		this("", name, cost, boostRate, quantity);
+	}
+
+	public Upgrade(String name, long cost, int boostRate) {
+		this(name, cost, boostRate, 1);
+	}
+
 	public Upgrade(Upgrade u) {
-		this(u.getName(), u.getCost(), u.getBoost(), 1);
+		this(u.getPrefix(), u.getName(), u.getCost(), u.getBoost());
 	}
 
 	@Override
 	public String toString() {
-		String str = "`" + quantity + "x` " + getName() + " (" + getCostString() + Main.CURRENCY;
+		return "`" + quantity + "x` " + toStringWithoutNumber();
+	}
+
+	public String toStringWithoutNumber() {
+		String str = getNamePrefix() + " (" + getCostString() + Main.CURRENCY;
 
 		if (getBoost() != 0) {
 			str += ", provides a boost of " + Main.addCommas(boostRate) + Main.CURRENCY;
@@ -39,8 +51,19 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 		return str;
 	}
 
+	public String getPrefix() {
+		return prefix;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public String getNamePrefix() {
+		if (prefix == null || prefix.equals(""))
+			return name;
+		else
+			return prefix + " " + name;
 	}
 
 	public long getCost() {
