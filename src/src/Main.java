@@ -11,6 +11,10 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.jagrosh.jdautilities.command.CommandClient;
+import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -38,7 +42,17 @@ public class Main {
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
-		jda.addEventListener(new UpgradeMerge());
+		
+		CommandClientBuilder builder = new CommandClientBuilder();
+		EventWaiter waiter = new EventWaiter();
+		
+		builder.setPrefix("c!");
+		builder.addCommands(new UpgradeMerge(waiter));
+		
+		CommandClient client = builder.build();
+		
+		jda.addEventListener(client);
+		jda.addEventListener(waiter);
 
 		new FileManager();
 		serializeStuff();
