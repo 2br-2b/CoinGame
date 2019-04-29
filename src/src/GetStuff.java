@@ -74,12 +74,12 @@ public class GetStuff extends ListenerAdapter {
 			switch (list[1]) {
 			case "prefix":
 				str = Store.outdatedPrefix + " means that something is not sold in the store anymore.\n"
-						+ "\uu221E is from the Avengers: Endgame event.\n" + MergableHandler.prefix
+						+ "\uu221E is from the Avengers: Endgame event.\n" + UpgradeMerge.prefix
 						+ " means that the upgrade was merged from two other upgrades.";
 				break;
 
 			case "merge":
-				for (Mergable m : MergableHandler.possibleMerges) {
+				for (Mergable m : UpgradeMerge.possibleMerges) {
 					str += m + "\n";
 				}
 
