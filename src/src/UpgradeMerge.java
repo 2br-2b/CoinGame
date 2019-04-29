@@ -51,46 +51,41 @@ public class UpgradeMerge extends ListenerAdapter {
 	public void onMessageReceived(MessageReceivedEvent e) {
 		if (e.getMessage().getContentRaw().contains(Main.PREFIX + "merge")) {
 			System.out.print("1");
-			e.getChannel().sendMessage("Give me the first mergable upgrade.").queue();
-			System.out.print("2");
-			waiter.waitForEvent(GuildMessageReceivedEvent.class,
-					event -> event.getAuthor().equals(e.getAuthor()) && event.getChannel().equals(e.getChannel()),
-					event -> {
-						System.out.print("3");
+			
 
-						System.out.println("OneDone");
-						String number1 = event.getMessage().getContentRaw();
-						if (!Store.hasItem(event.getAuthor().getId(), number1)) {
-							event.getChannel().sendMessage("You don't have a `" + number1 + "`!").queue();
+						
+						String[] number1 = e.getMessage().getContentRaw().split(" ", 2);
+						if (!Store.hasItem(e.getAuthor().getId(), number1[1])) {
+							e.getChannel().sendMessage("You don't have a `" + number1[1] + "`!").queue();
 							return;
 						}
-
-						event.getChannel().sendMessage("Give me the second mergable upgrade.").queue();
+						System.out.println("OneDone");
+						e.getChannel().sendMessage("Give me the second mergable upgrade.").queue();
 						waiter.waitForEvent(GuildMessageReceivedEvent.class,
-								event2 -> event2.getAuthor().equals(event.getAuthor())
-										&& event2.getChannel().equals(event.getChannel()),
+								event2 -> event2.getAuthor().equals(e.getAuthor())
+										&& event2.getChannel().equals(e.getChannel()),
 								event2 -> {
 
 									System.out.println("TwoDone");
 									String number2 = event2.getMessage().getContentRaw();
-									if (!Store.hasItem(event.getAuthor().getId(), number2)) {
-										event.getChannel().sendMessage("You don't have a `" + number2 + "`!").queue();
+									if (!Store.hasItem(event2.getAuthor().getId(), number2)) {
+										event2.getChannel().sendMessage("You don't have a `" + number2 + "`!").queue();
 										return;
 									}
 
-									if (getNewUpgrade(number1, number2) != null) {
+									if (getNewUpgrade(number1[1], number2) != null) {
 										System.out.println("Yay!");
 
-										if (Store.removeItem(e.getAuthor().getId(), number1)
+										if (Store.removeItem(e.getAuthor().getId(), number1[1])
 												&& Store.removeItem(e.getAuthor().getId(), number2)) {
 
 											Store.giveUserUpgrade(e.getAuthor().getId(),
-													getNewUpgrade(number1, number2));
+													getNewUpgrade(number1[1], number2));
 
 											event2.getChannel()
 													.sendMessage(event2.getAuthor().getAsMention() + " merged a "
 															+ number1 + " and a " + number2 + " to make a "
-															+ getNewUpgrade(number1, number2).getName() + "!")
+															+ getNewUpgrade(number1[1], number2).getName() + "!")
 													.queue();
 										} else {
 											event2.getChannel().sendMessage("Something went wrong.").queue();
@@ -104,8 +99,6 @@ public class UpgradeMerge extends ListenerAdapter {
 
 								}, 30, TimeUnit.SECONDS, () -> e.getChannel()
 										.sendMessage("You did not give me a second Upgrade. Try again.").queue());
-					}, 30, TimeUnit.SECONDS,
-					() -> e.getChannel().sendMessage("You did not give me an Upgrade. Try again.").queue());
 		}
 	}
 
