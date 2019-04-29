@@ -47,7 +47,7 @@ public class HangmanHandler extends Game {
 				do {
 					word = FileManager.getWord();
 
-				} while (word.length() < 15);
+				} while (word.length() < 10);
 
 				games.put(e.getAuthor().getId(), new HangmanGame(word));
 				e.getChannel().sendMessage("Hard mode activated:\n" + games.get(e.getAuthor().getId()).getVisible())
