@@ -7,12 +7,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/Bot"/>
-	<classpathentry kind="lib" path="C:/Users/evgui/Downloads/JDA-3.8.3_460-withDependencies.jar" sourcepath="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/JARs/Chatbot/JDA-3.8.3_460-sources.jar">
+	<classpathentry kind="lib" path="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/Bots/JARs/Chatbot/JDA-3.8.3_460-withDependencies.jar" sourcepath="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/JARs/Chatbot/JDA-3.8.3_460-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/Users/johnwuller/Library/Mobile%20Documents/com~apple~CloudDocs/Mine/My%20Programs/Java/JARs/Chatbot/JDA-3.8.3_460-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/evgui/Downloads/jda-utilities-2.1-all.jar" sourcepath="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/Bots/JARs/Utilities/jda-utilities-2.1-sources.jar">
+	<classpathentry kind="lib" path="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/Bots/JARs/Utilities/jda-utilities-2.1-all.jar" sourcepath="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/Bots/JARs/Utilities/jda-utilities-2.1-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="/Users/johnwuller/Library/Mobile Documents/com~apple~CloudDocs/Mine/My Programs/Java/JARs/Utilities/jda-utilities-2.1-javadoc.jar"/>
 		</attributes>
