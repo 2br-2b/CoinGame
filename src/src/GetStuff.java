@@ -75,7 +75,8 @@ public class GetStuff extends ListenerAdapter {
 			case "prefix":
 				str = Store.outdatedPrefix + " means that something is not sold in the store anymore.\n"
 						+ "\uu221E is from the Avengers: Endgame event.\n" + UpgradeMerge.prefix
-						+ " means that the upgrade was merged from two other upgrades.";
+						+ " means that the upgrade was merged from two other upgrades.\n"
+						+ ":gem: means that the item's price is listed as a Long";
 				break;
 
 			case "merge":

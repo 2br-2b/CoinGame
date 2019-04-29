@@ -24,17 +24,17 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
 			new Upgrade("All of the Pokemon", 1510000, 809, 1),
 			new Upgrade("Mario" + apostrophe + "s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 10),
-			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Baby Shark", 2639860696L, 50000, 1),
+			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade(":gem:", "Baby Shark", 2639860696L, 50000, 1),
 			new Upgrade("Smash Ball", 500000, 30, 6),
 			new Upgrade("Captain America" + apostrophe + " Shield", 17871941, 30, 1),
 			new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 666666, 1),
 			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 10), new Upgrade("Popcorn", 1000, 1, 100),
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
-			new Upgrade("Ring of Power", 100000, 100, 19), new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
-			new Upgrade("Debug Byte", 1, 0, 256), new Upgrade("Easy Button", 10000, 13, 10),
-			new Upgrade("Cookie", 100, 30, 10), new Upgrade("Stormbreaker", 100000, 1000, 1),
-			new Upgrade("A bad feeling about this", 120000, 1138, 1), new Upgrade("Blender (for food)", 10000, 2, 7),
-			new Upgrade("Blender (the program)", 100000, 28, 10),
+			new Upgrade("Ring of Power", 100000, 100, 19),
+			new Upgrade(":gem:", "Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1), new Upgrade("Debug Byte", 1, 0, 256),
+			new Upgrade("Easy Button", 10000, 13, 10), new Upgrade("Cookie", 100, 30, 10),
+			new Upgrade("Stormbreaker", 100000, 1000, 1), new Upgrade("A bad feeling about this", 120000, 1138, 1),
+			new Upgrade("Blender (for food)", 10000, 2, 7), new Upgrade("Blender (the program)", 100000, 28, 10),
 			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1),
 			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4), new Upgrade("iPhone XR", 100000, 1, 1),
 			new Upgrade("**\u221E**", "Soul Stone", 1000000, 1000, 1),
@@ -44,7 +44,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("**\u221E**", "Time Stone", 1000000, 1000, 1),
 			new Upgrade("**\u221E**", "Power Stone", 1000000, 1000, 1), new Upgrade("iPhone XR", 100000, 1, 1),
 			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Bowcaster", 150000, 4, 10),
-			new Upgrade("Diamond Armor", 5307786900L, 1000, 1) };
+			new Upgrade(":gem:", "Diamond Armor", 5307786900L, 1000, 1),
 
 	public Store() {
 
