@@ -42,21 +42,19 @@ public class Main {
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
-<<<<<<< HEAD
-		jda.addEventListener(new MergableHandler());
-=======
-		
+		jda.addEventListener(new StandardUpgradeMerge());
+
 		CommandClientBuilder builder = new CommandClientBuilder();
 		EventWaiter waiter = new EventWaiter();
-		
+
 		builder.setPrefix("c!");
 		builder.addCommands(new UpgradeMerge(waiter));
-		
+		builder.setOwnerId("351804839820525570");
+
 		CommandClient client = builder.build();
-		
+
 		jda.addEventListener(client);
 		jda.addEventListener(waiter);
->>>>>>> 42710ee8438c25e479e84f8490f7f7988ba84b07
 
 		new FileManager();
 		serializeStuff();
@@ -69,7 +67,7 @@ public class Main {
 			replaceAllEverywhere(u);
 		}
 
-		for (Mergable m : MergableHandler.possibleMerges) {
+		for (Mergable m : UpgradeMerge.possibleMerges) {
 			replaceAllEverywhere(m.getUpgrade());
 		}
 
