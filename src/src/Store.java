@@ -163,7 +163,8 @@ public class Store extends ListenerAdapter {
 		Upgrade toBuy = null;
 
 		for (Upgrade up : store) {
-			if (up.getName().toLowerCase().equals(thingToPurchase.toLowerCase())) {
+			if (up.getName().toLowerCase().equals(thingToPurchase.toLowerCase())
+					|| up.getNamePrefix().toLowerCase().equals(thingToPurchase.toLowerCase())) {
 				toBuy = up;
 				break;
 			}
