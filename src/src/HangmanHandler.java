@@ -15,11 +15,11 @@ public class HangmanHandler extends Game {
 
 	@Override
 	public void play(MessageReceivedEvent e) {
-		System.out.println("Hangman!");
+		// System.out.println("Hangman!");
 		String[] messageList = e.getMessage().getContentRaw().split(" ");
 
 		if (games.containsKey(e.getAuthor().getId())) {
-			System.out.println(messageList[2].length());
+			// System.out.println(messageList[2].length());
 			if (messageList[2].length() == 1) {
 				String str = games.get(e.getAuthor().getId()).guessLetter(messageList[2]);
 				if (str.charAt(0) == '\u0000') {
@@ -37,8 +37,8 @@ public class HangmanHandler extends Game {
 
 			} else if (messageList[2].equals("word")) {
 				e.getChannel().sendMessage("`" + games.get(e.getAuthor().getId()).getVisible() + "`").queue();
-			} else if (messageList[2].equals("remain")) {
-				e.getChannel().sendMessage(games.get(e.getAuthor().getId()).getGuessable()).queue();
+			} else {
+				e.getChannel().sendMessage("Please only guess one letter at a time!").queue();
 			}
 		} else if (messageList.length > 2 && messageList[2].equals("hard")) {
 			int c = 5000;
