@@ -58,6 +58,8 @@ public class UpgradeMerge extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
+		if (!event.getArgs().equals(""))
+			return;
 
 		event.reply("Ok! Now give me the first upgrade to merge.");
 		waiter.waitForEvent(GuildMessageReceivedEvent.class,

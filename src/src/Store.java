@@ -15,6 +15,7 @@ public class Store extends ListenerAdapter {
 	public static String apostrophe = "'";
 	public static String millionPrefix = "**$**";
 	public static String billionPrefix = "**$$**";
+	public static String longPrefix = ":gem:";
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	static OffsetDateTime lastRandomized;
@@ -22,19 +23,19 @@ public class Store extends ListenerAdapter {
 	public static Upgrade[] randomStuff = {
 			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 					(int) (Math.random() * 30)),
-			new Upgrade("Batarang", 10000, 7, 10),
-			new Upgrade(millionPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100),
+			new Upgrade("Batarang", 10000, 7, 10), new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
 			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
+			new Upgrade("Kylo Ren" + apostrophe + "s Helmet", 200000, 135, 1),
 			new Upgrade("All of the Pokemon", 1510000, 809, 1),
 			new Upgrade("Mario" + apostrophe + "s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 10),
-			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade(":gem:", "Baby Shark", 2639860696L, 50000, 1),
+			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Baby Shark", 2639860696L, 50000, 1),
 			new Upgrade("Smash Ball", 500000, 30, 6),
 			new Upgrade("Captain America" + apostrophe + " Shield", 17871941, 30, 1),
-			new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 666666, 1),
+			new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 6666, 1),
 			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 10), new Upgrade("Popcorn", 1000, 1, 100),
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
 			new Upgrade(":ring:", "Ring of Power", 100000, 100, 19),
-			new Upgrade(":gem:", "Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1), new Upgrade("Debug Byte", 1, 0, 256),
+			new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1), new Upgrade("Debug Byte", 1, 0, 256),
 			new Upgrade("Easy Button", 10000, 13, 10), new Upgrade(":cookie:", "Cookie", 100, 30, 10),
 			new Upgrade("Stormbreaker", 100000, 1000, 1), new Upgrade("A bad feeling about this", 120000, 1138, 1),
 			new Upgrade("Blender (for food)", 10000, 2, 7), new Upgrade("Blender (the program)", 100000, 28, 10),
@@ -47,20 +48,18 @@ public class Store extends ListenerAdapter {
 			new Upgrade("**\u221E**", "Time Stone", 1000000, 1000, 1),
 			new Upgrade("**\u221E**", "Power Stone", 1000000, 1000, 1), new Upgrade("iPhone XR", 100000, 1, 1),
 			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Bowcaster", 150000, 4, 10),
-			new Upgrade(":gem:", "Diamond Armor", 5307786900L, 1000, 1),
-			new Upgrade(":gem:", "Lightsaber", 8000000000L, 1977, 1), new Upgrade("Tank", 8580000, 150, 10),
-			new Upgrade("Pet Dragon", 10000000, 3000, 5), new Upgrade("Mjolnir", 449000000, 3000),
-			new Upgrade("The Ultimate Ultimate Weapon", 123000000, 1640),
+			new Upgrade("Diamond Armor", 5307786900L, 1000, 1), new Upgrade("Lightsaber", 8000000000L, 1977, 1),
+			new Upgrade("Tank", 8580000, 150, 10), new Upgrade("Pet Dragon", 10000000, 3000, 5),
+			new Upgrade("Mjolnir", 449000000, 3000), new Upgrade("The Ultimate Ultimate Weapon", 123000000, 1640),
 			new Upgrade("The Tumbler Batmobile", 18000000, 493), new Upgrade("Wayne Manor", 800000000, 150000),
 			new Upgrade("Because I" + apostrophe + "m Batman!", 682450750, 54321),
-			new Upgrade(":gem:", "Hubble Telescope", 2870000000L, 199000),
-			new Upgrade(":gem:", "International Space Station", 50400000000L, 1961990),
+			new Upgrade("Hubble Telescope", 2870000000L, 199000),
+			new Upgrade("International Space Station", 50400000000L, 1961990),
 			new Upgrade("1963 Ferrari GTO", 52000000, 1963, 5),
 			new Upgrade("Gold Plated Bugatti Veyron", 10000000, 1500),
 			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
 			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
-			new Upgrade("Crystal Piano", 3200000, 2008),
-			new Upgrade(":gem:", "Gram of Antimatter", 62500000000L, 7654321, 10), };
+			new Upgrade("Crystal Piano", 3200000, 2008), new Upgrade("Gram of Antimatter", 62500000000L, 7654321, 10) };
 
 	public Store() {
 
@@ -322,5 +321,6 @@ public class Store extends ListenerAdapter {
 			new Upgrade(outdatedPrefix, "Limited-Edition Collector" + apostrophe + "s Edition Easter Egg", 1000, 100,
 					5),
 			new Upgrade(outdatedPrefix, "Yay", 30, 1, 20), new Upgrade(outdatedPrefix, "Hmm", 10, 10, 1),
-			new Upgrade(outdatedPrefix, "Hax", 1, 500, 1), new Upgrade(outdatedPrefix, "Lol", 42, 24, 1) };
+			new Upgrade(outdatedPrefix, "Hax", 1, 500, 1), new Upgrade(outdatedPrefix, "Lol", 42, 24, 1),
+			new Upgrade(outdatedPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100), };
 }

@@ -12,6 +12,9 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 
 	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
 		if (prefix.equals("") || prefix == null) {
+			if (cost > Integer.MAX_VALUE) {
+				this.prefix = Store.longPrefix;
+			}
 			if (cost >= 1000000000) {
 				this.prefix = Store.billionPrefix;
 			} else if (cost >= 1000000) {
