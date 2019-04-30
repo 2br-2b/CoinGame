@@ -37,7 +37,7 @@ public class GetStuff extends ListenerAdapter {
 			// System.out.println("Show the store");
 			Store.showStore(e.getChannel());
 		} else if (message.startsWith(Main.GET_MONEY_STRING)) {
-			String str = e.getAuthor().getName() + " has " + Main.addCommas(Main.bal.get(e.getAuthor().getId()))
+			String str = e.getAuthor().getAsMention() + " has " + Main.addCommas(Main.bal.get(e.getAuthor().getId()))
 					+ Main.CURRENCY;
 			// System.out.println(str);
 			c.sendMessage(str).queue();
@@ -75,8 +75,12 @@ public class GetStuff extends ListenerAdapter {
 			case "prefix":
 				str = Store.outdatedPrefix + " means that something is not sold in the store anymore.\n"
 						+ "\uu221E is from the Avengers: Endgame event.\n" + UpgradeMerge.prefix
-						+ " means that the upgrade was merged from two other upgrades.\n"
-						+ ":gem: means that the item's price is listed as a Long";
+						+ " means that the upgrade was merged from two other upgrades.\n" + Store.millionPrefix
+						+ "means that something is priced at at least 1,000,000" + Main.CURRENCY + '\n'
+						+ Store.millionPrefix + "means that something is priced at at least 1,000,000\n" + Main.CURRENCY
+						+ ":gem: means that the item's price is listed as a Long (more than " + Integer.MAX_VALUE
+						+ Main.CURRENCY;
+
 				break;
 
 			case "merge":

@@ -22,7 +22,10 @@ public class CoinFlip extends Game {
 			paid = Integer.parseInt(m[2]);
 			// System.out.println(paid);
 		} catch (NumberFormatException ex) {
-			e.getChannel().sendMessage(m[2] + " is not a valid number.  Please try again.").queue();
+			e.getChannel()
+					.sendMessage(
+							e.getAuthor().getAsMention() + ", " + m[2] + " is not a valid number.  Please try again.")
+					.queue();
 			return;
 		}
 

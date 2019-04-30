@@ -33,7 +33,11 @@ public class HangmanHandler extends Game {
 					games.remove(e.getAuthor().getId());
 				}
 
-				e.getChannel().sendMessage(str).queue();
+				if (games.keySet().size() > 1) {
+					e.getChannel().sendMessage(e.getAuthor().getAsMention() + "\n" + str).queue();
+				} else {
+					e.getChannel().sendMessage(str).queue();
+				}
 
 			} else if (messageList[2].equals("word")) {
 				e.getChannel().sendMessage("`" + games.get(e.getAuthor().getId()).getVisible() + "`").queue();
