@@ -110,14 +110,14 @@ public class Store extends ListenerAdapter {
 				nameOfObj += " " + messageSplit[i];
 			}
 			userGiveUserUpgrade(e.getAuthor().getId(), nameOfObj, messageSplit[1]);
-		} else if (message.contains(Main.GET_BUY_STRING)) {
+		} else if (message.startsWith(Main.GET_BUY_STRING)) {
 			buySomething(message.substring(Main.GET_BUY_STRING.length() + 1), e.getAuthor());
-		} else if (message.contains(Main.GET_ADD_STRING)) {
+		} else if (message.startsWith(Main.GET_ADD_STRING)) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
 				PointsAdder.addCoins(e.getAuthor().getId(),
 						Long.parseLong(message.substring(Main.GET_ADD_STRING.length() + 1)));
 			}
-		} else if (message.contains(Main.PREFIX + "sell")) {
+		} else if (message.startsWith(Main.PREFIX + "sell")) {
 			sellUpgrade(e);
 		}
 
@@ -316,7 +316,7 @@ public class Store extends ListenerAdapter {
 		return null;
 	}
 
-	public static String outdatedPrefix = "**S**";
+	public static String outdatedPrefix = "**V**";
 	public static Upgrade[] pastUpgrades = {
 			new Upgrade(outdatedPrefix, "Limited-Edition Collector" + apostrophe + "s Edition Easter Egg", 1000, 100,
 					5),
