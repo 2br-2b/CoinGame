@@ -33,6 +33,11 @@ public class UpgradeMerge extends Command {
 		possibleMerges.add(new Mergable("Blender (for food)", "Blender (the program)",
 				new Upgrade(prefix, "Blender (the world)", 279, 280)));
 		possibleMerges.add(new Mergable("Hmm", "Hax", new Upgrade(prefix, "Ham", 300, 500)));
+		possibleMerges.add(new Mergable("Mjolnir", "Captain America" + Store.apostrophe + " Shield",
+				new Upgrade(prefix, "The Avengers' Weapons", 10708070000L, 10000)));
+		possibleMerges.add(new Mergable("Mjolnir", "Stormbreaker", new Upgrade(prefix, "Thor", 2011201700, 13579)));
+		possibleMerges.add(new Mergable("Debug Byte", "Debug Byte", new Upgrade(prefix, "Debug Kilobyte", 1000, 1)));
+
 	}
 
 	public UpgradeMerge(EventWaiter w) {
