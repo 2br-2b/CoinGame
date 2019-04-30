@@ -52,8 +52,10 @@ public class Main {
 		EventWaiter waiter = new EventWaiter();
 
 		builder.setPrefix("c!");
+		builder.setGame(Game.listening("c!help"));
 		builder.addCommands(new UpgradeMerge(waiter));
 		builder.setOwnerId("351804839820525570");
+		builder.setHelpWord("notahelpword");
 
 		CommandClient client = builder.build();
 
