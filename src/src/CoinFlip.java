@@ -1,20 +1,34 @@
 package src;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class CoinFlip extends Game {
 
 	int maxPay;
+	private HashMap<String, OffsetDateTime> coolingDown;
+	private int COOLDOWN_SECONDS = 10;
 
 	public CoinFlip() {
 		super.name = "Coin Flip";
 		maxPay = 10000;
+		coolingDown = new HashMap<String, OffsetDateTime>();
 	}
 
 	@Override
 	public void play(MessageReceivedEvent e) {
+		if (coolingDown.containsKey(e.getAuthor().getId()) && !e.getMessage().getCreationTime()
+				.isAfter(coolingDown.get(e.getAuthor().getId()).plusSeconds(COOLDOWN_SECONDS))) {
+			e.getChannel().sendMessage(e.getAuthor().getAsMention() + ", wait a few seconds in between coin flips!")
+					.queue();
+			return;
+		}
+
+		coolingDown.put(e.getAuthor().getId(), e.getMessage().getCreationTime());
+
 		String[] m = e.getMessage().getContentRaw().split(" ");
 		int paid = 0;
 
@@ -30,41 +44,39 @@ public class CoinFlip extends Game {
 		}
 
 		if (paid < 100) {
-			e.getChannel().sendMessage("You have to pay 100" + Main.CURRENCY + " or more to play!").queue();
+			e.getChannel().sendMessage(e.getAuthor().getAsMention() + ", you have to pay at least 100" + Main.CURRENCY
+					+ " or more to play!").queue();
 			return;
 		} else if (paid > maxPay) {
-			e.getChannel().sendMessage("You can only pay up to " + Main.addCommas(maxPay) + Main.CURRENCY + "!")
-					.queue();
+			e.getChannel().sendMessage(e.getAuthor().getAsMention() + ", you can only pay up to "
+					+ Main.addCommas(maxPay) + Main.CURRENCY + "!").queue();
 			return;
 		}
 
 		if (PointsAdder.payCoins(e.getAuthor().getId(), paid)) {
-			e.getChannel().sendMessage("All right!  Flipping a coin for " + Main.addCommas(paid) + Main.CURRENCY + "…")
-					.queue();
-			e.getChannel().sendTyping();
-
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
+			String str = e.getAuthor().getAsMention() + ", you got a ";
+			/*
+			 * try { Thread.sleep(3000); } catch (InterruptedException e1) {
+			 * e1.printStackTrace(); }
+			 */
 
 			double rand = Math.random();
 
 			if (rand > 0.5) {
 				int winnings = (int) (paid * (1.5 + rand));
-				e.getChannel().sendMessage("Heads!  " + e.getAuthor().getAsMention() + " won "
-						+ Main.addCommas(winnings) + Main.CURRENCY + "!").queue();
+
+				str += "heads! :smiley: You won " + Main.addCommas(winnings) + Main.CURRENCY + "!";
 				PointsAdder.addCoins(e.getAuthor().getId(), winnings);
-
 			} else {
-				e.getChannel().sendMessage("Tails!  Better luck next time!").queue();
-
+				str += "tails! :skull: Better luck next time!";
 			}
+			e.getChannel().sendMessage(str).queue();
 			Store.giveUserUpgrade(e.getAuthor().getId(), new Upgrade("Coin", 10, 1));
 
 		} else {
-			e.getChannel().sendMessage("You don't have " + Main.addCommas(paid) + Main.CURRENCY + "!").queue();
+			e.getChannel().sendMessage(
+					e.getAuthor().getAsMention() + ", you don't have " + Main.addCommas(paid) + Main.CURRENCY + "!")
+					.queue();
 			return;
 		}
 
