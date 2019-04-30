@@ -91,6 +91,20 @@ public class Store extends ListenerAdapter {
 
 	}
 
+	public static void addToStore(Upgrade up) {
+		for (int i = 0; i < store.size(); i++) {
+			Upgrade u = store.get(i);
+			if (up.getName().equals(u.getName())) {
+				u.plusOne();
+				return;
+			}
+		}
+
+		store.add(new Upgrade(up));
+		Collections.sort(store);
+
+	}
+
 	@Override
 	public void onMessageReceived(MessageReceivedEvent e) {
 		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
@@ -149,6 +163,7 @@ public class Store extends ListenerAdapter {
 			PointsAdder.addCoins(e.getAuthor().getId(), paid);
 			e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was paid " + paid + Main.CURRENCY + " for his "
 					+ theUpgrade.getName() + ".").queue();
+			addToStore(theUpgrade);
 		} else {
 			e.getChannel().sendMessage("Couldn't remove " + name).queue();
 		}
