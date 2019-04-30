@@ -76,10 +76,11 @@ public class GetStuff extends ListenerAdapter {
 				str = Store.outdatedPrefix + " means that something is not sold in the store anymore.\n"
 						+ "\uu221E is from the Avengers: Endgame event.\n" + UpgradeMerge.prefix
 						+ " means that the upgrade was merged from two other upgrades.\n" + Store.millionPrefix
-						+ "means that something is priced at at least 1,000,000" + Main.CURRENCY + '\n'
-						+ Store.millionPrefix + "means that something is priced at at least 1,000,000\n" + Main.CURRENCY
-						+ ":gem: means that the item's price is listed as a Long (more than " + Integer.MAX_VALUE
-						+ Main.CURRENCY;
+						+ " means that something is priced at at least 1,000,000" + Main.CURRENCY + '\n'
+						+ Store.billionPrefix + " means that something is priced at at least 1,000,000,000"
+						+ Main.CURRENCY + "\n" + Store.longPrefix
+						+ " means that the item's price is listed as a Long (more than " + Integer.MAX_VALUE
+						+ Main.CURRENCY + "!)";
 
 				break;
 
