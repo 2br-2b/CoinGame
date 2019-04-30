@@ -11,7 +11,17 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 	private int quantity;
 
 	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
-		this.prefix = prefix;
+		if (prefix.equals("") || prefix == null) {
+			if (cost >= 1000000000) {
+				this.prefix = Store.billionPrefix;
+			} else if (cost >= 1000000) {
+				this.prefix = Store.millionPrefix;
+			} else {
+				this.prefix = prefix;
+			}
+		} else {
+			this.prefix = prefix;
+		}
 		this.name = name;
 		this.cost = cost;
 		this.boostRate = boostRate;
@@ -23,7 +33,9 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 	}
 
 	public Upgrade(String name, long cost, int boostRate, int quantity) {
+
 		this("", name, cost, boostRate, quantity);
+
 	}
 
 	public Upgrade(String name, long cost, int boostRate) {
