@@ -25,7 +25,7 @@ public class Mergable {
 
 	@Override
 	public String toString() {
-		return "`" + u1 + "` + `" + u2 + "` = `" + upgrade.getName() + "`";
+		return "`" + u1 + "` + `" + u2 + "`";
 	}
 
 }
