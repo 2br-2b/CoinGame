@@ -47,6 +47,7 @@ public class Main {
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
 		jda.addEventListener(new StandardUpgradeMerge());
+		jda.addEventListener(new Sweepstakes());
 
 		CommandClientBuilder builder = new CommandClientBuilder();
 		EventWaiter waiter = new EventWaiter();
