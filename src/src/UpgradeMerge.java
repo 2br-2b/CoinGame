@@ -114,4 +114,27 @@ public class UpgradeMerge extends Command {
 		}
 	}
 
+	public static boolean checkIfSame(ArrayList<Object> l1, ArrayList<Object> l2) {
+		if (l1 == null && l2 == null) {
+			return true;
+		} else if (l1 == null || l2 == null) {
+			return false;
+		}
+
+		ArrayList<Object> a = new ArrayList<Object>(l1);
+		ArrayList<Object> b = new ArrayList<Object>(l2);
+
+		for (Object o : a) {
+			if (!(a.remove(o) && b.remove(o))) {
+				return false;
+			}
+		}
+
+		if (b.size() == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
