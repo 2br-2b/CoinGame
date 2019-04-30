@@ -1954,7 +1954,6 @@ birthplace
 birthright
 biscuit
 bisect
-bisexual
 bishop
 bishopric
 bismuth
@@ -8575,7 +8574,6 @@ heterodyne
 heterogamous
 heterogeneity
 heterogeneous
-heterosexual
 heterozygous
 heuristic
 hew
@@ -8750,7 +8748,6 @@ homomorphic
 homomorphism
 homonym
 homophobia
-homosexual
 homotopy
 homozygous
 homunculus
@@ -15928,14 +15925,11 @@ sew
 sewage
 sewerage
 sewn
-sex
 sextet
 sextillion
 sexton
 sextuple
 sextuplet
-sexual
-sexy
 sforzando
 shabby
 shack
@@ -18838,7 +18832,6 @@ uniplex
 unipolar
 uniprocessor
 uniqe
-unisex
 unison
 unit
 unital
@@ -18920,9 +18913,6 @@ urge
 urgency
 urgent
 urging
-urinal
-urinary
-urine
 urn
 usable
 usage
