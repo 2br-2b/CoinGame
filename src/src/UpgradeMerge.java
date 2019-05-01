@@ -37,6 +37,8 @@ public class UpgradeMerge extends Command {
 				new Upgrade(prefix, "The Avengers' Weapons", 10708070000L, 10000)));
 		possibleMerges.add(new Mergable("Mjolnir", "Stormbreaker", new Upgrade(prefix, "Thor", 2011201700, 13579)));
 		possibleMerges.add(new Mergable("Debug Byte", "Debug Byte", new Upgrade(prefix, "Debug Kilobyte", 1000, 1)));
+		String[] l = { "Soul Stone", "Mind Stone", "Reality Stone", "Space Stone", "Time Stone", "Power Stone" };
+		possibleMerges.add(new Mergable(l, new Upgrade(prefix, "Infinite Power", 66666666, 654321)));
 
 	}
 
@@ -61,70 +63,91 @@ public class UpgradeMerge extends Command {
 		return null;
 	}
 
+	public static Upgrade getNewUpgrade(ArrayList<String> u) {
+		for (Mergable m : possibleMerges) {
+			if (m.isMerge(u)) {
+				return new Upgrade(m.getUpgrade());
+			}
+		}
+
+		return null;
+	}
+
 	@Override
 	protected void execute(CommandEvent event) {
-		if (!event.getArgs().equals(""))
+		if (event.getAuthor().isBot() && !Main.BOTS_ALLOWED)
 			return;
 
-		event.reply("Ok! Now give me the first upgrade to merge.");
-		waiter.waitForEvent(GuildMessageReceivedEvent.class,
-				e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
-					String firstUpgrade = e.getMessage().getContentRaw();
+		int repetitions = 2;
+		try {
+			repetitions = Integer.parseInt(event.getArgs());
+		} catch (Exception e) {
+		}
 
-					if (!Store.hasItem(e.getAuthor().getId(), firstUpgrade)) {
-						e.getChannel().sendMessage("You don't have a `" + firstUpgrade + "`!").queue();
-						return;
-					}
+		ArrayList<String> items = new ArrayList<String>();
+		int i = 0;
+		while (i < repetitions) {
+			event.reply("Ok! Now give me the upgrade to merge (" + (i + 1) + " of  " + repetitions + ").");
+			waiter.waitForEvent(GuildMessageReceivedEvent.class,
+					e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
+						String firstUpgrade = e.getMessage().getContentRaw();
 
-					event.reply("Ok! Now give me the second upgrade to merge."); // Only do this if the purchase was
-																					// successful
+						if (!Store.hasItem(e.getAuthor().getId(), firstUpgrade)) {
+							e.getChannel().sendMessage("You don't have a `" + firstUpgrade + "`!").queue();
+							return;
+						}
 
-					waiter.waitForEvent(GuildMessageReceivedEvent.class, ev -> ev.getAuthor().equals(event.getAuthor())
-							&& ev.getChannel().equals(event.getChannel()), ev -> {
-								String secondUpgrade = ev.getMessage().getContentRaw();
-								if (!Store.hasItem(ev.getAuthor().getId(), secondUpgrade)) {
-									ev.getChannel().sendMessage("You don't have a `" + secondUpgrade + "`!").queue();
-									return;
-								}
+						items.add(firstUpgrade);
+					}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
 
-								completeMerge(firstUpgrade, secondUpgrade, event.getChannel(),
-										event.getAuthor().getId());
+			i++;
+		}
 
-							}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
-				}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
-
+		completeMerge(items, event.getChannel(), event.getAuthor().getId());
 		// make sure you serialize the new data.
 	}
 
-	public static void completeMerge(String item1, String item2, MessageChannel c, String authorID) {
-		if (getNewUpgrade(item1, item2) != null) {
+	public static void completeMerge(ArrayList<String> items, MessageChannel channel, String id) {
+		if (getNewUpgrade(items) != null) {
 
-			if (Store.removeItem(authorID, item1) && Store.removeItem(authorID, item2)) {
-
-				Store.giveUserUpgrade(authorID, UpgradeMerge.getNewUpgrade(item1, item2));
-
-				c.sendMessage("<@" + authorID + "> merged a `" + item1 + "` and a `" + item2 + "` to make a `"
-						+ UpgradeMerge.getNewUpgrade(item1, item2).getName() + "`!").queue();
-			} else {
-				c.sendMessage("Something went wrong.").queue();
+			for (String i : items) {
+				if (!Store.removeItem(id, i)) {
+					channel.sendMessage("Something went wrong.").queue();
+					return;
+				}
 			}
+
+			Store.giveUserUpgrade(id, UpgradeMerge.getNewUpgrade(items));
+
+			channel.sendMessage("<@" + id + "> merged " + items + " to make a `"
+					+ UpgradeMerge.getNewUpgrade(items).getName() + "`!").queue();
+
 		} else {
-			c.sendMessage("You can't merge a `" + item1 + "` and a `" + item2 + "`!").queue();
+			channel.sendMessage("You can't merge " + items + "!").queue();
 			return;
 		}
+
 	}
 
-	public static boolean checkIfSame(ArrayList<Object> l1, ArrayList<Object> l2) {
+	public static void completeMerge(String item1, String item2, MessageChannel c, String authorID) {
+		ArrayList<String> items = new ArrayList<String>();
+		items.add(item1);
+		items.add(item2);
+		completeMerge(items, c, authorID);
+	}
+
+	public static boolean checkIfSame(ArrayList<String> l1, ArrayList<String> l2) {
 		if (l1 == null && l2 == null) {
 			return true;
 		} else if (l1 == null || l2 == null) {
 			return false;
 		}
 
-		ArrayList<Object> a = new ArrayList<Object>(l1);
-		ArrayList<Object> b = new ArrayList<Object>(l2);
+		ArrayList<String> a = new ArrayList<String>(l1);
+		ArrayList<String> a2 = new ArrayList<String>(a);
+		ArrayList<String> b = new ArrayList<String>(l2);
 
-		for (Object o : a) {
+		for (Object o : a2) {
 			if (!(a.remove(o) && b.remove(o))) {
 				return false;
 			}

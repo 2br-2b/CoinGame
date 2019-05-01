@@ -7,6 +7,7 @@ public class Sweepstakes extends ListenerAdapter {
 
 	private boolean inRace = false;
 	private final static int ODDS = 100;
+	private int timesRun = ODDS / 2 + 1;
 	private Upgrade u;
 
 	@Override
@@ -20,15 +21,19 @@ public class Sweepstakes extends ListenerAdapter {
 				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " won a " + u.getNamePrefix() + "!").queue();
 			}
 		} else {
-			if (Math.random() > 0.001) {
-				u = Store.randomStuff[(int) (Math.random() * Store.randomStuff.length)];
-			} else {
+			if (timesRun >= ODDS) {
 				u = Store.pastUpgrades[(int) (Math.random() * Store.pastUpgrades.length)];
+				timesRun = 0;
+			} else {
+				u = Store.randomStuff[(int) (Math.random() * Store.randomStuff.length)];
 			}
 
-			if (Math.random() < 1 / ODDS) {
-				// Start a race
+			timesRun++;
+
+			if (Math.random() < 1 / ODDS || timesRun >= ODDS) {
+
 				if (Math.random() > 0.5) {
+					// Start a race
 					e.getChannel().sendMessage("Next person to @mention me gets a " + u.getNamePrefix() + "!").queue();
 					inRace = true;
 

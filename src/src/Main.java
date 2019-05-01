@@ -46,7 +46,7 @@ public class Main {
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
-		jda.addEventListener(new StandardUpgradeMerge());
+		// jda.addEventListener(new StandardUpgradeMerge());
 		jda.addEventListener(new Sweepstakes());
 
 		CommandClientBuilder builder = new CommandClientBuilder();
@@ -56,7 +56,7 @@ public class Main {
 		// builder.setGame(Game.listening("c!help"));
 		builder.addCommands(new UpgradeMerge(waiter));
 		builder.setOwnerId("351804839820525570");
-		builder.setHelpWord("\u0000h\u0000e\u0000l\u0000p\u0000");
+		builder.setHelpWord("help\u0000");
 
 		CommandClient client = builder.build();
 
