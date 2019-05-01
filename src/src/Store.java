@@ -59,6 +59,8 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Gold Plated Bugatti Veyron", 10000000, 1500),
 			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
 			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
+			new Upgrade("Crystal Piano", 3200000, 2008), new Upgrade("Gram of Antimatter", 62500000000L, 7654321, 10),
+			new Upgrade("Bug", 1, -1, 128), };
 
 	public Store() {
 
@@ -338,7 +340,6 @@ public class Store extends ListenerAdapter {
 					5),
 			new Upgrade(outdatedPrefix, "Yay", 30, 1, 20), new Upgrade(outdatedPrefix, "Hmm", 10, 10, 1),
 			new Upgrade(outdatedPrefix, "Hax", 1, 500, 1), new Upgrade(outdatedPrefix, "Lol", 42, 24, 1),
-			new Upgrade(outdatedPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100), };
 			new Upgrade(outdatedPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100), new Upgrade("This is random",
 					(int) (Math.random() * 100000), (int) (Math.random() * 100), (int) (Math.random() * 30)) };
 }
