@@ -15,6 +15,7 @@ public class UpgradeMerge extends Command {
 	public static ArrayList<Mergable> possibleMerges;
 	public static EventWaiter waiter = new EventWaiter();
 	public static String prefix = "**M**";
+	public static Thread merge;
 
 	public UpgradeMerge() {
 		possibleMerges = new ArrayList<Mergable>();
@@ -71,7 +72,8 @@ public class UpgradeMerge extends Command {
 	}
 
 	@Override
-	protected void execute(CommandEvent event) {
+	protected void execute(CommandEvent event) 
+	{		
 		if (event.getAuthor().isBot() && !Main.BOTS_ALLOWED)
 			return;
 
@@ -83,26 +85,30 @@ public class UpgradeMerge extends Command {
 			repetitions = Integer.parseInt(event.getArgs());
 		} catch (Exception e) {
 		}
+		
+		merge = new MergeThread(event, repetitions);
+		merge.start();
 
+		
+	}
+	
+	public static void startWaiter(int i, int repetitions, CommandEvent event)
+	{
 		ArrayList<String> items = new ArrayList<String>();
-		int i = 0;
-		while (i < repetitions) {
-			event.reply("Ok! Now give me the upgrade to merge (" + (i + 1) + " of  " + repetitions + ").");
-			waiter.waitForEvent(GuildMessageReceivedEvent.class,
-					e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
-						String firstUpgrade = e.getMessage().getContentRaw();
+		event.reply("Ok! Now give me the upgrade to merge (" + (i + 1) + " of  " + repetitions + ").");
+		waiter.waitForEvent(GuildMessageReceivedEvent.class,
+				e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
+					String firstUpgrade = e.getMessage().getContentRaw();
 
-						if (!Store.hasItem(e.getAuthor().getId(), firstUpgrade)) {
-							e.getChannel().sendMessage("You don't have a `" + firstUpgrade + "`!").queue();
-							return;
-						}
+					if (!Store.hasItem(e.getAuthor().getId(), firstUpgrade)) {
+						e.getChannel().sendMessage("You don't have a `" + firstUpgrade + "`!").queue();
+						return;
+					}
 
-						items.add(firstUpgrade);
-					}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
-
-			i++;
-		}
-
+					items.add(firstUpgrade);
+					merge.notify();
+				}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
+		
 		completeMerge(items, event.getChannel(), event.getAuthor().getId());
 		PointsAdder.serializeStuff();
 	}
