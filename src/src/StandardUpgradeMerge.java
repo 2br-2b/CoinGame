@@ -8,7 +8,8 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 public class StandardUpgradeMerge extends ListenerAdapter {
 	@Override
 	public void onMessageReceived(MessageReceivedEvent e) {
-		if (e.getMessage().getContentRaw().startsWith(Main.PREFIX + "merge")) { //
+		if (e.getMessage().getContentRaw().contains(",")
+				&& e.getMessage().getContentRaw().startsWith(Main.PREFIX + "merge")) { //
 
 			String[] items = e.getMessage().getContentRaw().substring(Main.PREFIX.length() + 6).split(",");
 			if (items.length < 2)
