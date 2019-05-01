@@ -60,7 +60,12 @@ public class Store extends ListenerAdapter {
 			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
 			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
 			new Upgrade("Crystal Piano", 3200000, 2008), new Upgrade("Gram of Antimatter", 62500000000L, 7654321, 10),
-			new Upgrade("Bug", 1, -1, 128), };
+			new Upgrade("Bug", 1, -1, 128), new Upgrade("Huia Bird Feather", 10000, 10, 12),
+			new Upgrade("141-year-old newspaper", 230000000, 141, 1),
+			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
+			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
+			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
+			new Upgrade("Kidney on eBay", 57050000, 2, 1), };
 
 	public Store() {
 
@@ -160,7 +165,7 @@ public class Store extends ListenerAdapter {
 
 		if (removeItem(e.getAuthor().getId(), name)) {
 			int paid = (int) (theUpgrade.getCost() * (Math.random() * 0.2 + 0.85));
-			if (paid == 0) {
+			if (theUpgrade.getCost() == 0) {
 				paid = (int) (10000 * (Math.random() * 0.2 + 0.85));
 			}
 			PointsAdder.addCoins(e.getAuthor().getId(), paid);

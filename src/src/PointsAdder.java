@@ -16,7 +16,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
-	private HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
+	private static HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
 	public static final int COOLDOWN_SECONDS = 20;
 	private static final int MONEY_PER_MESSAGE = 1;
 
@@ -82,7 +82,7 @@ public class PointsAdder extends ListenerAdapter {
 		serializeStuff();
 	}
 
-	private void serializeStuff() {
+	public static void serializeStuff() {
 		try {
 			FileOutputStream fos = new FileOutputStream("CoinGameBal.ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);

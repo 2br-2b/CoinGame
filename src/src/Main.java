@@ -18,6 +18,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 
 public class Main {
@@ -34,6 +35,7 @@ public class Main {
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
 	public static final boolean BOTS_ALLOWED = false;
 	public static TextChannel botData;
+	public static Guild g;
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
@@ -46,7 +48,7 @@ public class Main {
 		jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
-		// jda.addEventListener(new StandardUpgradeMerge());
+		jda.addEventListener(new StandardUpgradeMerge());
 		jda.addEventListener(new Sweepstakes());
 
 		CommandClientBuilder builder = new CommandClientBuilder();

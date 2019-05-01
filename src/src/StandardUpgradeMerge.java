@@ -16,7 +16,13 @@ public class StandardUpgradeMerge extends ListenerAdapter {
 
 			ArrayList<String> itemA = new ArrayList<String>();
 			for (String s : items) {
-				itemA.add(s);
+				s = s.trim();
+				if (Store.hasItem(e.getAuthor().getId(), s)) {
+					itemA.add(s);
+				} else {
+					e.getChannel().sendMessage("You don't have a `" + s + "`!").queue();
+					return;
+				}
 			}
 
 			UpgradeMerge.completeMerge(itemA, e.getChannel(), e.getAuthor().getId());

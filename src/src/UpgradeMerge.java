@@ -38,7 +38,7 @@ public class UpgradeMerge extends Command {
 		possibleMerges.add(new Mergable("Mjolnir", "Stormbreaker", new Upgrade(prefix, "Thor", 2011201700, 13579)));
 		possibleMerges.add(new Mergable("Debug Byte", "Debug Byte", new Upgrade(prefix, "Debug Kilobyte", 1000, 1)));
 		String[] l = { "Soul Stone", "Mind Stone", "Reality Stone", "Space Stone", "Time Stone", "Power Stone" };
-		possibleMerges.add(new Mergable(l, new Upgrade(prefix, "Infinite Power", 66666666, 654321)));
+		possibleMerges.add(new Mergable(l, new Upgrade(prefix + " **\u221E**", "Infinite Power", 66666666, 654321)));
 
 	}
 
@@ -54,13 +54,10 @@ public class UpgradeMerge extends Command {
 	}
 
 	public static Upgrade getNewUpgrade(String u1, String u2) {
-		for (Mergable m : possibleMerges) {
-			if (m.isMerge(u1, u2)) {
-				return new Upgrade(m.getUpgrade());
-			}
-		}
-
-		return null;
+		ArrayList<String> al = new ArrayList<String>();
+		al.add(u1);
+		al.add(u2);
+		return getNewUpgrade(al);
 	}
 
 	public static Upgrade getNewUpgrade(ArrayList<String> u) {
@@ -76,6 +73,9 @@ public class UpgradeMerge extends Command {
 	@Override
 	protected void execute(CommandEvent event) {
 		if (event.getAuthor().isBot() && !Main.BOTS_ALLOWED)
+			return;
+
+		if (event.getMessage().getContentRaw().contains(","))
 			return;
 
 		int repetitions = 2;
@@ -104,7 +104,7 @@ public class UpgradeMerge extends Command {
 		}
 
 		completeMerge(items, event.getChannel(), event.getAuthor().getId());
-		// make sure you serialize the new data.
+		PointsAdder.serializeStuff();
 	}
 
 	public static void completeMerge(ArrayList<String> items, MessageChannel channel, String id) {
@@ -144,14 +144,41 @@ public class UpgradeMerge extends Command {
 		}
 
 		ArrayList<String> a = new ArrayList<String>(l1);
-		ArrayList<String> a2 = new ArrayList<String>(a);
 		ArrayList<String> b = new ArrayList<String>(l2);
 
-		for (Object o : a2) {
-			if (!(a.remove(o) && b.remove(o))) {
+		/*
+		 * System.out.println("list 1 copy: " + a); System.out.println("list 2 copy: " +
+		 * b);
+		 * 
+		 * System.out.print("list 1 size:" + a.size()); System.out.println("");
+		 */
+		if (a.size() == b.size()) {
+			for (int i = 0; i < a.size(); i++) {
+				a.set(i, a.get(i).toLowerCase());
+				b.set(i, b.get(i).toLowerCase());
+			}
+		} else {
+			return false;
+		}
+
+		int j = a.size();
+		for (int i = 0; i < j; i++) {
+			String s = a.get(0);
+			if (!(a.remove(s) && b.remove(s))) {
 				return false;
 			}
+
+			/*
+			 * System.out.println(""); System.out.println("iteration " + (i + 1));
+			 * System.out.println("string: " + s); System.out.println("list 1 copy: " + a);
+			 * System.out.println("list 2 copy: " + b);
+			 */
+
 		}
+		/*
+		 * System.out.println(""); System.out.println("");
+		 * System.out.println("list 2 copy with removed stuff: " + b);
+		 */
 
 		if (b.size() == 0) {
 			return true;

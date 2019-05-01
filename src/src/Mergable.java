@@ -31,6 +31,8 @@ public class Mergable {
 	}
 
 	public boolean isMerge(ArrayList<String> u) {
+		// System.out.println(UpgradeMerge.checkIfSame(u,
+		// listToArrayList(upgradesNeeded)));
 		return UpgradeMerge.checkIfSame(u, listToArrayList(upgradesNeeded));
 
 	}
