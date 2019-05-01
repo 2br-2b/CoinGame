@@ -78,7 +78,7 @@ public class Main {
 			replaceAllEverywhere(m.getUpgrade());
 		}
 
-		// replaceAllEverywhere("Batterang", new Upgrade("Batarang", 10000, 7, 10));
+		// replaceAllEverywhere("This is random", Store.randomStuff[0]);
 
 	}
 
