@@ -1,13 +1,19 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class UpgradeMerge extends Command {
@@ -73,6 +79,9 @@ public class UpgradeMerge extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
+		if (Math.random() < 2)
+			return;
+
 		if (event.getAuthor().isBot() && !Main.BOTS_ALLOWED)
 			return;
 
@@ -94,7 +103,9 @@ public class UpgradeMerge extends Command {
 		ArrayList<String> items = new ArrayList<String>();
 		event.reply("Ok! Now give me the upgrade to merge (" + (i + 1) + " of  " + repetitions + ").");
 		waiter.waitForEvent(GuildMessageReceivedEvent.class,
-				e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), e -> {
+				e -> e.getAuthor().getId().equals(event.getAuthor().getId())
+						&& e.getChannel().getId().equals(event.getChannel().getId()),
+				e -> {
 					String firstUpgrade = e.getMessage().getContentRaw();
 
 					System.out.println(1);
@@ -189,6 +200,45 @@ public class UpgradeMerge extends Command {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * 
+	 * 
+	 * @author 182245310024777728
+	 * @param waiter
+	 * @param amount
+	 * @param filter
+	 * @return
+	 */
+	public static CompletionStage<List<Message>> awaitMessages(EventWaiter waiter, int amount,
+			Predicate<MessageReceivedEvent> filter) {
+		var future = new CompletableFuture<List<Message>>();
+		awaitMessages0(waiter, amount, filter, future, new ArrayList<>());
+		return future;
+	}
+
+	/**
+	 * 
+	 * 
+	 * 
+	 * @author 182245310024777728
+	 * @param waiter
+	 * @param amount
+	 * @param filter
+	 * @param future
+	 * @param list
+	 */
+	private static void awaitMessages0(EventWaiter waiter, int amount, Predicate<MessageReceivedEvent> filter,
+			CompletableFuture<List<Message>> future, List<Message> list) {
+		if (amount == 0) {
+			future.complete(list);
+			return;
+		}
+		waiter.waitForEvent(MessageReceivedEvent.class, filter, event -> {
+			list.add(event.getMessage());
+			awaitMessages0(waiter, amount - 1, filter, future, list);
+		});
 	}
 
 }
