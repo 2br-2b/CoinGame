@@ -42,7 +42,7 @@ public class Main {
 		// JDA jda = new
 		// JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
 		JDA jda = new JDABuilder(AccountType.BOT)
-				.setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
+				.setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XMtYjg.ZChMtNriH1MrpduZ0Q-He_SQ_f4").build();
 
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
