@@ -58,6 +58,7 @@ public class Main {
 		// builder.setGame(Game.listening("c!help"));
 		builder.addCommands(new UpgradeMerge(waiter));
 		builder.setOwnerId("351804839820525570");
+		builder.setCoOwnerIds("544600923112996901");
 		builder.setHelpWord("help\u0000");
 
 		CommandClient client = builder.build();
