@@ -65,7 +65,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
 			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
 			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
-			new Upgrade("Kidney on eBay", 57050000, 2, 1), };
+			new Upgrade("Kidney on eBay", 57050000, 2, 1), new Upgrade("Book", 451, 1, 10), };
 
 	public Store() {
 
