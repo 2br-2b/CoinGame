@@ -119,7 +119,7 @@ public class UpgradeMerge extends Command {
 				}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
 		System.out.println(2);
 		completeMerge(items, event.getChannel(), event.getAuthor().getId());
-		PointsAdder.serializeStuff();
+
 	}
 
 	public static void completeMerge(ArrayList<String> items, MessageChannel channel, String id) {

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
@@ -24,19 +25,22 @@ import net.dv8tion.jda.core.entities.TextChannel;
 public class Main {
 
 	public static final String PREFIX = "c!";
+	public static final String guildID = "542802660928258048";
 	public static final String CURRENCY = ":moneybag:";
 	public static HashMap<String, Long> bal = new HashMap<String, Long>();
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
 	public static final boolean BOTS_ALLOWED = false;
 	public static TextChannel botData;
 	public static Guild g;
+	public static JDA jda;
+	public static ArrayList<Upgrade> masterUpgradeList;
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
 		// JDA jda = new
 		// JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
-		JDA jda = new JDABuilder(AccountType.BOT)
-				.setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XMtYjg.ZChMtNriH1MrpduZ0Q-He_SQ_f4").build();
+		jda = new JDABuilder(AccountType.BOT).setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XMtYjg.ZChMtNriH1MrpduZ0Q-He_SQ_f4")
+				.build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
 		jda.addEventListener(new GetStuff());
@@ -44,6 +48,8 @@ public class Main {
 		jda.addEventListener(new PlayGames());
 		jda.addEventListener(new StandardUpgradeMerge());
 		jda.addEventListener(new Sweepstakes());
+
+		g = jda.getGuildById(guildID);
 
 		CommandClientBuilder builder = new CommandClientBuilder();
 		EventWaiter waiter = new EventWaiter();
@@ -82,6 +88,8 @@ public class Main {
 		}
 
 		// replaceAllEverywhere("This is random", Store.randomStuff[0]);
+		removeBadUsers();
+
 		String str = "";
 		Scanner ask = new Scanner(System.in); // Create a Scanner object
 		while (!str.equals("Goodbye!")) {
@@ -97,6 +105,8 @@ public class Main {
 
 	}
 
+	private static void removeBadUsers() {
+		// TODO Auto-generated method stub
 
 	}
 
