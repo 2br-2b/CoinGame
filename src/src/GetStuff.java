@@ -1,11 +1,13 @@
 
 package src;
 
+import java.awt.Color;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -61,6 +63,20 @@ public class GetStuff extends ListenerAdapter {
 
 			// System.out.println(str);
 			c.sendMessage(str).queue();
+
+		} else if (message.startsWith(Main.PREFIX + "info")) {
+			EmbedBuilder emb = new EmbedBuilder();
+
+			for (Upgrade u : Main.masterUpgradeList) {
+				if (u.getName().equalsIgnoreCase(message.substring(Main.PREFIX.length() + 5))) {
+					emb.setTitle(u.getNamePrefix());
+					emb.setDescription(
+							"Cost: " + u.getCost() + Main.CURRENCY + "\nBoost: " + u.getBoost() + Main.CURRENCY);
+					emb.setColor(Color.YELLOW);
+					c.sendMessage(emb.build()).queue();
+					break;
+				}
+			}
 
 		}
 
