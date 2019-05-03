@@ -74,6 +74,7 @@ public class Commands {
 				break;
 
 			default:
+				System.err.println("Invalid command:\n" + initialCommand);
 				break;
 			}
 		} catch (Exception e) {

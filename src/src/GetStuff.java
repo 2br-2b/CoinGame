@@ -31,18 +31,18 @@ public class GetStuff extends ListenerAdapter {
 			return;
 		}
 
-		if (message.toLowerCase().startsWith(Main.GET_HELP_STRING)) {
+		if (message.toLowerCase().startsWith(Main.PREFIX + "help")) {
 			getHelp();
-		} else if (message.toLowerCase().startsWith(Main.GET_STORE_STRING)) {
+		} else if (message.toLowerCase().startsWith(Main.PREFIX + "store")) {
 			// System.out.println("Show the store");
 			Store.showStore(e.getChannel());
-		} else if (message.startsWith(Main.GET_MONEY_STRING)) {
+		} else if (message.startsWith(Main.PREFIX + "bal")) {
 			String str = e.getAuthor().getAsMention() + " has " + Main.addCommas(Main.bal.get(e.getAuthor().getId()))
 					+ Main.CURRENCY;
 			// System.out.println(str);
 			c.sendMessage(str).queue();
 
-		} else if (message.startsWith(Main.GET_INVENTORY_STRING)) {
+		} else if (message.startsWith(Main.PREFIX + "inv")) {
 			String str = e.getAuthor().getName() + "'s inventory:\n"
 					+ Main.addCommas(Main.bal.get(e.getAuthor().getId())) + Main.CURRENCY;
 
@@ -52,7 +52,8 @@ public class GetStuff extends ListenerAdapter {
 				ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 				for (Upgrade u : list) {
 					boost += u.getTotalBoost();
-					str += "\n`" + u.getQuantity() + "x` " + u.getNamePrefix();
+					str += "\n`" + u.getQuantity() + "x` " + u.getNamePrefix() + ": `" + Main.addCommas(u.getBoost())
+							+ "`" + Main.CURRENCY;
 				}
 			}
 

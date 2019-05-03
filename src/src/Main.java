@@ -24,12 +24,6 @@ import net.dv8tion.jda.core.entities.TextChannel;
 public class Main {
 
 	public static final String PREFIX = "c!";
-	public static final String GET_MONEY_STRING = PREFIX + "bal";
-	public static final String GET_BUY_STRING = PREFIX + "buy";
-	public static final String GET_STORE_STRING = PREFIX + "store";
-	public static final String GET_INVENTORY_STRING = PREFIX + "inv";
-	public static final String GET_ADD_STRING = PREFIX + "add";
-	public static final String GET_HELP_STRING = PREFIX + "help";
 	public static final String CURRENCY = ":moneybag:";
 	public static HashMap<String, Long> bal = new HashMap<String, Long>();
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
