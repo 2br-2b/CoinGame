@@ -35,18 +35,13 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 10), new Upgrade("Popcorn", 1000, 1, 100),
 			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
 			new Upgrade(":ring:", "Ring of Power", 100000, 100, 19),
-			new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1), new Upgrade("Debug Byte", 1, 0, 256),
-			new Upgrade("Easy Button", 10000, 13, 10), new Upgrade(":cookie:", "Cookie", 100, 30, 10),
-			new Upgrade("Stormbreaker", 100000, 1000, 1), new Upgrade("A bad feeling about this", 120000, 1138, 1),
-			new Upgrade("Blender (for food)", 10000, 2, 7), new Upgrade("Blender (the program)", 100000, 28, 10),
+
+			new Upgrade("Debug Byte", 1, 0, 256), new Upgrade("Easy Button", 10000, 13, 10),
+			new Upgrade(":cookie:", "Cookie", 100, 30, 10), new Upgrade("Stormbreaker", 100000, 1000, 1),
+			new Upgrade("A bad feeling about this", 120000, 1138, 1), new Upgrade("Blender (for food)", 10000, 2, 7),
+			new Upgrade("Blender (the program)", 100000, 28, 10),
 			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1),
 			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4), new Upgrade("iPhone XR", 100000, 1, 1),
-			new Upgrade("**\u221E**", "Soul Stone", 1000000, 1000, 1),
-			new Upgrade("**\u221E**", "Mind Stone", 1000000, 1000, 1),
-			new Upgrade("**\u221E**", "Reality Stone", 1000000, 1000, 1),
-			new Upgrade("**\u221E**", "Space Stone", 1000000, 1000, 1),
-			new Upgrade("**\u221E**", "Time Stone", 1000000, 1000, 1),
-			new Upgrade("**\u221E**", "Power Stone", 1000000, 1000, 1), new Upgrade("iPhone XR", 100000, 1, 1),
 			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Bowcaster", 150000, 4, 10),
 			new Upgrade("Diamond Armor", 5307786900L, 1000, 1), new Upgrade("Lightsaber", 8000000000L, 1977, 1),
 			new Upgrade("Tank", 8580000, 150, 10), new Upgrade("Pet Dragon", 10000000, 3000, 5),
@@ -66,7 +61,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
 			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
 			new Upgrade("Kidney on eBay", 57050000, 2, 1), new Upgrade("Book", 451, 1, 10),
-			new Upgrade("Shards of Narsil", 20000, 20, 1), };
+			new Upgrade("Shards of Narsil", 20000, 20, 6) };
 
 	public Store() {
 
@@ -346,6 +341,15 @@ public class Store extends ListenerAdapter {
 					5),
 			new Upgrade(outdatedPrefix, "Yay", 30, 1, 20), new Upgrade(outdatedPrefix, "Hmm", 10, 10, 1),
 			new Upgrade(outdatedPrefix, "Hax", 1, 500, 1), new Upgrade(outdatedPrefix, "Lol", 42, 24, 1),
-			new Upgrade(outdatedPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100), new Upgrade("This is random",
-					(int) (Math.random() * 100000), (int) (Math.random() * 100), (int) (Math.random() * 30)) };
+			new Upgrade(outdatedPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100),
+			new Upgrade("This is random", (int) (Math.random() * 100000), (int) (Math.random() * 100),
+					(int) (Math.random() * 30)),
+			new Upgrade("**\u221E**", "Soul Stone", 1000000, 1000, 1),
+			new Upgrade("**\u221E**", "Mind Stone", 1000000, 1000, 1),
+			new Upgrade("**\u221E**", "Reality Stone", 1000000, 1000, 1),
+			new Upgrade("**\u221E**", "Space Stone", 1000000, 1000, 1),
+			new Upgrade("**\u221E**", "Time Stone", 1000000, 1000, 1),
+			new Upgrade("**\u221E**", "Power Stone", 1000000, 1000, 1),
+			// new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
+	};
 }
