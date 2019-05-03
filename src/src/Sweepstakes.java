@@ -7,30 +7,33 @@ public class Sweepstakes extends ListenerAdapter {
 
 	private boolean inRace = false;
 	private final static int ODDS = 100;
-	private int timesRun = ODDS / 2 + 1;
+	private static int timesRun = (int) (ODDS * Math.random());
 	private Upgrade u;
 
 	@Override
 	public void onMessageReceived(MessageReceivedEvent e) {
-		if (e.getAuthor().isBot())
-			return;
+
 		if (inRace) {
+			if (e.getAuthor().isBot())
+				return;
 			if (e.getMessage().getContentRaw().contains("<@568248186741981195>")) {
 				inRace = false;
 				Store.giveUserUpgrade(e.getAuthor().getId(), u);
 				e.getChannel().sendMessage(e.getAuthor().getAsMention() + " won a " + u.getNamePrefix() + "!").queue();
 			}
 		} else {
-			if (timesRun >= ODDS) {
-				u = Store.pastUpgrades[(int) (Math.random() * Store.pastUpgrades.length)];
-				timesRun = 0;
-			} else {
-				u = Store.randomStuff[(int) (Math.random() * Store.randomStuff.length)];
-			}
-
 			timesRun++;
 
-			if (Math.random() < 1 / ODDS || timesRun >= ODDS) {
+			if (e.getAuthor().isBot())
+				return;
+			if (Math.random() < (1.0 / ODDS) || timesRun >= ODDS) {
+
+				if (timesRun >= ODDS) {
+					u = Main.masterUpgradeList.get((int) (Math.random() * Main.masterUpgradeList.size()));
+					timesRun = 0;
+				} else {
+					u = Store.randomStuff[(int) (Math.random() * Store.randomStuff.length)];
+				}
 
 				if (Math.random() > 0.5) {
 					// Start a race
@@ -46,6 +49,10 @@ public class Sweepstakes extends ListenerAdapter {
 				}
 			}
 		}
+	}
+
+	public static int getTimes() {
+		return timesRun;
 	}
 
 }
