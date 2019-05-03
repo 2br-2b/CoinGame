@@ -63,15 +63,21 @@ public class Main {
 		new FileManager();
 		serializeStuff();
 
+		masterUpgradeList = new ArrayList<Upgrade>();
+		masterUpgradeList.clear();
+
 		for (Upgrade u : Store.randomStuff) {
+			masterUpgradeList.add(new Upgrade(u));
 			replaceAllEverywhere(u);
 		}
 
 		for (Upgrade u : Store.pastUpgrades) {
+			masterUpgradeList.add(new Upgrade(u));
 			replaceAllEverywhere(u);
 		}
 
 		for (Mergable m : UpgradeMerge.possibleMerges) {
+			masterUpgradeList.add(new Upgrade(m.getUpgrade()));
 			replaceAllEverywhere(m.getUpgrade());
 		}
 
