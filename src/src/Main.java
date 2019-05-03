@@ -76,6 +76,21 @@ public class Main {
 		}
 
 		// replaceAllEverywhere("This is random", Store.randomStuff[0]);
+		String str = "";
+		Scanner ask = new Scanner(System.in); // Create a Scanner object
+		while (!str.equals("Goodbye!")) {
+			str = ask.nextLine(); // Read user input
+			if (str.toLowerCase().equals("messagecount")) {
+				System.out.println(Sweepstakes.getTimes());
+
+			} else {
+				Commands.interpretCommand(str);
+			}
+		}
+		ask.close();
+
+	}
+
 
 	}
 
