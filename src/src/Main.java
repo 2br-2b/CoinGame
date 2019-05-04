@@ -41,6 +41,7 @@ public class Main {
 	public static final String PREFIX = "c!";
 	public static final String guildID = "542802660928258048";
 	public static final String CURRENCY = ":moneybag:";
+	public static final Color embedColor = Color.YELLOW;
 	public static HashMap<String, Long> bal = new HashMap<String, Long>();
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
 

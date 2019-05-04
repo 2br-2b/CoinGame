@@ -85,7 +85,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
 			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
 			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
-			new Upgrade("Kidney on eBay", 57050000, 2, 1), new Upgrade("Book", 451, 1, 10), };
+			new Upgrade("Book", 451, 1, 10), };
 
 	public Store() {
 
@@ -387,5 +387,7 @@ public class Store extends ListenerAdapter {
 			// deleted to to integer overflow for the boosts
 			// new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
 			new Upgrade(outdatedPrefix, "Stocks", (int) (Math.random() * 100000), (int) (Math.random() * 100),
-					(int) (Math.random() * 30)) };
+					(int) (Math.random() * 30)),
+			// new Upgrade("Kidney on eBay", 57050000, 2, 1),
+	};
 }
