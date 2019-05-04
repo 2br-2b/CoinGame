@@ -29,6 +29,7 @@ public class Main {
 	public static final String CURRENCY = ":moneybag:";
 	public static HashMap<String, Long> bal = new HashMap<String, Long>();
 	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
+
 	public static final boolean BOTS_ALLOWED = false;
 	public static TextChannel botData;
 	public static Guild g;
@@ -37,8 +38,6 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
-		// JDA jda = new
-		// JDABuilder("NTY4MjQ4MTg2NzQxOTgxMTk1.XL-D9w.kT2kr9nUpqJt_qK8RgHfOyzTfOA").build();
 		jda = new JDABuilder(AccountType.BOT).setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XMtYjg.ZChMtNriH1MrpduZ0Q-He_SQ_f4")
 				.build().awaitReady();
 
@@ -55,14 +54,16 @@ public class Main {
 		EventWaiter waiter = new EventWaiter();
 
 		builder.setPrefix("c!");
-		// builder.setGame(Game.listening("c!help"));
+		// builder.setGame(Game.listening(PREFIX+"help"));
 		builder.addCommands(new UpgradeMerge(waiter));
 		builder.addCommands(new Command_Use());
 		builder.addCommands(new Command_Get_Scars());
+		builder.addCommands(new Command_Info());
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
 		builder.setHelpWord("help\u0000");
+		builder.setEmojis(":smiley:", ":exclamation:", ":sweat_smile:");
 
 		CommandClient client = builder.build();
 

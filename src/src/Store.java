@@ -94,10 +94,6 @@ public class Store extends ListenerAdapter {
 
 	public static void randomizeStore() {
 		int randomItems = 8;
-		randomStuff[0] = new Upgrade(":chart:", "Stocks", (int) (Math.random() * 100000), (int) (Math.random() * 100),
-				(int) (Math.random() * 30));
-
-		Main.replaceAllEverywhere(randomStuff[0]);
 
 		// Name, cost, boost, inventory
 		store = new ArrayList<Upgrade>();
@@ -152,12 +148,12 @@ public class Store extends ListenerAdapter {
 				nameOfObj += " " + messageSplit[i];
 			}
 			userGiveUserUpgrade(e.getAuthor().getId(), nameOfObj, messageSplit[1]);
-		} else if (message.startsWith(Main.GET_BUY_STRING)) {
-			buySomething(message.substring(Main.GET_BUY_STRING.length() + 1), e.getAuthor());
-		} else if (message.startsWith(Main.GET_ADD_STRING)) {
+		} else if (message.startsWith(Main.PREFIX + "buy")) {
+			buySomething(message.substring(Main.PREFIX.length() + 4), e.getAuthor());
+		} else if (message.startsWith(Main.PREFIX + "add")) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
 				PointsAdder.addCoins(e.getAuthor().getId(),
-						Long.parseLong(message.substring(Main.GET_ADD_STRING.length() + 1)));
+						Long.parseLong(message.substring(Main.PREFIX.length() + 5)));
 			}
 		} else if (message.startsWith(Main.PREFIX + "sell")) {
 			sellUpgrade(e);
@@ -189,8 +185,8 @@ public class Store extends ListenerAdapter {
 				paid = (int) (10000 * (Math.random() * 0.2 + 0.85));
 			}
 			PointsAdder.addCoins(e.getAuthor().getId(), paid);
-			e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was paid " + paid + Main.CURRENCY + " for his "
-					+ theUpgrade.getName() + ".").queue();
+			e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was paid " + Main.addCommas(paid)
+					+ Main.CURRENCY + " for his " + theUpgrade.getName() + ".").queue();
 			addToStore(theUpgrade);
 		} else {
 			e.getChannel().sendMessage("Couldn't remove " + name).queue();
@@ -365,8 +361,8 @@ public class Store extends ListenerAdapter {
 	}
 
 	public static Upgrade getUpgradeOfName(String name) {
-		for (Upgrade u : randomStuff) {
-			if (u.getName().equals(name)) {
+		for (Upgrade u : Main.masterUpgradeList) {
+			if (u.getName().equalsIgnoreCase(name)) {
 				return u;
 			}
 		}
@@ -389,6 +385,8 @@ public class Store extends ListenerAdapter {
 			new Upgrade("**\u221E**", "Space Stone", 1000000, 1000, 1),
 			new Upgrade("**\u221E**", "Time Stone", 1000000, 1000, 1),
 			new Upgrade("**\u221E**", "Power Stone", 1000000, 1000, 1),
+			// deleted to to integer overflow for the boosts
 			// new Upgrade("Discord", Long.MAX_VALUE, Integer.MAX_VALUE, 1),
-	};
+			new Upgrade(outdatedPrefix, "Stocks", (int) (Math.random() * 100000), (int) (Math.random() * 100),
+					(int) (Math.random() * 30)) };
 }

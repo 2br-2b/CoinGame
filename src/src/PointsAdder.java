@@ -30,13 +30,17 @@ public class PointsAdder extends ListenerAdapter {
 
 		if (mList[0].equals(Main.PREFIX + "pay")) {
 			try {
-				if (userGiveUserCoins(e.getAuthor().getId(), Integer.parseInt(mList[2]), mList[1].substring(2, 20))) {
-					e.getChannel()
-							.sendMessage(
-									e.getAuthor().getAsMention() + " paid " + mList[1] + " " + mList[2] + Main.CURRENCY)
-							.queue();
-				} else {
-					e.getChannel().sendMessage("Something went wrong.  Please try again.").queue();
+				try {
+					if (userGiveUserCoins(e.getAuthor().getId(), Math.abs(Integer.parseInt(mList[2])),
+							mList[1].substring(2, 20))) {
+						e.getChannel().sendMessage(
+								e.getAuthor().getAsMention() + " paid " + mList[1] + " " + mList[2] + Main.CURRENCY)
+								.queue();
+					} else {
+						e.getChannel().sendMessage("Something went wrong.  Please try again.").queue();
+					}
+				} catch (java.lang.NumberFormatException ex) {
+					e.getChannel().sendMessage(mList[2] + "is not a number!");
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -47,15 +51,21 @@ public class PointsAdder extends ListenerAdapter {
 			if (e.getMessage().getCreationTime()
 					.isAfter(coolingDown.get(e.getAuthor().getId()).plusSeconds(COOLDOWN_SECONDS))) {
 
-				if (e.getMessage().getContentRaw().equalsIgnoreCase(Main.GET_MONEY_STRING))
-					return;
-
 				int boost = 0;
 				if (Main.upgrades.containsKey(e.getAuthor().getId())) {
 					ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 					for (Upgrade u : list) {
 						boost += u.getTotalBoost();
 					}
+
+				}
+
+				for (Scar s : ScarHandler.getScars(e.getAuthor().getId())) {
+					boost += s.getTotalBoost();
+				}
+
+				if (boost < 1) {
+					boost = 1;
 				}
 
 				addCoins(e.getAuthor().getId(), MONEY_PER_MESSAGE + boost);
@@ -63,8 +73,6 @@ public class PointsAdder extends ListenerAdapter {
 			} else
 				return;
 		} else {
-			if (e.getMessage().getContentRaw().equalsIgnoreCase(Main.GET_MONEY_STRING))
-				return;
 
 			int boost = 0;
 			if (Main.upgrades.containsKey(e.getAuthor().getId())) {
@@ -72,6 +80,14 @@ public class PointsAdder extends ListenerAdapter {
 				for (Upgrade u : list) {
 					boost += u.getBoost();
 				}
+			}
+
+			for (Scar s : ScarHandler.getScars(e.getAuthor().getId())) {
+				boost += s.getTotalBoost();
+			}
+
+			if (boost < 1) {
+				boost = 1;
 			}
 
 			addCoins(e.getAuthor().getId(), MONEY_PER_MESSAGE + boost);
