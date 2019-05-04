@@ -22,7 +22,9 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.User;
 
 public class Main {
 
@@ -255,6 +257,19 @@ public class Main {
 				}
 			}
 		}
+	}
+
+	public static User getUserFromID(String id) {
+		return jda.getUserById(id);
+	}
+
+	public static Member getMemberFromID(String id) {
+		for (Guild g : jda.getGuilds()) {
+			if (g.getMemberById(id) != null) {
+				return g.getMemberById(id);
+			}
+		}
+		return null;
 	}
 
 }
