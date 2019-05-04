@@ -2,6 +2,7 @@ package src;
 
 import java.util.ArrayList;
 
+import games.Game;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class Lottery extends Game {

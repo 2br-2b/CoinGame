@@ -1,16 +1,23 @@
-package src;
+package games;
 
 import java.util.ArrayList;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class Game_Coin_Flip extends Command {
+import src.Main;
+import src.PointsAdder;
+import src.Store;
+import src.Upgrade;
+
+public class Game_Coin_Flip extends Command implements Game {
 
 	int maxPay;
 
 	public Game_Coin_Flip() {
 		super.name = "flip";
+		String[] a = { "coin", "coinflip", "flipacoin", "c", "f" };
+		super.aliases = a;
 		super.help = "flips a coin based on how much you wager";
 		super.arguments = "amount";
 		super.cooldown = 10;
@@ -23,7 +30,7 @@ public class Game_Coin_Flip extends Command {
 		int paid = 0;
 
 		try {
-			paid = Integer.parseInt(event.getMessage().getContentRaw());
+			paid = Integer.parseInt(event.getArgs());
 			// System.out.println(paid);
 		} catch (NumberFormatException ex) {
 			event.replyError(event.getMessage().getContentRaw() + "is not a valid number.  Please try again.");

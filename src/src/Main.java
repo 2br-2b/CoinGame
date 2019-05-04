@@ -18,6 +18,7 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import games.Game_Manager;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -48,7 +49,7 @@ public class Main {
 		jda.addEventListener(new PointsAdder());
 		// jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
-		jda.addEventListener(new PlayGames());
+		// jda.addEventListener(new PlayGames());
 		jda.addEventListener(new StandardUpgradeMerge());
 		jda.addEventListener(new Sweepstakes());
 
@@ -67,6 +68,7 @@ public class Main {
 		builder.addCommands(new Command_Set());
 		builder.addCommands(new Command_Show_Store());
 		builder.addCommands(new Command_Use());
+		builder.addCommands(new Game_Manager());
 
 		builder.addCommands(new UpgradeMerge(waiter));
 
