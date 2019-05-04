@@ -10,6 +10,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	private int boostRate;
 	private int quantity;
 	private Scar effect;
+	private int charges;
 
 	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity, Scar effect) {
 		if (prefix.equals("") || prefix == null) {
@@ -29,6 +30,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		this.cost = cost;
 		this.boostRate = boostRate;
 		this.quantity = quantity;
+		this.charges = quantity;
 		this.effect = effect;
 	}
 
@@ -95,6 +97,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		return Main.addCommas(cost);
 	}
 
+	@Override
 	public int getBoost() {
 		return boostRate;
 	}
@@ -116,14 +119,31 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		return getEffect();
 	}
 
+	public int getCharges() {
+		return charges;
+	}
+
 	@Override
 	public void plusOne() {
 		quantity++;
+		charges++;
 	}
 
 	@Override
 	public void minusOne() {
 		quantity--;
+		if (charges > quantity) {
+			charges = quantity;
+		}
+	}
+
+	public boolean useCharge() {
+		if (charges > 0) {
+			charges--;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
