@@ -1,4 +1,4 @@
-package src;
+package commands;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,10 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
 import net.dv8tion.jda.core.EmbedBuilder;
+import src.Main;
+import src.Scar;
+import src.ScarHandler;
+import src.Upgrade;
 
 public class Command_Get_Inventory extends Command {
 
@@ -59,6 +63,7 @@ public class Command_Get_Inventory extends Command {
 
 		emb.setTitle(Main.getUserFromID(id).getName() + "'s Inventory");
 		emb.setDescription(str);
+		emb.setColor(Main.embedColor);
 
 		event.reply(emb.build());
 

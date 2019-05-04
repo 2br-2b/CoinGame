@@ -1,11 +1,11 @@
-package src;
-
-import java.awt.Color;
+package commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
 import net.dv8tion.jda.core.EmbedBuilder;
+import src.Main;
+import src.Upgrade;
 
 public class Command_Info extends Command {
 
@@ -14,7 +14,6 @@ public class Command_Info extends Command {
 		super.name = "info";
 		super.help = "gives info on an item";
 		super.arguments = "item";
-		// super.cooldown = 60;
 
 	}
 
@@ -33,7 +32,7 @@ public class Command_Info extends Command {
 					emb.setDescription("Cost: " + Main.addCommas(u.getCost()) + Main.CURRENCY + "\nBoost: "
 							+ Main.addCommas(u.getBoost()) + Main.CURRENCY);
 				}
-				emb.setColor(Color.YELLOW);
+				emb.setColor(Main.embedColor);
 				event.reply(emb.build());
 				break;
 			}

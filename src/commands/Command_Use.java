@@ -1,7 +1,12 @@
-package src;
+package commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+
+import src.Scar;
+import src.ScarHandler;
+import src.Store;
+import src.Upgrade;
 
 public class Command_Use extends Command {
 

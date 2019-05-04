@@ -1,7 +1,12 @@
-package src;
+package commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import src.Main;
+import src.Store;
+import src.Upgrade;
 
 public class Command_Show_Store extends Command {
 
@@ -24,7 +29,12 @@ public class Command_Show_Store extends Command {
 			str += u + "\n";
 		}
 
-		event.reply(str);
+		EmbedBuilder emb = new EmbedBuilder();
+		emb.setTitle("The Store");
+		emb.setDescription(str);
+		emb.setColor(Main.embedColor);
+
+		event.reply(emb.build());
 
 	}
 

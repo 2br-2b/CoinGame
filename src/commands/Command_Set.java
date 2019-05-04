@@ -1,7 +1,10 @@
-package src;
+package commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+
+import src.Main;
+import src.PointsAdder;
 
 public class Command_Set extends Command {
 

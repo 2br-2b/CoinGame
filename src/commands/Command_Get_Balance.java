@@ -1,7 +1,9 @@
-package src;
+package commands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+
+import src.Main;
 
 public class Command_Get_Balance extends Command {
 

@@ -5,6 +5,7 @@
 
 package src;
 
+import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +19,15 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import commands.Command_Get_Balance;
+import commands.Command_Get_Inventory;
+import commands.Command_Get_Scars;
+import commands.Command_Info;
+import commands.Command_Set;
+import commands.Command_Show_Store;
+import commands.Command_Use;
 import games.Game_Manager;
+import games.Sweepstakes;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
