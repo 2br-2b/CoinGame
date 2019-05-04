@@ -194,17 +194,6 @@ public class Store extends ListenerAdapter {
 
 	}
 
-	public static void showStore(MessageChannel messageChannel) {
-		String str = "";
-
-		for (Upgrade u : store) {
-			str += u + "\n";
-		}
-
-		// System.out.println(str);
-		messageChannel.sendMessage(str).queue();
-	}
-
 	public void buySomething(String thingToPurchase, User u) {
 		ArrayList<Upgrade> list;
 
@@ -343,6 +332,16 @@ public class Store extends ListenerAdapter {
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
 				}
+				return up;
+			}
+		}
+
+		return null;
+	}
+
+	public static Upgrade getUsersItem(String id, String upgradeName) {
+		for (Upgrade up : Main.upgrades.get(id)) {
+			if (up.getName().equalsIgnoreCase(upgradeName)) {
 				return up;
 			}
 		}

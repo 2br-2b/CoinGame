@@ -5,9 +5,6 @@
 
 package src;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +13,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class PointsAdder extends ListenerAdapter {
-	private static HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
+	public static HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
 	public static final int COOLDOWN_SECONDS = 20;
 	private static final int MONEY_PER_MESSAGE = 1;
 
