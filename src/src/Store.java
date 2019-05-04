@@ -147,7 +147,7 @@ public class Store extends ListenerAdapter {
 			for (int i = 3; i < messageSplit.length; i++) {
 				nameOfObj += " " + messageSplit[i];
 			}
-			userGiveUserUpgrade(e.getAuthor().getId(), nameOfObj, messageSplit[1]);
+			userGiveUserUpgrade(e.getAuthor().getId(), nameOfObj, messageSplit[1].replace("!", "").substring(2, 20));
 		} else if (message.startsWith(Main.PREFIX + "buy")) {
 			buySomething(message.substring(Main.PREFIX.length() + 4), e.getAuthor());
 		} else if (message.startsWith(Main.PREFIX + "add")) {

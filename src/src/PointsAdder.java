@@ -32,7 +32,7 @@ public class PointsAdder extends ListenerAdapter {
 			try {
 				try {
 					if (userGiveUserCoins(e.getAuthor().getId(), Math.abs(Integer.parseInt(mList[2])),
-							mList[1].substring(2, 20))) {
+							mList[1].replace("!", "").substring(2, 20))) {
 						e.getChannel().sendMessage(
 								e.getAuthor().getAsMention() + " paid " + mList[1] + " " + mList[2] + Main.CURRENCY)
 								.queue();
