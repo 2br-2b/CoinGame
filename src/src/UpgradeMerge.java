@@ -27,25 +27,38 @@ public class UpgradeMerge extends Command {
 		possibleMerges = new ArrayList<Mergable>();
 		possibleMerges.clear();
 
-		possibleMerges.add(new Mergable("Sword", "Shield", new Upgrade(prefix, "Knight", 10000, 30, 1)));
+		possibleMerges.add(new Mergable("Sword", "Shield", new Upgrade(prefix + " " + Store.weaponPrefix, "Knight",
+				10000, 30, 1, new Scar(Store.swordWord, 13, "Knight"))));
 		possibleMerges.add(new Mergable("Winning Lottery Ticket", "Easy Button",
 				new Upgrade(prefix, "An Easy Win", 100000, 100, 1)));
-		possibleMerges
-				.add(new Mergable("Nuclear Bomb", "Rocket", new Upgrade(prefix, "Nuclear Missile", 5900000, 450, 5)));
+		possibleMerges.add(
+				new Mergable("Nuclear Bomb", "Rocket", new Upgrade(prefix + " " + Store.weaponPrefix, "Nuclear Missile",
+						5900000, 450, 5, new Scar("Nuclear " + Store.explosionWord, 30, "Nuclear Missile"))));
 		possibleMerges.add(new Mergable("Popcorn", "Rocket", new Upgrade(prefix, "Popped Popcorn", 10000, 10)));
 		possibleMerges.add(new Mergable("Kirk" + Store.apostrophe + "s Glasses", "Mario" + Store.apostrophe + "s Hat",
 				new Upgrade(prefix, "A Great Disguise", 10000000, 500)));
-		possibleMerges
-				.add(new Mergable("Nuclear Missile", "Easy Button", new Upgrade(prefix, "Nuclear War", 1000000, 1000)));
+		possibleMerges.add(new Mergable("Nuclear Missile", "Easy Button", new Upgrade(prefix + " " + Store.weaponPrefix,
+				"Nuclear War", 1000000, 1000, 1, new Scar("Nuclear " + Store.explosionWord, 100, "Nuclear War"))));
 		possibleMerges.add(new Mergable("Blender (for food)", "Blender (the program)",
 				new Upgrade(prefix, "Blender (the world)", 279, 280)));
 		possibleMerges.add(new Mergable("Hmm", "Hax", new Upgrade(prefix, "Ham", 300, 500)));
 		possibleMerges.add(new Mergable("Mjolnir", "Captain America" + Store.apostrophe + " Shield",
-				new Upgrade(prefix, "The Avengers' Weapons", 10708070000L, 10000)));
-		possibleMerges.add(new Mergable("Mjolnir", "Stormbreaker", new Upgrade(prefix, "Thor", 2011201700, 13579)));
+				new Upgrade(prefix + " " + Store.weaponPrefix, "The Avengers" + Store.apostrophe + " Weapons",
+						10708070000L, 10000, 1,
+						new Scar("Vengence", 30, "The Avengers" + Store.apostrophe + " Weapons"))));
+		possibleMerges.add(new Mergable("Mjolnir", "Stormbreaker", new Upgrade(prefix + " " + Store.weaponPrefix,
+				"Thor", 2011201700, 13579, 1, new Scar("Thunderstruck", 20, "Thor"))));
 		possibleMerges.add(new Mergable("Debug Byte", "Debug Byte", new Upgrade(prefix, "Debug Kilobyte", 1000, 1)));
 		String[] l = { "Soul Stone", "Mind Stone", "Reality Stone", "Space Stone", "Time Stone", "Power Stone" };
-		possibleMerges.add(new Mergable(l, new Upgrade(prefix + " **\u221E**", "Infinite Power", 66666666, 654321)));
+		possibleMerges.add(new Mergable(l, new Upgrade(prefix + " " + Store.weaponPrefix + " **\u221E**",
+				"Infinite Power", 66666666, 654321, 1, new Scar("Snapped out of existance", 10000, "Infinite Power"))));
+
+		l = new String[6];
+		for (int i = 0; i < l.length; i++) {
+			l[i] = "Shards of Narsil";
+		}
+		possibleMerges.add(new Mergable(l, new Upgrade(prefix + " " + Store.weaponPrefix, "Anduril", 150000, 500, 1,
+				new Scar("Slash Wound", 5, "Anduril"))));
 
 	}
 

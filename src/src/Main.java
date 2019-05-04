@@ -57,6 +57,9 @@ public class Main {
 		builder.setPrefix("c!");
 		// builder.setGame(Game.listening("c!help"));
 		builder.addCommands(new UpgradeMerge(waiter));
+		builder.addCommands(new Command_Use());
+		builder.addCommands(new Command_Get_Scars());
+
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
 		builder.setHelpWord("help\u0000");
@@ -135,6 +138,21 @@ public class Main {
 			FileInputStream fis = new FileInputStream("CoinGameUpgrades.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			upgrades = (HashMap<String, ArrayList<Upgrade>>) ois.readObject();
+			ois.close();
+			fis.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return;
+		} catch (ClassNotFoundException c) {
+			System.out.println("Class not found");
+			c.printStackTrace();
+			return;
+		}
+
+		try {
+			FileInputStream fis = new FileInputStream("CoinGameScars.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			ScarHandler.scars = (HashMap<String, ArrayList<Scar>>) ois.readObject();
 			ois.close();
 			fis.close();
 		} catch (IOException ioe) {

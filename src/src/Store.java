@@ -16,37 +16,62 @@ public class Store extends ListenerAdapter {
 	public static String millionPrefix = "**$**";
 	public static String billionPrefix = "**$$**";
 	public static String longPrefix = ":gem:";
+	public static String weaponPrefix = "**W**";
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	static OffsetDateTime lastRandomized;
 
+	public static String explosionWord = "Explosion";
+	public static String burnWord = "Fiery Explosion";
+	public static String swordWord = "Merely a flesh wound!";
+
 	public static Upgrade[] randomStuff = {
-			new Upgrade(":chart:", "Stocks", (int) (Math.random() * 100000), (int) (Math.random() * 100),
-					(int) (Math.random() * 30)),
-			new Upgrade("Batarang", 10000, 7, 10), new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
+
+			new Upgrade(weaponPrefix, "Batarang", 10000, 7, 10, new Scar("Batarang Knockout!", 2, "Batarang")),
+			new Upgrade(weaponPrefix, "Rocket", 100000, 1, 10, new Scar(explosionWord, 18, "Rocket")),
+			new Upgrade(weaponPrefix, "Nuclear Bomb", 190000, 19, 5,
+					new Scar("Nuclear " + explosionWord, 1, "Nuclear Bomb")),
+			new Upgrade(weaponPrefix, "Baby Shark", 2639860696L, 50000, 1, new Scar("Shark Bite", 10, "Baby Shark")),
+			new Upgrade(weaponPrefix, "Smash Ball", 500000, 30, 6,
+					new Scar("Smashed by Fox with No Items on Final Destination", 30, "Smash Ball")),
+			new Upgrade(weaponPrefix, "Captain America" + apostrophe + " Shield", 17871941, 30, 1,
+					new Scar("Didn't watch your LANGUAGE!", 1, "Captain America" + apostrophe + " Shield")),
+			new Upgrade(weaponPrefix, "Death Star", 1138000, 100, 2,
+					new Scar("They fired when ready", 1, "Death Star")),
+			new Upgrade(weaponPrefix, "Infinity Gauntlet", Integer.MAX_VALUE, 6666, 1,
+					new Scar("\"Aw, Snap\" Moment", 600, "Infinity Gauntlet")),
+			new Upgrade(weaponPrefix, "Fire-Breathing Rubber Duckie", 1000, 1, 10,
+					new Scar(burnWord, 1, "Fire-Breathing Rubber Duckie")),
+			new Upgrade(weaponPrefix, "Sword", 10000, 3, 100, new Scar(swordWord, 1, "Sword")),
+			new Upgrade(weaponPrefix + " :ring:", "Ring of Power", 100000, 100, 19,
+					new Scar("Lost a finger", 10, "Ring of Power")),
+			new Upgrade(weaponPrefix, "Stormbreaker", 100000, 1000, 1, new Scar("Head Shot", 30, "Stormbreaker")),
+			new Upgrade(weaponPrefix, "Shark Repellent Bat Spray", 1996, 10, 4,
+					new Scar("Helicopter Crash", 1, "Shark Repellent Bat Spray")),
+			new Upgrade(weaponPrefix, "Bowcaster", 150000, 4, 10, new Scar("Wookie Shot", 1, "Bowcaster")),
+			new Upgrade(weaponPrefix, "Lightsaber", 8000000000L, 1977, 6, new Scar("Lost a hand", 15, "Lightsaber")),
+			new Upgrade(weaponPrefix, "Tank", 8580000, 150, 10, new Scar("Shot by a Tank", 1, "Tank")),
+			new Upgrade(weaponPrefix, "Pet Dragon", 10000000, 3000, 5, new Scar(burnWord, 1, "Pet Dragon")),
+			new Upgrade(weaponPrefix, "Mjolnir", 449000000, 3000, 1, new Scar("Unworthily Hammered", 1, "Mjolnir")),
+			new Upgrade(weaponPrefix, "The Ultimate Ultimate Weapon", 123000000, 1640, 6,
+					new Scar("Lack of Inner Piece", 1, "The Ultimate Ultimate Weapon")),
+			new Upgrade(weaponPrefix, "The Tumbler Batmobile", 18000000, 493, 1,
+					new Scar("Uncoolness for not being Batman", 10, "The Tumbler Batmobile")),
+			new Upgrade(weaponPrefix, "Bug", 1, -1, 128, new Scar("Bug Bite", 1, "Bug")),
+			new Upgrade(weaponPrefix, "Shards of Narsil", 20000, 20, 6,
+					new Scar("Got a splinter", 1, "Shards of Narsil")),
+
+			new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
 			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
 			new Upgrade("Kylo Ren" + apostrophe + "s Helmet", 200000, 135, 1),
-			new Upgrade("All of the Pokemon", 1510000, 809, 1),
-			new Upgrade("Mario" + apostrophe + "s Hat", 100000, 100, 1), new Upgrade("Rocket", 100000, 1, 10),
-			new Upgrade("Nuclear Bomb", 190000, 19, 5), new Upgrade("Baby Shark", 2639860696L, 50000, 1),
-			new Upgrade("Smash Ball", 500000, 30, 6),
-			new Upgrade("Captain America" + apostrophe + " Shield", 17871941, 30, 1),
-			new Upgrade("Death Star", 1138000, 100, 2), new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 6666, 1),
-			new Upgrade("Fire-Breathing Rubber Duckie", 1000, 1, 10), new Upgrade("Popcorn", 1000, 1, 100),
-			new Upgrade("Sword", 10000, 3, 100), new Upgrade("Shield", 5000, 1, 200),
-			new Upgrade(":ring:", "Ring of Power", 100000, 100, 19),
-
+			new Upgrade("All of the Pokemon", 1510000, 809, 1), new Upgrade("Shield", 5000, 1, 200),
+			new Upgrade("Mario" + apostrophe + "s Hat", 100000, 100, 1), new Upgrade("Popcorn", 1000, 1, 100),
 			new Upgrade("Debug Byte", 1, 0, 256), new Upgrade("Easy Button", 10000, 13, 10),
-			new Upgrade(":cookie:", "Cookie", 100, 30, 10), new Upgrade("Stormbreaker", 100000, 1000, 1),
-			new Upgrade("A bad feeling about this", 120000, 1138, 1), new Upgrade("Blender (for food)", 10000, 2, 7),
-			new Upgrade("Blender (the program)", 100000, 28, 10),
-			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1),
-			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4), new Upgrade("iPhone XR", 100000, 1, 1),
-			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Bowcaster", 150000, 4, 10),
-			new Upgrade("Diamond Armor", 5307786900L, 1000, 1), new Upgrade("Lightsaber", 8000000000L, 1977, 1),
-			new Upgrade("Tank", 8580000, 150, 10), new Upgrade("Pet Dragon", 10000000, 3000, 5),
-			new Upgrade("Mjolnir", 449000000, 3000), new Upgrade("The Ultimate Ultimate Weapon", 123000000, 1640),
-			new Upgrade("The Tumbler Batmobile", 18000000, 493), new Upgrade("Wayne Manor", 800000000, 150000),
+			new Upgrade(":cookie:", "Cookie", 100, 30, 10), new Upgrade("A bad feeling about this", 120000, 1138, 1),
+			new Upgrade("Blender (for food)", 10000, 2, 7), new Upgrade("Blender (the program)", 100000, 28, 10),
+			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1), new Upgrade("iPhone XR", 100000, 1, 1),
+			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Diamond Armor", 5307786900L, 1000, 1),
+			new Upgrade("Wayne Manor", 800000000, 150000),
 			new Upgrade("Because I" + apostrophe + "m Batman!", 682450750, 54321),
 			new Upgrade("Hubble Telescope", 2870000000L, 199000),
 			new Upgrade("International Space Station", 50400000000L, 1961990),
@@ -55,13 +80,12 @@ public class Store extends ListenerAdapter {
 			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
 			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
 			new Upgrade("Crystal Piano", 3200000, 2008), new Upgrade("Gram of Antimatter", 62500000000L, 7654321, 10),
-			new Upgrade("Bug", 1, -1, 128), new Upgrade("Huia Bird Feather", 10000, 10, 12),
-			new Upgrade("141-year-old newspaper", 230000000, 141, 1),
+
+			new Upgrade("Huia Bird Feather", 10000, 10, 12), new Upgrade("141-year-old newspaper", 230000000, 141, 1),
 			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
 			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
 			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
-			new Upgrade("Kidney on eBay", 57050000, 2, 1), new Upgrade("Book", 451, 1, 10),
-			new Upgrade("Shards of Narsil", 20000, 20, 6) };
+			new Upgrade("Kidney on eBay", 57050000, 2, 1), new Upgrade("Book", 451, 1, 10), };
 
 	public Store() {
 
@@ -313,6 +337,21 @@ public class Store extends ListenerAdapter {
 		}
 
 		return false;
+	}
+
+	public static Upgrade removeAndReturnItem(String id, String upgradeName) {
+		for (Upgrade up : Main.upgrades.get(id)) {
+			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
+				up.minusOne();
+				Commands.addCommand("remove " + id + " " + upgradeName);
+				if (up.getQuantity() < 1) {
+					Main.upgrades.get(id).remove(up);
+				}
+				return up;
+			}
+		}
+
+		return null;
 	}
 
 	public static boolean hasItem(String id, String upgradeName) {

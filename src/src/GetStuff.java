@@ -57,6 +57,14 @@ public class GetStuff extends ListenerAdapter {
 					str += "\n`" + u.getQuantity() + "x` " + u.getNamePrefix() + ": `" + Main.addCommas(u.getBoost())
 							+ "`" + Main.CURRENCY;
 				}
+
+				for (Scar s : ScarHandler.getScars(e.getAuthor().getId())) {
+					boost += s.getTotalBoost();
+				}
+
+				if (boost < 1) {
+					boost = 1;
+				}
 			}
 
 			str += "\nTotal boost: " + Main.addCommas(boost);
@@ -97,7 +105,7 @@ public class GetStuff extends ListenerAdapter {
 						+ Store.billionPrefix + " means that something is priced at at least 1,000,000,000"
 						+ Main.CURRENCY + "\n" + Store.longPrefix
 						+ " means that the item's price is listed as a Long (more than " + Integer.MAX_VALUE
-						+ Main.CURRENCY + "!)";
+						+ Main.CURRENCY + "!)\n" + Store.weaponPrefix + " means that it can be `c!use`d as a weapon!";
 
 				break;
 
@@ -121,7 +129,9 @@ public class GetStuff extends ListenerAdapter {
 					+ "give <user_id> <item_name>` gives the user the item!\n`" + Main.PREFIX
 					+ "pay @mention <amount>` pays the other person\n`" + Main.PREFIX
 					+ "help prefix` lists the item prefixes and what they mean\n`" + Main.PREFIX
-					+ "help merge` lists the possible merges";
+					+ "help merge` lists the possible merges\n`" + Main.PREFIX
+					+ "use @mention <item_name>` uses an item on the mentioned user\n`" + Main.PREFIX
+					+ "scars` shows the scars you have been attacked with";
 
 		}
 		c.sendMessage(str).queue();

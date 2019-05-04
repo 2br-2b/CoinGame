@@ -2,15 +2,16 @@ package src;
 
 import java.io.Serializable;
 
-public class Upgrade implements Comparable<Upgrade>, Serializable {
+public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 
 	private static final long serialVersionUID = 1L;
 	private String name, prefix;
 	private long cost;
 	private int boostRate;
 	private int quantity;
+	private Scar effect;
 
-	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
+	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity, Scar effect) {
 		if (prefix.equals("") || prefix == null) {
 			if (cost > Integer.MAX_VALUE) {
 				this.prefix = Store.longPrefix;
@@ -28,6 +29,11 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 		this.cost = cost;
 		this.boostRate = boostRate;
 		this.quantity = quantity;
+		this.effect = effect;
+	}
+
+	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
+		this(prefix, name, cost, boostRate, quantity, null);
 	}
 
 	public Upgrade(String prefix, String name, long cost, int boostRate) {
@@ -45,7 +51,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 	}
 
 	public Upgrade(Upgrade u) {
-		this(u.getPrefix(), u.getName(), u.getCost(), u.getBoost());
+		this(u.getPrefix(), u.getName(), u.getCost(), u.getBoost(), 1, u.getScar());
 	}
 
 	@Override
@@ -69,6 +75,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 		return prefix;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -96,14 +103,25 @@ public class Upgrade implements Comparable<Upgrade>, Serializable {
 		return boostRate * quantity;
 	}
 
+	@Override
 	public int getQuantity() {
 		return quantity;
 	}
 
+	public Scar getEffect() {
+		return effect;
+	}
+
+	public Scar getScar() {
+		return getEffect();
+	}
+
+	@Override
 	public void plusOne() {
 		quantity++;
 	}
 
+	@Override
 	public void minusOne() {
 		quantity--;
 	}
