@@ -9,7 +9,7 @@ public class Command_Use extends Command {
 		super();
 		super.name = "use";
 		super.help = "uses an item";
-		super.arguments = "<Usable_Item>";
+		super.arguments = "@mention item";
 		// super.cooldown = 60;
 
 	}
@@ -23,8 +23,7 @@ public class Command_Use extends Command {
 
 		if (args.length < 2) {
 			event.replyError("Please enter all of the necessary parameters!");
-		} else if (args.length > 2) {
-			event.replyError("Please enter only necessary parameters!");
+			return;
 		}
 
 		try {
@@ -37,24 +36,24 @@ public class Command_Use extends Command {
 		String targetID = args[0].trim();
 		;
 		String attackerID = event.getAuthor().getId();
-		String weaponStr = args[1];
-		for (int i = 2; i < args.length; i++) {
-			weaponStr += " " + args[i];
-		}
+		String weaponStr = event.getArgs().substring(22).trim();
 
 		if (Store.hasItem(attackerID, weaponStr)) {
-			Upgrade item = Store.removeAndReturnItem(attackerID, weaponStr);
-			Scar scar = item.getScar();
-			System.out.println(scar);
-			if (scar != null) {
-				event.reply("<@" + attackerID + "> used his " + scar.getUpgradeUsed() + "!");
-				ScarHandler.giveUserScar(targetID, scar);
-				event.reply("<@" + targetID + "> was scarred with a " + scar.getName() + "!  Dealt " + scar.getDamage()
-						+ " damage!");
+			Upgrade item = Store.getUsersItem(attackerID, weaponStr);
+			if (item.useCharge()) {
+				Scar scar = item.getScar();
+				System.out.println(scar);
+				if (scar != null) {
+					event.reply("<@" + attackerID + "> used his " + scar.getUpgradeUsed() + "!");
+					ScarHandler.giveUserScar(targetID, scar);
+					event.reply("<@" + targetID + "> was scarred with a " + scar.getName() + "!  Dealt "
+							+ scar.getDamage() + " damage!");
+				} else {
+					event.reply("You can't attack with a " + weaponStr + "!");
+				}
 
 			} else {
-				Store.giveUserUpgrade(attackerID, item);
-				event.reply("You can't attack with a " + weaponStr + "!");
+				event.replyError("Your " + item.getNamePrefix() + " is out of charges!");
 			}
 		} else {
 			event.reply("You don't have a " + weaponStr + "!");

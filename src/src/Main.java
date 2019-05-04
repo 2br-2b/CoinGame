@@ -6,8 +6,10 @@
 package src;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -42,7 +44,7 @@ public class Main {
 				.build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
-		jda.addEventListener(new GetStuff());
+		// jda.addEventListener(new GetStuff());
 		jda.addEventListener(new Store());
 		jda.addEventListener(new PlayGames());
 		jda.addEventListener(new StandardUpgradeMerge());
@@ -55,14 +57,20 @@ public class Main {
 
 		builder.setPrefix("c!");
 		// builder.setGame(Game.listening(PREFIX+"help"));
-		builder.addCommands(new UpgradeMerge(waiter));
-		builder.addCommands(new Command_Use());
+
+		builder.addCommands(new Command_Get_Balance());
+		builder.addCommands(new Command_Get_Inventory());
 		builder.addCommands(new Command_Get_Scars());
 		builder.addCommands(new Command_Info());
+		builder.addCommands(new Command_Set());
+		builder.addCommands(new Command_Show_Store());
+		builder.addCommands(new Command_Use());
+
+		builder.addCommands(new UpgradeMerge(waiter));
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
-		builder.setHelpWord("help\u0000");
+		builder.setHelpWord("notahelpcommand");
 		builder.setEmojis(":smiley:", ":exclamation:", ":sweat_smile:");
 
 		CommandClient client = builder.build();
@@ -71,6 +79,7 @@ public class Main {
 		jda.addEventListener(waiter);
 
 		new FileManager();
+		serializeStuffStart();
 		serializeStuff();
 
 		masterUpgradeList = new ArrayList<Upgrade>();
@@ -78,21 +87,22 @@ public class Main {
 
 		for (Upgrade u : Store.randomStuff) {
 			masterUpgradeList.add(new Upgrade(u));
-			replaceAllEverywhere(u);
+			// replaceAllEverywhere(u);
 		}
 
 		for (Upgrade u : Store.pastUpgrades) {
 			masterUpgradeList.add(new Upgrade(u));
-			replaceAllEverywhere(u);
+			// replaceAllEverywhere(u);
 		}
 
 		for (Mergable m : UpgradeMerge.possibleMerges) {
 			masterUpgradeList.add(new Upgrade(m.getUpgrade()));
-			replaceAllEverywhere(m.getUpgrade());
+			// replaceAllEverywhere(m.getUpgrade());
 		}
 
-		// replaceAllEverywhere("This is random", Store.randomStuff[0]);
 		removeBadUsers();
+
+		System.out.println("Ready!");
 
 		String str = "";
 		Scanner ask = new Scanner(System.in); // Create a Scanner object
@@ -118,7 +128,8 @@ public class Main {
 		return String.format("%,d", n);
 	}
 
-	private static void serializeStuff() {
+	@SuppressWarnings("unchecked")
+	private static void serializeStuffStart() {
 
 		try {
 			FileInputStream fis = new FileInputStream("CoinGameBal.ser");
@@ -174,6 +185,54 @@ public class Main {
 		 * c.printStackTrace(); return; }
 		 */
 
+	}
+
+	public static void serializeStuff() {
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameBal.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Main.bal);
+			oos.close();
+			fos.close();
+			// System.out.println("Serialized HashMap data is saved in CoinGameBal.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameUpgrades.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(Main.upgrades);
+			oos.close();
+			fos.close();
+			// System.out.println("Serialized HashMap data is saved in
+			// CoinGameUpgrades.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameCoolingDown.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(PointsAdder.coolingDown);
+			oos.close();
+			fos.close();
+			// System.out.println("Serialized HashMap data is saved in
+			// CoinGameCoolingDown.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		try {
+			FileOutputStream fos = new FileOutputStream("CoinGameScars.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(ScarHandler.scars);
+			oos.close();
+			fos.close();
+			// System.out.println("Serialized HashMap data is saved in CoinGameScars.ser");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	public static void replaceAllEverywhere(Upgrade upgrade) {

@@ -49,6 +49,8 @@ public class Sweepstakes extends ListenerAdapter {
 				}
 			}
 		}
+
+		Main.serializeStuff();
 	}
 
 	public static int getTimes() {

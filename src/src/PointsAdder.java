@@ -95,42 +95,6 @@ public class PointsAdder extends ListenerAdapter {
 
 		}
 
-		serializeStuff();
-	}
-
-	public static void serializeStuff() {
-		try {
-			FileOutputStream fos = new FileOutputStream("CoinGameBal.ser");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(Main.bal);
-			oos.close();
-			fos.close();
-			System.out.println("Serialized HashMap data is saved in CoinGameBal.ser");
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-
-		try {
-			FileOutputStream fos = new FileOutputStream("CoinGameUpgrades.ser");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(Main.upgrades);
-			oos.close();
-			fos.close();
-			System.out.println("Serialized HashMap data is saved in CoinGameUpgrades.ser");
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-
-		try {
-			FileOutputStream fos = new FileOutputStream("CoinGameCoolingDown.ser");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(coolingDown);
-			oos.close();
-			fos.close();
-			System.out.println("Serialized HashMap data is saved in CoinGameCoolingDown.ser");
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
 	}
 
 	public static void addCoins(String id, long amount) {
