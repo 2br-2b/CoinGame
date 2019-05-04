@@ -11,9 +11,9 @@ import src.Scar;
 import src.ScarHandler;
 import src.Upgrade;
 
-public class Command_Get_Inventory extends Command {
+public class Inv_Command extends Command {
 
-	public Command_Get_Inventory() {
+	public Inv_Command() {
 		super();
 		super.name = "inv";
 		super.help = "get a user's inventory";

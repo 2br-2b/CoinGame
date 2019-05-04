@@ -8,9 +8,9 @@ import src.Main;
 import src.Scar;
 import src.ScarHandler;
 
-public class Command_Get_Scars extends Command {
+public class Scars_Command extends Command {
 
-	public Command_Get_Scars() {
+	public Scars_Command() {
 		super();
 		super.name = "scars";
 		super.help = "list your scars";

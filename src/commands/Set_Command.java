@@ -6,9 +6,9 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import src.Main;
 import src.PointsAdder;
 
-public class Command_Set extends Command {
+public class Set_Command extends Command {
 
-	public Command_Set() {
+	public Set_Command() {
 		super();
 		super.name = "set";
 		super.help = "sets a user's balance";

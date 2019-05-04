@@ -19,13 +19,13 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
-import commands.Command_Get_Balance;
-import commands.Command_Get_Inventory;
-import commands.Command_Get_Scars;
-import commands.Command_Info;
-import commands.Command_Set;
-import commands.Command_Show_Store;
-import commands.Command_Use;
+import commands.Bal_Command;
+import commands.Inv_Command;
+import commands.Scars_Command;
+import commands.Info_Command;
+import commands.Set_Command;
+import commands.Store_Command;
+import commands.Use_Command;
 import games.Game_Manager;
 import games.Sweepstakes;
 import net.dv8tion.jda.core.AccountType;
@@ -71,13 +71,13 @@ public class Main {
 		builder.setPrefix("c!");
 		// builder.setGame(Game.listening(PREFIX+"help"));
 
-		builder.addCommands(new Command_Get_Balance());
-		builder.addCommands(new Command_Get_Inventory());
-		builder.addCommands(new Command_Get_Scars());
-		builder.addCommands(new Command_Info());
-		builder.addCommands(new Command_Set());
-		builder.addCommands(new Command_Show_Store());
-		builder.addCommands(new Command_Use());
+		builder.addCommands(new Bal_Command());
+		builder.addCommands(new Inv_Command());
+		builder.addCommands(new Scars_Command());
+		builder.addCommands(new Info_Command());
+		builder.addCommands(new Set_Command());
+		builder.addCommands(new Store_Command());
+		builder.addCommands(new Use_Command());
 		builder.addCommands(new Game_Manager());
 
 		builder.addCommands(new UpgradeMerge(waiter));

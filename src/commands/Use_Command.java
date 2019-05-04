@@ -8,9 +8,9 @@ import src.ScarHandler;
 import src.Store;
 import src.Upgrade;
 
-public class Command_Use extends Command {
+public class Use_Command extends Command {
 
-	public Command_Use() {
+	public Use_Command() {
 		super();
 		super.name = "use";
 		super.help = "uses an item";

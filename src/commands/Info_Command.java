@@ -7,9 +7,9 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import src.Main;
 import src.Upgrade;
 
-public class Command_Info extends Command {
+public class Info_Command extends Command {
 
-	public Command_Info() {
+	public Info_Command() {
 		super();
 		super.name = "info";
 		super.help = "gives info on an item";

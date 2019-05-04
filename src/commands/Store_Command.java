@@ -8,9 +8,9 @@ import src.Main;
 import src.Store;
 import src.Upgrade;
 
-public class Command_Show_Store extends Command {
+public class Store_Command extends Command {
 
-	public Command_Show_Store() {
+	public Store_Command() {
 		super();
 		super.name = "store";
 		super.help = "shows the store";

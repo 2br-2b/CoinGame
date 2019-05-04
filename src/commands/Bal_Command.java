@@ -5,9 +5,9 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 
 import src.Main;
 
-public class Command_Get_Balance extends Command {
+public class Bal_Command extends Command {
 
-	public Command_Get_Balance() {
+	public Bal_Command() {
 		super();
 		super.name = "bal";
 		super.help = "get a user's balance";
