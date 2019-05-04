@@ -27,7 +27,7 @@ public class Command_Use extends Command {
 		}
 
 		try {
-			args[0] = event.getArgs().trim().substring(2, 21);
+			args[0] = event.getArgs().replaceAll("!", "").trim().substring(2, 20);
 		} catch (StringIndexOutOfBoundsException ex) {
 			event.replyError("Please make sure to begin by `@mention`ing the person you want to attack!");
 			return;

@@ -1,8 +1,5 @@
 package src;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,8 +26,6 @@ public class ScarHandler {
 			list.add(new Scar(scar));
 		}
 		scars.put(id, list);
-
-		serializeScars();
 	}
 
 	/*
@@ -56,16 +51,4 @@ public class ScarHandler {
 		}
 	}
 
-	private static void serializeScars() {
-		try {
-			FileOutputStream fos = new FileOutputStream("CoinGameScars.ser");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(scars);
-			oos.close();
-			fos.close();
-			System.out.println("Serialized HashMap data is saved in CoinGameScars.ser");
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}
 }
