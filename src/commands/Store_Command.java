@@ -1,5 +1,8 @@
 package commands;
 
+import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
+
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
@@ -28,6 +31,9 @@ public class Store_Command extends Command {
 		for (Upgrade u : Store.store) {
 			str += u + "\n";
 		}
+
+		str += "\n*The store resets in " + (60 - Store.lastRandomized.until(OffsetDateTime.now(), ChronoUnit.MINUTES))
+				+ " minutes*";
 
 		EmbedBuilder emb = new EmbedBuilder();
 		emb.setTitle("The Store");
