@@ -60,6 +60,9 @@ public class UpgradeMerge extends Command {
 		possibleMerges.add(new Mergable(l, new Upgrade(prefix + " " + Store.weaponPrefix, "Anduril", 150000, 500, 1,
 				new Scar("Slash Wound", 5, "Anduril"))));
 
+		possibleMerges.add(new Mergable("Genesis Device", "Kirk's Glasses",
+				new Upgrade(prefix, "KHAAAAAAAAAAN", 100000000, 10000)));
+
 	}
 
 	public UpgradeMerge(EventWaiter w) {

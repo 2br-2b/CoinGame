@@ -19,7 +19,7 @@ public class Store extends ListenerAdapter {
 	public static String weaponPrefix = "**W**";
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
-	static OffsetDateTime lastRandomized;
+	public static OffsetDateTime lastRandomized;
 
 	public static String explosionWord = "Explosion";
 	public static String burnWord = "Fiery Explosion";
@@ -34,7 +34,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade(weaponPrefix, "Baby Shark", 2639860696L, 50000, 1, new Scar("Shark Bite", 10, "Baby Shark")),
 			new Upgrade(weaponPrefix, "Smash Ball", 500000, 30, 6,
 					new Scar("Smashed by Fox with No Items on Final Destination", 30, "Smash Ball")),
-			new Upgrade(weaponPrefix, "Captain America" + apostrophe + " Shield", 17871941, 30, 1,
+			new Upgrade(weaponPrefix, "Captain America" + apostrophe + "s Shield", 17871941, 30, 1,
 					new Scar("Didn't watch your LANGUAGE!", 1, "Captain America" + apostrophe + " Shield")),
 			new Upgrade(weaponPrefix, "Death Star", 1138000, 100, 2,
 					new Scar("They fired when ready", 1, "Death Star")),
@@ -52,7 +52,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade(weaponPrefix, "Lightsaber", 8000000000L, 1977, 6, new Scar("Lost a hand", 15, "Lightsaber")),
 			new Upgrade(weaponPrefix, "Tank", 8580000, 150, 10, new Scar("Shot by a Tank", 1, "Tank")),
 			new Upgrade(weaponPrefix, "Pet Dragon", 10000000, 3000, 5, new Scar(burnWord, 1, "Pet Dragon")),
-			new Upgrade(weaponPrefix, "Mjolnir", 449000000, 3000, 1, new Scar("Unworthily Hammered", 1, "Mjolnir")),
+			new Upgrade(weaponPrefix, "Mjolnir", 4490000, 3000, 1, new Scar("Unworthily Hammered", 1, "Mjolnir")),
 			new Upgrade(weaponPrefix, "The Ultimate Ultimate Weapon", 123000000, 1640, 6,
 					new Scar("Lack of Inner Piece", 1, "The Ultimate Ultimate Weapon")),
 			new Upgrade(weaponPrefix, "The Tumbler Batmobile", 18000000, 493, 1,
@@ -60,6 +60,9 @@ public class Store extends ListenerAdapter {
 			new Upgrade(weaponPrefix, "Bug", 1, -1, 128, new Scar("Bug Bite", 1, "Bug")),
 			new Upgrade(weaponPrefix, "Shards of Narsil", 20000, 20, 6,
 					new Scar("Got a splinter", 1, "Shards of Narsil")),
+
+			new Upgrade(weaponPrefix, "Genesis Device", 123456789, 100, 1,
+					new Scar("I remade your planet!", 2285, "Genesis Device")),
 
 			new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
 			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
@@ -389,5 +392,5 @@ public class Store extends ListenerAdapter {
 			new Upgrade(outdatedPrefix, "Stocks", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 					(int) (Math.random() * 30)),
 			// new Upgrade("Kidney on eBay", 57050000, 2, 1),
-	};
+			new Upgrade(outdatedPrefix, "Star Wars Meme", 100, 1, 1) };
 }

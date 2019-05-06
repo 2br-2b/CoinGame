@@ -30,9 +30,8 @@ public class PointsAdder extends ListenerAdapter {
 				try {
 					if (userGiveUserCoins(e.getAuthor().getId(), Math.abs(Integer.parseInt(mList[2])),
 							mList[1].replace("!", "").substring(2, 20))) {
-						e.getChannel().sendMessage(
-								e.getAuthor().getAsMention() + " paid " + mList[1] + " " + mList[2] + Main.CURRENCY)
-								.queue();
+						e.getChannel().sendMessage(e.getAuthor().getAsMention() + " paid " + mList[1] + " "
+								+ Main.addCommas(Integer.parseInt(mList[2])) + Main.CURRENCY).queue();
 					} else {
 						e.getChannel().sendMessage("Something went wrong.  Please try again.").queue();
 					}

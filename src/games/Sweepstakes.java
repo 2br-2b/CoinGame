@@ -39,7 +39,7 @@ public class Sweepstakes extends ListenerAdapter {
 				} else {
 					do {
 						u = Store.randomStuff[(int) (Math.random() * Store.randomStuff.length)];
-					} while (u.getCost() >= 100000000);
+					} while (u.getCost() > 100000000);
 				}
 
 				if (Math.random() > 0.5) {

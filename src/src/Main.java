@@ -20,12 +20,13 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
 import commands.Bal_Command;
+import commands.Info_Command;
 import commands.Inv_Command;
 import commands.Scars_Command;
-import commands.Info_Command;
 import commands.Set_Command;
 import commands.Store_Command;
 import commands.Use_Command;
+import commands.Weapons_Command;
 import games.Game_Manager;
 import games.Sweepstakes;
 import net.dv8tion.jda.core.AccountType;
@@ -57,7 +58,7 @@ public class Main {
 				.build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
-		// jda.addEventListener(new GetStuff());
+		jda.addEventListener(new GetHelp());
 		jda.addEventListener(new Store());
 		// jda.addEventListener(new PlayGames());
 		jda.addEventListener(new StandardUpgradeMerge());
@@ -79,6 +80,7 @@ public class Main {
 		builder.addCommands(new Store_Command());
 		builder.addCommands(new Use_Command());
 		builder.addCommands(new Game_Manager());
+		builder.addCommands(new Weapons_Command());
 
 		builder.addCommands(new UpgradeMerge(waiter));
 
