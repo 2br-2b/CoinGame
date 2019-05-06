@@ -1,19 +1,15 @@
 
 package src;
 
-import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-public class GetStuff extends ListenerAdapter {
-
-	private static MessageChannel c = null;
-	private static MessageReceivedEvent e = null;
+public class GetHelp extends ListenerAdapter {
 
 	@Override
-	public void onMessageReceived(MessageReceivedEvent ev) {
+	public void onMessageReceived(MessageReceivedEvent e) {
 
-		if (!Main.BOTS_ALLOWED && ev.getAuthor().isBot())
+		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
 			return;
 
 		if (e.getMessage().getContentRaw().toLowerCase().startsWith(Main.PREFIX + "help")) {
@@ -59,7 +55,7 @@ public class GetStuff extends ListenerAdapter {
 						+ "scars` shows the scars you have been attacked with";
 
 			}
-			c.sendMessage(str).queue();
+			e.getChannel().sendMessage(str).queue();
 
 		}
 
