@@ -1,5 +1,5 @@
 /**
- * @author GreedyVagabond
+c * @author GreedyVagabond
  * @author 2br-2b
  */
 
@@ -20,6 +20,7 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
 import commands.Bal_Command;
+import commands.Give_Command;
 import commands.Info_Command;
 import commands.Inv_Command;
 import commands.Scars_Command;
@@ -81,6 +82,7 @@ public class Main {
 		builder.addCommands(new Use_Command());
 		builder.addCommands(new Game_Manager());
 		builder.addCommands(new Weapons_Command());
+		builder.addCommands(new Give_Command());
 
 		builder.addCommands(new UpgradeMerge(waiter));
 
@@ -115,6 +117,8 @@ public class Main {
 			masterUpgradeList.add(new Upgrade(m.getUpgrade()));
 			// replaceAllEverywhere(m.getUpgrade());
 		}
+
+		replaceAllEverywhere(masterUpgradeList);
 
 		removeBadUsers();
 
@@ -291,7 +295,8 @@ public class Main {
 			ArrayList<Upgrade> upgradeList = upgrades.get(id);
 
 			for (Upgrade u : upgradeList) {
-				if (u.getName().toLowerCase().equals(oldUpgradeName.toLowerCase())) {
+				if (u.getName().toLowerCase().equals(oldUpgradeName.toLowerCase())
+						&& u.getCharges() == u.getMaxCharges()) {
 					int q = u.getQuantity();
 					upgradeList.remove(u);
 					for (int i = 0; i < q; i++) {
@@ -304,7 +309,11 @@ public class Main {
 	}
 
 	public static User getUserFromID(String id) {
-		return jda.getUserById(id);
+		if (jda.getUserById(id) != null) {
+			return jda.getUserById(id);
+		} else {
+			throw new NullPointerException("Could not find " + id);
+		}
 	}
 
 	public static Member getMemberFromID(String id) {

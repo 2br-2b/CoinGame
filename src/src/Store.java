@@ -37,21 +37,21 @@ public class Store extends ListenerAdapter {
 			new Upgrade(weaponPrefix, "Captain America" + apostrophe + "s Shield", 17871941, 30, 1,
 					new Scar("Didn't watch your LANGUAGE!", 1, "Captain America" + apostrophe + " Shield")),
 			new Upgrade(weaponPrefix, "Death Star", 1138000, 100, 2,
-					new Scar("They fired when ready", 1, "Death Star")),
+					new Scar("They fired when ready", 100, 2, "Death Star")),
 			new Upgrade(weaponPrefix, "Infinity Gauntlet", Integer.MAX_VALUE, 6666, 1,
 					new Scar("\"Aw, Snap\" Moment", 600, "Infinity Gauntlet")),
 			new Upgrade(weaponPrefix, "Fire-Breathing Rubber Duckie", 1000, 1, 10,
 					new Scar(burnWord, 1, "Fire-Breathing Rubber Duckie")),
 			new Upgrade(weaponPrefix, "Sword", 10000, 3, 100, new Scar(swordWord, 1, "Sword")),
 			new Upgrade(weaponPrefix + " :ring:", "Ring of Power", 100000, 100, 19,
-					new Scar("Lost a finger", 10, "Ring of Power")),
-			new Upgrade(weaponPrefix, "Stormbreaker", 100000, 1000, 1, new Scar("Head Shot", 30, "Stormbreaker")),
+					new Scar("Lost a finger", 10, 2, "Ring of Power")),
+			new Upgrade(weaponPrefix, "Stormbreaker", 100000, 1000, 1, new Scar("Head Shot", 30, 2, "Stormbreaker")),
 			new Upgrade(weaponPrefix, "Shark Repellent Bat Spray", 1996, 10, 4,
-					new Scar("Helicopter Crash", 1, "Shark Repellent Bat Spray")),
-			new Upgrade(weaponPrefix, "Bowcaster", 150000, 4, 10, new Scar("Wookie Shot", 1, "Bowcaster")),
-			new Upgrade(weaponPrefix, "Lightsaber", 8000000000L, 1977, 6, new Scar("Lost a hand", 15, "Lightsaber")),
-			new Upgrade(weaponPrefix, "Tank", 8580000, 150, 10, new Scar("Shot by a Tank", 1, "Tank")),
-			new Upgrade(weaponPrefix, "Pet Dragon", 10000000, 3000, 5, new Scar(burnWord, 1, "Pet Dragon")),
+					new Scar("Helicopter Crash", 7, "Shark Repellent Bat Spray")),
+			new Upgrade(weaponPrefix, "Bowcaster", 150000, 4, 10, new Scar("Wookie Shot", 10, 5, "Bowcaster")),
+			new Upgrade(weaponPrefix, "Lightsaber", 800000, 1977, 6, new Scar("Lost a hand", 15, 7, "Lightsaber")),
+			new Upgrade(weaponPrefix, "Tank", 8580000, 150, 10, new Scar("Shot by a Tank", 10, "Tank")),
+			new Upgrade(weaponPrefix, "Pet Dragon", 10000000, 3000, 5, new Scar(burnWord, 5, 3, "Pet Dragon")),
 			new Upgrade(weaponPrefix, "Mjolnir", 4490000, 3000, 1, new Scar("Unworthily Hammered", 1, "Mjolnir")),
 			new Upgrade(weaponPrefix, "The Ultimate Ultimate Weapon", 123000000, 1640, 6,
 					new Scar("Lack of Inner Piece", 1, "The Ultimate Ultimate Weapon")),
@@ -60,9 +60,11 @@ public class Store extends ListenerAdapter {
 			new Upgrade(weaponPrefix, "Bug", 1, -1, 128, new Scar("Bug Bite", 1, "Bug")),
 			new Upgrade(weaponPrefix, "Shards of Narsil", 20000, 20, 6,
 					new Scar("Got a splinter", 1, "Shards of Narsil")),
-
 			new Upgrade(weaponPrefix, "Genesis Device", 123456789, 100, 1,
 					new Scar("I remade your planet!", 2285, "Genesis Device")),
+			new Upgrade(weaponPrefix, "Phaser Rifle", 200000, 1, 1, new Scar("Phaser Beam", 10, 5, "Phaser Rifle")),
+			new Upgrade(weaponPrefix, "Six-Shooter", 200000, 10, 1, new Scar("Shot", 3, 6, "Six-Shooter")),
+			new Upgrade(weaponPrefix, "Lego Brick", 10, 0, 100, new Scar("Step on a Brick", 1, 1, "Lego Brick")),
 
 			new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
 			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
@@ -83,12 +85,12 @@ public class Store extends ListenerAdapter {
 			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
 			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
 			new Upgrade("Crystal Piano", 3200000, 2008), new Upgrade("Gram of Antimatter", 62500000000L, 7654321, 10),
-
 			new Upgrade("Huia Bird Feather", 10000, 10, 12), new Upgrade("141-year-old newspaper", 230000000, 141, 1),
 			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
 			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
 			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
-			new Upgrade("Book", 451, 1, 10), };
+			new Upgrade("Book", 451, 1, 10), new Upgrade("Medpack", 100, 1000, 10),
+			new Upgrade("The Piece of Resistance", 10000, 69, 1), };
 
 	public Store() {
 
@@ -144,10 +146,13 @@ public class Store extends ListenerAdapter {
 			randomizeStore();
 		}
 
+		if (message.startsWith(Main.PREFIX + "add")) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
 				PointsAdder.addCoins(e.getAuthor().getId(),
 						Long.parseLong(message.substring(Main.PREFIX.length() + 5)));
 			}
+		} else if (message.startsWith(Main.PREFIX + "buy")) {
+			buySomething(message.substring(Main.PREFIX.length() + 4), e.getAuthor());
 		} else if (message.startsWith(Main.PREFIX + "sell")) {
 			sellUpgrade(e);
 		}

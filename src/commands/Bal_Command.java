@@ -26,7 +26,7 @@ public class Bal_Command extends Command {
 		}
 
 		try {
-			event.reply("<@" + id + "> has " + Main.addCommas(Main.bal.get(id)) + Main.CURRENCY);
+			event.reply("<@!" + id + "> has " + Main.addCommas(Main.bal.get(id)) + Main.CURRENCY);
 		} catch (NullPointerException e) {
 			event.reply("That user doesn't have a balance!");
 		}
