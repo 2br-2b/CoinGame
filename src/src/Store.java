@@ -144,16 +144,6 @@ public class Store extends ListenerAdapter {
 			randomizeStore();
 		}
 
-		if (message.contains(Main.PREFIX + "give")) {
-			String[] messageSplit = message.split(" ");
-			String nameOfObj = messageSplit[2];
-			for (int i = 3; i < messageSplit.length; i++) {
-				nameOfObj += " " + messageSplit[i];
-			}
-			userGiveUserUpgrade(e.getAuthor().getId(), nameOfObj, messageSplit[1].replace("!", "").substring(2, 20));
-		} else if (message.startsWith(Main.PREFIX + "buy")) {
-			buySomething(message.substring(Main.PREFIX.length() + 4), e.getAuthor());
-		} else if (message.startsWith(Main.PREFIX + "add")) {
 			if (e.getAuthor().getId().equals("351804839820525570")) {
 				PointsAdder.addCoins(e.getAuthor().getId(),
 						Long.parseLong(message.substring(Main.PREFIX.length() + 5)));
