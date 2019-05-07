@@ -8,19 +8,17 @@ public class Scar implements Gettable, Serializable {
 	private String name;
 	private int boost;
 	private String upgradeUsed;
-	private String description;
 	private int quantity;
 
-	public Scar(String name, int damage, String description, String upgradeUsed) {
+	public Scar(String name, int damage, int quantity, String upgradeUsed) {
 		this.name = name;
 		this.boost = -damage;
-		this.description = description;
 		this.upgradeUsed = upgradeUsed;
-		this.quantity = 1;
+		this.quantity = quantity;
 	}
 
 	public Scar(String name, int damage, String upgradeUsed) {
-		this(name, damage, null, upgradeUsed);
+		this(name, damage, 1, upgradeUsed);
 	}
 
 	public Scar(String name, int damage) {
@@ -28,7 +26,7 @@ public class Scar implements Gettable, Serializable {
 	}
 
 	public Scar(Scar s) {
-		this(s.getName(), s.getDamage(), s.getDescription(), s.getUpgradeUsed());
+		this(s.getName(), s.getDamage(), s.getQuantity(), s.getUpgradeUsed());
 	}
 
 	@Override
@@ -53,10 +51,6 @@ public class Scar implements Gettable, Serializable {
 		return -getTotalBoost();
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
 	public String getUpgradeUsed() {
 		return upgradeUsed;
 	}
@@ -79,7 +73,7 @@ public class Scar implements Gettable, Serializable {
 
 	@Override
 	public void minusOne() {
-		quantity++;
+		quantity--;
 	}
 
 	@Override
