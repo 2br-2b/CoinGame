@@ -136,7 +136,32 @@ public class Main {
 	}
 
 	private static void removeBadUsers() {
+		removeBadUsers(bal);
+		removeBadUsers(upgrades);
+		removeBadUsers(ScarHandler.scars);
+		removeBadUsers(PointsAdder.coolingDown);
+		serializeStuff();
+	}
+
+	private static void removeBadUsers(HashMap bal) {
 		// TODO Auto-generated method stub
+		ArrayList<String> keyset = new ArrayList<String>(bal.keySet());
+		for (int i = 0; i < keyset.size(); i++) {
+			String id = keyset.get(i);
+			try {
+				getUserFromID(id);
+			} catch (NullPointerException e) {
+				System.err.println(e);
+				bal.remove(id);
+				removeBadUsers(bal);
+				break;
+			} catch (NumberFormatException e) {
+				System.err.println(e);
+				bal.remove(id);
+				removeBadUsers(bal);
+				break;
+			}
+		}
 
 	}
 
@@ -249,6 +274,11 @@ public class Main {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
+	}
+
+	public static void replaceAllEverywhere(ArrayList<Upgrade> upgradeList) {
+		for (Upgrade upgrade : upgradeList)
+			replaceAllEverywhere(upgrade.getName(), upgrade);
 	}
 
 	public static void replaceAllEverywhere(Upgrade upgrade) {
