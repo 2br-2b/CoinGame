@@ -127,7 +127,7 @@ public class Main {
 			// replaceAllEverywhere(m.getUpgrade());
 		}
 
-		replaceAllEverywhere(masterUpgradeList);
+		// replaceAllEverywhere(masterUpgradeList);
 
 		removeBadUsers();
 
@@ -303,8 +303,7 @@ public class Main {
 			ArrayList<Upgrade> upgradeList = upgrades.get(id);
 
 			for (Upgrade u : upgradeList) {
-				if (u.getName().toLowerCase().equals(oldUpgradeName.toLowerCase())
-						&& u.getCharges() == u.getMaxCharges()) {
+				if (u.getName().equalsIgnoreCase(oldUpgradeName) && !u.isUsed()) {
 					int q = u.getQuantity();
 					upgradeList.remove(u);
 					for (int i = 0; i < q; i++) {

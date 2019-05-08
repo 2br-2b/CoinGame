@@ -17,6 +17,7 @@ public class Store extends ListenerAdapter {
 	public static String billionPrefix = "**$$**";
 	public static String longPrefix = ":gem:";
 	public static String weaponPrefix = "**W**";
+	public static String healingPrefix = "**H**";
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	public static OffsetDateTime lastRandomized;
@@ -66,6 +67,10 @@ public class Store extends ListenerAdapter {
 			new Upgrade(weaponPrefix, "Six-Shooter", 200000, 10, 1, new Scar("Shot", 3, 6, "Six-Shooter")),
 			new Upgrade(weaponPrefix, "Lego Brick", 10, 0, 100, new Scar("Step on a Brick", 1, 1, "Lego Brick")),
 
+			new Upgrade(healingPrefix, "Medpack", 10000000, 100, 10, new Scar("Medpack", -100, 3, "Medpack")),
+			new Upgrade(healingPrefix, "Sandwitch", 50000, 1, 10, new Scar("Sandwitch", -1, 1, "Sandwitch")),
+			new Upgrade(healingPrefix, "Water Bottle", 10000, 1, 10, new Scar("Water", -1, 1, "Water Bottle")),
+
 			new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
 			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
 			new Upgrade("Kylo Ren" + apostrophe + "s Helmet", 200000, 135, 1),
@@ -89,8 +94,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
 			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
 			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
-			new Upgrade("Book", 451, 1, 10), new Upgrade("Medpack", 100, 1000, 10),
-			new Upgrade("The Piece of Resistance", 10000, 69, 1), };
+			new Upgrade("Book", 451, 1, 10), new Upgrade("The Piece of Resistance", 10000, 69, 1), };
 
 	public Store() {
 
