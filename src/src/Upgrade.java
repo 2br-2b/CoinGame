@@ -12,6 +12,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	private Scar effect;
 	private int charges;
 	private int maxCharges;
+	private boolean isUsed;
 
 	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity, Scar effect) {
 		if (prefix.equals("") || prefix == null) {
@@ -39,6 +40,8 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		}
 		maxCharges = charges;
 		this.effect = effect;
+
+		isUsed = false;
 	}
 
 	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
@@ -134,6 +137,10 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		return maxCharges;
 	}
 
+	public boolean isUsed() {
+		return isUsed;
+	}
+
 	@Override
 	public void plusOne() {
 		quantity++;
@@ -150,6 +157,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 
 	public boolean useCharge() {
 		if (charges > 0) {
+			isUsed = true;
 			charges--;
 			return true;
 		} else {
