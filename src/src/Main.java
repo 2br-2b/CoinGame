@@ -19,10 +19,15 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import commands.Add_Command;
 import commands.Bal_Command;
+import commands.Buy_Command;
 import commands.Give_Command;
 import commands.Info_Command;
 import commands.Inv_Command;
+import commands.Merge_Command;
+import commands.Merges_Command;
+import commands.Pay_Command;
 import commands.Scars_Command;
 import commands.Set_Command;
 import commands.Store_Command;
@@ -59,10 +64,9 @@ public class Main {
 				.build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
-		jda.addEventListener(new GetHelp());
+		// jda.addEventListener(new GetHelp());
 		jda.addEventListener(new Store());
 		// jda.addEventListener(new PlayGames());
-		jda.addEventListener(new StandardUpgradeMerge());
 		jda.addEventListener(new Sweepstakes());
 
 		g = jda.getGuildById(guildID);
@@ -71,7 +75,7 @@ public class Main {
 		EventWaiter waiter = new EventWaiter();
 
 		builder.setPrefix("c!");
-		// builder.setGame(Game.listening(PREFIX+"help"));
+		// builder.setGame(new Game(PREFIX + "help"));
 
 		builder.addCommands(new Bal_Command());
 		builder.addCommands(new Inv_Command());
@@ -83,13 +87,17 @@ public class Main {
 		builder.addCommands(new Game_Manager());
 		builder.addCommands(new Weapons_Command());
 		builder.addCommands(new Give_Command());
-
-		builder.addCommands(new UpgradeMerge(waiter));
+		builder.addCommands(new Pay_Command());
+		builder.addCommands(new Merge_Command(waiter));
+		builder.addCommands(new Merges_Command());
+		builder.addCommands(new Add_Command());
+		builder.addCommands(new Buy_Command());
+		// builder.addCommands(new Help_Command());
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
-		builder.setHelpWord("notahelpcommand");
-		builder.setEmojis(":smiley:", ":exclamation:", ":sweat_smile:");
+		// builder.setHelpWord("notahelpcommand");
+		// builder.setEmojis(":smiley:", ":exclamation:", ":sweat_smile:");
 
 		CommandClient client = builder.build();
 
@@ -97,6 +105,7 @@ public class Main {
 		jda.addEventListener(waiter);
 
 		new DictionaryManager();
+		new MergeHandler();
 		serializeStuffStart();
 		serializeStuff();
 
@@ -113,7 +122,7 @@ public class Main {
 			// replaceAllEverywhere(u);
 		}
 
-		for (Mergable m : UpgradeMerge.possibleMerges) {
+		for (Mergable m : MergeHandler.possibleMerges) {
 			masterUpgradeList.add(new Upgrade(m.getUpgrade()));
 			// replaceAllEverywhere(m.getUpgrade());
 		}

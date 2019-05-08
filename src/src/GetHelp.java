@@ -19,7 +19,7 @@ public class GetHelp extends ListenerAdapter {
 				switch (list[1]) {
 				case "prefix":
 					str = Store.outdatedPrefix + " means that something is not sold in the store anymore.\n"
-							+ "\uu221E is from the Avengers: Endgame event.\n" + UpgradeMerge.prefix
+							+ "\uu221E is from the Avengers: Endgame event.\n" + MergeHandler.prefix
 							+ " means that the upgrade was merged from two other upgrades.\n" + Store.millionPrefix
 							+ " means that something is priced at at least 1,000,000" + Main.CURRENCY + '\n'
 							+ Store.billionPrefix + " means that something is priced at at least 1,000,000,000"
@@ -31,7 +31,7 @@ public class GetHelp extends ListenerAdapter {
 					break;
 
 				case "merge":
-					for (Mergable m : UpgradeMerge.possibleMerges) {
+					for (Mergable m : MergeHandler.possibleMerges) {
 						str += m + "\n";
 					}
 

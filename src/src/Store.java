@@ -145,15 +145,7 @@ public class Store extends ListenerAdapter {
 		if (e.getMessage().getCreationTime().isAfter(lastRandomized.plusHours(1))) {
 			randomizeStore();
 		}
-
-		if (message.startsWith(Main.PREFIX + "add")) {
-			if (e.getAuthor().getId().equals("351804839820525570")) {
-				PointsAdder.addCoins(e.getAuthor().getId(),
-						Long.parseLong(message.substring(Main.PREFIX.length() + 5)));
-			}
-		} else if (message.startsWith(Main.PREFIX + "buy")) {
-			buySomething(message.substring(Main.PREFIX.length() + 4), e.getAuthor());
-		} else if (message.startsWith(Main.PREFIX + "sell")) {
+		if (message.startsWith(Main.PREFIX + "sell")) {
 			sellUpgrade(e);
 		}
 
@@ -192,45 +184,7 @@ public class Store extends ListenerAdapter {
 
 	}
 
-	public void buySomething(String thingToPurchase, User u) {
-		ArrayList<Upgrade> list;
-
-		if (Main.upgrades.containsKey(u.getId())) {
-			list = Main.upgrades.get(u.getId());
-		} else {
-			list = new ArrayList<Upgrade>();
-		}
-
-		Upgrade toBuy = null;
-
-		for (Upgrade up : store) {
-			if (up.getName().toLowerCase().equals(thingToPurchase.toLowerCase())
-					|| up.getNamePrefix().toLowerCase().equals(thingToPurchase.toLowerCase())) {
-				toBuy = up;
-				break;
-			}
-		}
-
-		if (toBuy == null) {
-			c.sendMessage("Couldn't find any `" + thingToPurchase + "`s in the store!").queue();
-		} else {
-			if (PointsAdder.payCoins(u.getId(), toBuy.getCost())) {
-
-				giveUserUpgrade(u, toBuy, list);
-
-				c.sendMessage(u.getAsMention() + " bought one " + toBuy.getName() + " for " + toBuy.getCostString()
-						+ Main.CURRENCY).queue();
-
-			} else {
-				c.sendMessage("You don't have enough to buy that!").queue();
-			}
-		}
-
-		Main.upgrades.put(u.getId(), list);
-
-	}
-
-	private void giveUserUpgrade(User u, Upgrade toBuy, ArrayList<Upgrade> list) {
+	public static void giveUserUpgrade(User u, Upgrade toBuy, ArrayList<Upgrade> list) {
 		if (list == null) {
 			list = new ArrayList<Upgrade>();
 		}
@@ -304,7 +258,7 @@ public class Store extends ListenerAdapter {
 
 	public static boolean removeItem(String id, String upgradeName) {
 		for (Upgrade up : Main.upgrades.get(id)) {
-			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
+			if (up.getName().equalsIgnoreCase(upgradeName)) {
 				up.minusOne();
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
@@ -336,7 +290,6 @@ public class Store extends ListenerAdapter {
 				return up;
 			}
 		}
-
 		return null;
 	}
 

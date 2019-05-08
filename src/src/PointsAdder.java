@@ -22,40 +22,6 @@ public class PointsAdder extends ListenerAdapter {
 		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
 			return;
 
-		String message = e.getMessage().getContentRaw();
-		String[] mList = message.split(" ");
-
-		if (mList[0].equals(Main.PREFIX + "pay")) {
-
-			try {
-				try {
-					try {
-						if (!Main.isGood(mList[1].replace("!", "").substring(2, 20))) {
-							e.getChannel().sendMessage(
-									"<@!" + mList[1].replace("!", "").substring(2, 20) + "> is not a valid user.")
-									.queue();
-							return;
-						}
-					} catch (Exception ex) {
-						e.getChannel().sendMessage(mList[1] + " is not a valid user.").queue();
-						return;
-					}
-
-					if (userGiveUserCoins(e.getAuthor().getId(), Math.abs(Integer.parseInt(mList[2])),
-							mList[1].replace("!", "").substring(2, 20))) {
-						e.getChannel().sendMessage(e.getAuthor().getAsMention() + " paid " + mList[1] + " "
-								+ Main.addCommas(Integer.parseInt(mList[2])) + Main.CURRENCY).queue();
-					} else {
-						e.getChannel().sendMessage("Something went wrong.  Please try again.").queue();
-					}
-				} catch (java.lang.NumberFormatException ex) {
-					e.getChannel().sendMessage(mList[2] + "is not a number!");
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-
 		if (coolingDown.containsKey(e.getAuthor().getId())) {
 			if (e.getMessage().getCreationTime()
 					.isAfter(coolingDown.get(e.getAuthor().getId()).plusSeconds(COOLDOWN_SECONDS))) {
