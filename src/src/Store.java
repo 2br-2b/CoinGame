@@ -249,8 +249,6 @@ public class Store extends ListenerAdapter {
 			list.add(new Upgrade(toBuy));
 		}
 
-		Commands.addCommand("giveitem " + u.getId() + " " + toBuy.getBoost() + " " + toBuy.getName());
-
 		toBuy.minusOne();
 		if (toBuy.getQuantity() < 1) {
 			store.remove(toBuy);
@@ -278,8 +276,6 @@ public class Store extends ListenerAdapter {
 		}
 
 		Main.upgrades.put(id, list);
-
-		Commands.addCommand("giveitem " + id + " " + toBuy.getBoost() + " " + toBuy.getName());
 	}
 
 	public static void userGiveUserUpgrade(String idgiver, String togive, String idgiven) {
@@ -292,7 +288,6 @@ public class Store extends ListenerAdapter {
 			if (up.getName().toLowerCase().equals(togive.toLowerCase())) {
 
 				up.minusOne();
-				Commands.addCommand("remove " + idgiver + " " + togive);
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(idgiver).remove(up);
 				}
@@ -311,7 +306,6 @@ public class Store extends ListenerAdapter {
 		for (Upgrade up : Main.upgrades.get(id)) {
 			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
 				up.minusOne();
-				Commands.addCommand("remove " + id + " " + upgradeName);
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
 				}
@@ -326,7 +320,6 @@ public class Store extends ListenerAdapter {
 		for (Upgrade up : Main.upgrades.get(id)) {
 			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
 				up.minusOne();
-				Commands.addCommand("remove " + id + " " + upgradeName);
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
 				}

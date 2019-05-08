@@ -112,8 +112,6 @@ public class PointsAdder extends ListenerAdapter {
 		} else {
 			Main.bal.put(id, 1000000 + amount);
 		}
-
-		Commands.addCommand("givemoney " + id + " " + amount);
 	}
 
 	public static boolean payCoins(String id, long amount) {
@@ -122,7 +120,6 @@ public class PointsAdder extends ListenerAdapter {
 				return false;
 			} else {
 				Main.bal.put(id, Main.bal.get(id) - amount);
-				Commands.addCommand("givemoney " + id + " -" + amount);
 				return true;
 			}
 		} else {

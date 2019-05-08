@@ -6,7 +6,7 @@ import java.util.Set;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import src.FileManager;
+import src.DictionaryManager;
 import src.Main;
 import src.PointsAdder;
 
@@ -56,7 +56,7 @@ public class Game_Hangman extends Command implements Game {
 			if (PointsAdder.payCoins(event.getAuthor().getId(), c)) {
 				String word;
 				do {
-					word = FileManager.getWord();
+					word = DictionaryManager.getWord();
 
 				} while (word.length() < 10);
 
@@ -66,7 +66,7 @@ public class Game_Hangman extends Command implements Game {
 				event.reply("You don't have the " + c + Main.CURRENCY + " you need to play Hard Mode!");
 			}
 		} else {
-			games.put(event.getAuthor().getId(), new HangmanGame(FileManager.getWord()));
+			games.put(event.getAuthor().getId(), new HangmanGame(DictionaryManager.getWord()));
 			event.reply(games.get(event.getAuthor().getId()).getVisible());
 		}
 

@@ -1,8 +1,6 @@
 
 package src;
 
-import java.io.IOException;
-
 public class Commands {
 
 	public static void interpretCommand(String command) {
@@ -83,12 +81,4 @@ public class Commands {
 
 	}
 
-	public static void addCommand(String string) {
-		try {
-			FileManager.writeFiles(string);
-		} catch (IOException ex) {
-			System.err.println(ex);
-		}
-
-	}
 }

@@ -96,7 +96,7 @@ public class Main {
 		jda.addEventListener(client);
 		jda.addEventListener(waiter);
 
-		new FileManager();
+		new DictionaryManager();
 		serializeStuffStart();
 		serializeStuff();
 
@@ -327,7 +327,7 @@ public class Main {
 	public static boolean isGood(String id) throws Exception {
 		try {
 			if (getUserFromID(id).isBot()) {
-				throw new Exception(id + " is a bot.  It should not have money!");
+				return false;
 			} else {
 				return true;
 			}
