@@ -26,8 +26,21 @@ public class PointsAdder extends ListenerAdapter {
 		String[] mList = message.split(" ");
 
 		if (mList[0].equals(Main.PREFIX + "pay")) {
+
 			try {
 				try {
+					try {
+						if (!Main.isGood(mList[1].replace("!", "").substring(2, 20))) {
+							e.getChannel().sendMessage(
+									"<@!" + mList[1].replace("!", "").substring(2, 20) + "> is not a valid user.")
+									.queue();
+							return;
+						}
+					} catch (Exception ex) {
+						e.getChannel().sendMessage(mList[1] + " is not a valid user.").queue();
+						return;
+					}
+
 					if (userGiveUserCoins(e.getAuthor().getId(), Math.abs(Integer.parseInt(mList[2])),
 							mList[1].replace("!", "").substring(2, 20))) {
 						e.getChannel().sendMessage(e.getAuthor().getAsMention() + " paid " + mList[1] + " "

@@ -1,5 +1,5 @@
 /**
-c * @author GreedyVagabond
+ * @author GreedyVagabond
  * @author 2br-2b
  */
 
@@ -153,16 +153,15 @@ public class Main {
 		for (int i = 0; i < keyset.size(); i++) {
 			String id = keyset.get(i);
 			try {
-				getUserFromID(id);
-			} catch (NullPointerException e) {
+				if (!isGood(id)) {
+					bal.remove(i);
+					i--;
+					System.err.println(id + " is a bot.  It should not have anything!");
+				}
+			} catch (Exception e) {
 				System.err.println(e);
 				bal.remove(id);
-				removeBadUsers(bal);
-				break;
-			} catch (NumberFormatException e) {
-				System.err.println(e);
-				bal.remove(id);
-				removeBadUsers(bal);
+				i--;
 				break;
 			}
 		}
@@ -323,6 +322,20 @@ public class Main {
 			}
 		}
 		return null;
+	}
+
+	public static boolean isGood(String id) throws Exception {
+		try {
+			if (getUserFromID(id).isBot()) {
+				throw new Exception(id + " is a bot.  It should not have money!");
+			} else {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			throw e;
+		} catch (NumberFormatException e) {
+			throw e;
+		}
 	}
 
 }

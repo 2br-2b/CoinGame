@@ -38,6 +38,16 @@ public class Give_Command extends Command {
 		String attackerID = event.getAuthor().getId();
 		String nameOfObj = event.getArgs().substring(22).trim();
 
+		try {
+			if (!Main.isGood(targetID)) {
+				event.reply("<@!" + targetID + "> is not a valid user.");
+				return;
+			}
+		} catch (Exception e) {
+			event.reply("<@" + targetID + "> is not a valid user.");
+			return;
+		}
+
 		for (Upgrade up : Main.upgrades.get(attackerID)) {
 
 			if (up.getName().equalsIgnoreCase(nameOfObj)) {

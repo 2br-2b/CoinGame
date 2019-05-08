@@ -3,6 +3,7 @@ package commands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
+import src.Main;
 import src.Scar;
 import src.ScarHandler;
 import src.Store;
@@ -39,9 +40,18 @@ public class Use_Command extends Command {
 		}
 
 		String targetID = args[0].trim();
-		;
 		String attackerID = event.getAuthor().getId();
 		String weaponStr = event.getArgs().substring(22).trim();
+
+		try {
+			if (!Main.isGood(targetID)) {
+				event.reply("<@" + targetID + "> is not a valid user.");
+				return;
+			}
+		} catch (Exception e) {
+			event.reply("<@" + targetID + "> is not a valid user.");
+			return;
+		}
 
 		if (Store.hasItem(attackerID, weaponStr)) {
 			Upgrade item = Store.getUsersItem(attackerID, weaponStr);
