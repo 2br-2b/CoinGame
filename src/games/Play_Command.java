@@ -3,15 +3,15 @@ package games;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-public class Game_Manager extends Command implements Game {
+public class Play_Command extends Command implements Game {
 
-	public Game_Manager() {
+	public Play_Command() {
 		super();
 		super.name = "play";
 		String[] a = { "p" };
 		super.aliases = a;
 		super.help = "plays a game";
-		super.arguments = "game";
+		super.arguments = "flip/lotto/hangman";
 		Command[] children = { new Game_Coin_Flip(), new Game_Lottery(), new Game_Hangman() };
 		super.children = children;
 	}

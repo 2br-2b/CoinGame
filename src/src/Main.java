@@ -33,7 +33,7 @@ import commands.Set_Command;
 import commands.Store_Command;
 import commands.Use_Command;
 import commands.Weapons_Command;
-import games.Game_Manager;
+import games.Play_Command;
 import games.Sweepstakes;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -84,7 +84,7 @@ public class Main {
 		builder.addCommands(new Set_Command());
 		builder.addCommands(new Store_Command());
 		builder.addCommands(new Use_Command());
-		builder.addCommands(new Game_Manager());
+		builder.addCommands(new Play_Command());
 		builder.addCommands(new Weapons_Command());
 		builder.addCommands(new Give_Command());
 		builder.addCommands(new Pay_Command());
