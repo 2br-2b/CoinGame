@@ -1,29 +1,15 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Predicate;
 
-import com.jagrosh.jdautilities.command.Command;
-import com.jagrosh.jdautilities.command.CommandEvent;
-import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
-
-import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
-public class UpgradeMerge extends Command {
+public class MergeHandler {
 
 	public static ArrayList<Mergable> possibleMerges;
-	public static EventWaiter waiter = new EventWaiter();
 	public static String prefix = "**M**";
-	public static Thread merge;
 
-	public UpgradeMerge() {
+	public MergeHandler() {
 		possibleMerges = new ArrayList<Mergable>();
 		possibleMerges.clear();
 
@@ -65,13 +51,6 @@ public class UpgradeMerge extends Command {
 
 	}
 
-	public UpgradeMerge(EventWaiter w) {
-		this();
-		super.name = "merge";
-		super.hidden = true;
-		waiter = w;
-	}
-
 	public static Upgrade getNewUpgrade(Upgrade u1, Upgrade u2) {
 		return getNewUpgrade(u1.getName(), u2.getName());
 	}
@@ -93,51 +72,6 @@ public class UpgradeMerge extends Command {
 		return null;
 	}
 
-	@Override
-	protected void execute(CommandEvent event) {
-		if (Math.random() < 2)
-			return;
-
-		if (event.getAuthor().isBot() && !Main.BOTS_ALLOWED)
-			return;
-
-		if (event.getMessage().getContentRaw().contains(","))
-			return;
-
-		int repetitions = 2;
-		try {
-			repetitions = Integer.parseInt(event.getArgs());
-		} catch (Exception e) {
-		}
-
-		merge = new MergeThread(event, repetitions);
-		merge.start();
-
-	}
-
-	public static void startWaiter(int i, int repetitions, CommandEvent event) {
-		ArrayList<String> items = new ArrayList<String>();
-		event.reply("Ok! Now give me the upgrade to merge (" + (i + 1) + " of  " + repetitions + ").");
-		waiter.waitForEvent(GuildMessageReceivedEvent.class,
-				e -> e.getAuthor().getId().equals(event.getAuthor().getId())
-						&& e.getChannel().getId().equals(event.getChannel().getId()),
-				e -> {
-					String firstUpgrade = e.getMessage().getContentRaw();
-
-					System.out.println(1);
-					if (!Store.hasItem(e.getAuthor().getId(), firstUpgrade)) {
-						e.getChannel().sendMessage("You don't have a `" + firstUpgrade + "`!").queue();
-						return;
-					}
-
-					items.add(firstUpgrade);
-					merge.notify();
-				}, 30, TimeUnit.SECONDS, () -> event.reply("You did not give me an upgrade. Try again."));
-		System.out.println(2);
-		completeMerge(items, event.getChannel(), event.getAuthor().getId());
-
-	}
-
 	public static void completeMerge(ArrayList<String> items, MessageChannel channel, String id) {
 		if (getNewUpgrade(items) != null) {
 
@@ -148,10 +82,10 @@ public class UpgradeMerge extends Command {
 				}
 			}
 
-			Store.giveUserUpgrade(id, UpgradeMerge.getNewUpgrade(items));
+			Store.giveUserUpgrade(id, MergeHandler.getNewUpgrade(items));
 
 			channel.sendMessage("<@" + id + "> merged " + items + " to make a `"
-					+ UpgradeMerge.getNewUpgrade(items).getName() + "`!").queue();
+					+ MergeHandler.getNewUpgrade(items).getName() + "`!").queue();
 
 		} else {
 			channel.sendMessage("You can't merge " + items + "!").queue();
@@ -216,45 +150,6 @@ public class UpgradeMerge extends Command {
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * 
-	 * 
-	 * @author 182245310024777728
-	 * @param waiter
-	 * @param amount
-	 * @param filter
-	 * @return
-	 */
-	public static CompletionStage<List<Message>> awaitMessages(EventWaiter waiter, int amount,
-			Predicate<MessageReceivedEvent> filter) {
-		var future = new CompletableFuture<List<Message>>();
-		awaitMessages0(waiter, amount, filter, future, new ArrayList<>());
-		return future;
-	}
-
-	/**
-	 * 
-	 * 
-	 * 
-	 * @author 182245310024777728
-	 * @param waiter
-	 * @param amount
-	 * @param filter
-	 * @param future
-	 * @param list
-	 */
-	private static void awaitMessages0(EventWaiter waiter, int amount, Predicate<MessageReceivedEvent> filter,
-			CompletableFuture<List<Message>> future, List<Message> list) {
-		if (amount == 0) {
-			future.complete(list);
-			return;
-		}
-		waiter.waitForEvent(MessageReceivedEvent.class, filter, event -> {
-			list.add(event.getMessage());
-			awaitMessages0(waiter, amount - 1, filter, future, list);
-		});
 	}
 
 }

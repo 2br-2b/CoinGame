@@ -26,14 +26,14 @@ public class Mergable {
 	}
 
 	public boolean isMerge(String[] u) {
-		return UpgradeMerge.checkIfSame(listToArrayList(u), listToArrayList(upgradesNeeded));
+		return MergeHandler.checkIfSame(listToArrayList(u), listToArrayList(upgradesNeeded));
 
 	}
 
 	public boolean isMerge(ArrayList<String> u) {
 		// System.out.println(UpgradeMerge.checkIfSame(u,
 		// listToArrayList(upgradesNeeded)));
-		return UpgradeMerge.checkIfSame(u, listToArrayList(upgradesNeeded));
+		return MergeHandler.checkIfSame(u, listToArrayList(upgradesNeeded));
 
 	}
 
