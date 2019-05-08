@@ -65,7 +65,20 @@ public class Inv_Command extends Command {
 		emb.setDescription(str);
 		emb.setColor(Main.embedColor);
 
-		event.reply(emb.build());
+		if (Main.upgrades.get(id).size() > 10) {
+
+			EmbedBuilder emb2 = new EmbedBuilder();
+
+			emb2.setTitle(Main.getUserFromID(id).getName() + "'s Inventory");
+			emb2.setDescription(Main.addCommas(Main.bal.get(id)) + Main.CURRENCY + "\n\nCheck your DMs\n\nTotal boost: "
+					+ Main.addCommas(boost));
+			emb2.setColor(Main.embedColor);
+
+			event.reply(emb2.build());
+			event.replyInDm(emb.build());
+		} else {
+			event.reply(emb.build());
+		}
 
 	}
 
