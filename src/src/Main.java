@@ -21,6 +21,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
 import commands.Add_Command;
 import commands.Bal_Command;
+import commands.Boost_Command;
 import commands.Buy_Command;
 import commands.Give_Command;
 import commands.Info_Command;
@@ -92,6 +93,7 @@ public class Main {
 		builder.addCommands(new Merges_Command());
 		builder.addCommands(new Add_Command());
 		builder.addCommands(new Buy_Command());
+		builder.addCommands(new Boost_Command());
 		// builder.addCommands(new Help_Command());
 
 		builder.setOwnerId("351804839820525570");
