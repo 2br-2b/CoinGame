@@ -34,6 +34,9 @@ public class Inv_Command extends Command {
 		String str;
 		try {
 			str = Main.addCommas(Main.bal.get(id)) + Main.CURRENCY;
+			if (Main.upgrades.get(id) == null) {
+				throw new NullPointerException();
+			}
 		} catch (NullPointerException e) {
 			event.reply("<@" + id + "> doesn't have an inventory yet!");
 			return;

@@ -82,7 +82,11 @@ public class Scar implements Gettable, Serializable {
 	}
 
 	public String toStringOfOne() {
-		return getName() + ": " + getDamage();
+		if (getDamage() > 0) {
+			return getName() + ": " + getDamage();
+		} else {
+			return getName() + ": heals" + getBoost();
+		}
 	}
 
 }

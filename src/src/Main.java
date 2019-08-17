@@ -80,21 +80,26 @@ public class Main {
 
 		builder.addCommands(new Bal_Command());
 		builder.addCommands(new Inv_Command());
-		builder.addCommands(new Scars_Command());
-		builder.addCommands(new Info_Command());
-		builder.addCommands(new Set_Command());
+		builder.addCommands(new Boost_Command());
+
 		builder.addCommands(new Store_Command());
-		builder.addCommands(new Use_Command());
-		builder.addCommands(new Play_Command());
-		builder.addCommands(new Weapons_Command());
+		builder.addCommands(new Buy_Command());
+		builder.addCommands(new Info_Command());
 		builder.addCommands(new Give_Command());
 		builder.addCommands(new Pay_Command());
+
+		builder.addCommands(new Play_Command());
+
+		builder.addCommands(new Weapons_Command());
+		builder.addCommands(new Use_Command());
+		builder.addCommands(new Scars_Command());
+
 		builder.addCommands(new Merge_Command(waiter));
 		builder.addCommands(new Merges_Command());
 		builder.addCommands(new Add_Command());
-		builder.addCommands(new Buy_Command());
-		builder.addCommands(new Boost_Command());
+
 		// builder.addCommands(new Help_Command());
+		builder.addCommands(new Set_Command());
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
@@ -129,7 +134,8 @@ public class Main {
 			// replaceAllEverywhere(m.getUpgrade());
 		}
 
-		// replaceAllEverywhere(masterUpgradeList);
+		replaceAllEverywhere(
+				new Upgrade("**H**", "Medpack", 10000000, 100, 10, new Scar("Medpack", -100, 3, "Medpack")));
 
 		removeBadUsers();
 
