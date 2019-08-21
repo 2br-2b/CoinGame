@@ -29,11 +29,8 @@ import commands.Inv_Command;
 import commands.Merge_Command;
 import commands.Merges_Command;
 import commands.Pay_Command;
-import commands.Scars_Command;
 import commands.Set_Command;
 import commands.Store_Command;
-import commands.Use_Command;
-import commands.Weapons_Command;
 import games.Play_Command;
 import games.Sweepstakes;
 import net.dv8tion.jda.core.AccountType;
@@ -90,9 +87,9 @@ public class Main {
 
 		builder.addCommands(new Play_Command());
 
-		builder.addCommands(new Weapons_Command());
-		builder.addCommands(new Use_Command());
-		builder.addCommands(new Scars_Command());
+		// builder.addCommands(new Weapons_Command());
+		// builder.addCommands(new Use_Command());
+		// builder.addCommands(new Scars_Command());
 
 		builder.addCommands(new Merge_Command(waiter));
 		builder.addCommands(new Merges_Command());

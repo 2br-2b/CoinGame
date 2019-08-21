@@ -16,8 +16,8 @@ public class Store extends ListenerAdapter {
 	public static String millionPrefix = "**$**";
 	public static String billionPrefix = "**$$**";
 	public static String longPrefix = ":gem:";
-	public static String weaponPrefix = "**W**";
-	public static String healingPrefix = "**H**";
+	public static String weaponPrefix = "";// "**W**";
+	public static String healingPrefix = "";// "**H**";
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	public static OffsetDateTime lastRandomized;
@@ -105,7 +105,7 @@ public class Store extends ListenerAdapter {
 		int randomItems = 8;
 
 		// Name, cost, boost, inventory
-		store = new ArrayList<Upgrade>();
+		store = new ArrayList<>();
 		store.clear();
 
 		for (int i = 0; i < randomItems; i++) {
@@ -190,7 +190,7 @@ public class Store extends ListenerAdapter {
 
 	public static void giveUserUpgrade(User u, Upgrade toBuy, ArrayList<Upgrade> list) {
 		if (list == null) {
-			list = new ArrayList<Upgrade>();
+			list = new ArrayList<>();
 		}
 		boolean found = false;
 
@@ -216,7 +216,7 @@ public class Store extends ListenerAdapter {
 	public static void giveUserUpgrade(String id, Upgrade toBuy) {
 		ArrayList<Upgrade> list = Main.upgrades.get(id);
 		if (list == null) {
-			list = new ArrayList<Upgrade>();
+			list = new ArrayList<>();
 		}
 
 		boolean found = false;

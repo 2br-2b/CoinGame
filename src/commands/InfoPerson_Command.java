@@ -44,16 +44,17 @@ public class InfoPerson_Command extends Command {
 		Upgrade u = Store.getUsersItem(id, upgradeName);
 		emb.setTitle(u.getNamePrefix());
 
-		if (u.getScar() != null)
+		/*
+		 * if (u.getScar() != null)
+		 * 
+		 * { emb.setDescription("Cost: " + Main.addCommas(u.getCost()) + Main.CURRENCY +
+		 * "\nBoost: " + Main.addCommas(u.getBoost()) + Main.CURRENCY + "\nScar: " +
+		 * u.getScar().toStringOfOne()); } else {
+		 */
 
-		{
-			emb.setDescription("Cost: " + Main.addCommas(u.getCost()) + Main.CURRENCY + "\nBoost: "
-					+ Main.addCommas(u.getBoost()) + Main.CURRENCY + "\nScar: " + u.getScar().toStringOfOne());
-		} else {
-
-			emb.setDescription("Cost: " + Main.addCommas(u.getCost()) + Main.CURRENCY + "\nBoost: "
-					+ Main.addCommas(u.getBoost()) + Main.CURRENCY);
-		}
+		emb.setDescription("Cost: " + Main.addCommas(u.getCost()) + Main.CURRENCY + "\nBoost: "
+				+ Main.addCommas(u.getBoost()) + Main.CURRENCY);
+		// }
 		emb.setColor(Main.embedColor);
 		event.reply(emb.build());
 

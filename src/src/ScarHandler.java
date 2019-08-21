@@ -7,6 +7,8 @@ public class ScarHandler {
 	public static HashMap<String, ArrayList<Scar>> scars = new HashMap<String, ArrayList<Scar>>();
 
 	public static void giveUserScar(String id, Scar scar) {
+		System.out.println("Tried to give a user a scar!");
+
 		ArrayList<Scar> list = scars.get(id);
 		if (list == null) {
 			list = new ArrayList<Scar>();
@@ -26,6 +28,7 @@ public class ScarHandler {
 			list.add(new Scar(scar));
 		}
 		scars.put(id, list);
+
 	}
 
 	/*
