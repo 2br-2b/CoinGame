@@ -2,6 +2,8 @@ package src;
 
 import java.io.Serializable;
 
+import scars.Scar;
+
 public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 
 	private static final long serialVersionUID = 1L;

@@ -6,9 +6,9 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
 import net.dv8tion.jda.core.EmbedBuilder;
+import scars.Scar;
+import scars.ScarHandler;
 import src.Main;
-import src.Scar;
-import src.ScarHandler;
 import src.Upgrade;
 
 public class Inv_Command extends Command {

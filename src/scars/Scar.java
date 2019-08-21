@@ -1,6 +1,8 @@
-package src;
+package scars;
 
 import java.io.Serializable;
+
+import src.Gettable;
 
 public class Scar implements Gettable, Serializable {
 

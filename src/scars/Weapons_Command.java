@@ -1,4 +1,4 @@
-package commands;
+package scars;
 
 import java.util.ArrayList;
 

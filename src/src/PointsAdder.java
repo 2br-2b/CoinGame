@@ -11,6 +11,8 @@ import java.util.HashMap;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import scars.Scar;
+import scars.ScarHandler;
 
 public class PointsAdder extends ListenerAdapter {
 	public static HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();

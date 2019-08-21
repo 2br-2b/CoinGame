@@ -1,11 +1,9 @@
-package commands;
+package scars;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
 import src.Main;
-import src.Scar;
-import src.ScarHandler;
 import src.Store;
 import src.Upgrade;
 

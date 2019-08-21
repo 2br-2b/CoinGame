@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
+import scars.Scar;
+import scars.ScarHandler;
 import src.Main;
-import src.Scar;
-import src.ScarHandler;
 import src.Upgrade;
 
 public class Boost_Command extends Command {

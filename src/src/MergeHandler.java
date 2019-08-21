@@ -3,6 +3,7 @@ package src;
 import java.util.ArrayList;
 
 import net.dv8tion.jda.core.entities.MessageChannel;
+import scars.Scar;
 
 public class MergeHandler {
 
