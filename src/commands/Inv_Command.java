@@ -78,7 +78,35 @@ public class Inv_Command extends Command {
 			emb2.setColor(Main.embedColor);
 
 			event.reply(emb2.build());
-			event.replyInDm(emb.build());
+
+			if (str.length() > 170) {
+
+				ArrayList<String> listOfEmbeds = new ArrayList<>();
+				listOfEmbeds.add("");
+
+				for (String line : str.split("\n")) {
+					if (listOfEmbeds.get(listOfEmbeds.size() - 1).length() + line.length() > 200) {
+						listOfEmbeds.add(line);
+					} else {
+						listOfEmbeds.set(listOfEmbeds.size() - 1, listOfEmbeds.get(listOfEmbeds.size() - 1) + line);
+					}
+				}
+
+				EmbedBuilder itterativeEmbed = new EmbedBuilder();
+
+				itterativeEmbed.setTitle(Main.getUserFromID(id).getName() + "'s Inventory");
+
+				for (String embedText : listOfEmbeds) {
+					itterativeEmbed.setDescription(embedText);
+					itterativeEmbed.setColor(Main.embedColor);
+					event.replyInDm(itterativeEmbed.build());
+					itterativeEmbed = new EmbedBuilder();
+				}
+
+			} else {
+				event.replyInDm(emb.build());
+			}
+
 		} else {
 			event.reply(emb.build());
 		}
