@@ -47,8 +47,8 @@ public class Main {
 	public static final String guildID = "542802660928258048";
 	public static final String CURRENCY = ":moneybag:";
 	public static final Color embedColor = Color.YELLOW;
-	public static HashMap<String, Long> bal = new HashMap<String, Long>();
-	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<String, ArrayList<Upgrade>>();
+	public static HashMap<String, Long> bal = new HashMap<>();
+	public static HashMap<String, ArrayList<Upgrade>> upgrades = new HashMap<>();
 
 	public static final boolean BOTS_ALLOWED = false;
 	public static TextChannel botData;
@@ -113,7 +113,7 @@ public class Main {
 		serializeStuffStart();
 		serializeStuff();
 
-		masterUpgradeList = new ArrayList<Upgrade>();
+		masterUpgradeList = new ArrayList<>();
 		masterUpgradeList.clear();
 
 		for (Upgrade u : Store.randomStuff) {

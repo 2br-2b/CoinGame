@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ScarHandler {
-	public static HashMap<String, ArrayList<Scar>> scars = new HashMap<String, ArrayList<Scar>>();
+	public static HashMap<String, ArrayList<Scar>> scars = new HashMap<>();
 
 	public static void giveUserScar(String id, Scar scar) {
 		System.out.println("Tried to give a user a scar!");
 
 		ArrayList<Scar> list = scars.get(id);
 		if (list == null) {
-			list = new ArrayList<Scar>();
+			list = new ArrayList<>();
 		}
 
 		boolean found = false;
@@ -48,7 +48,7 @@ public class ScarHandler {
 
 	public static ArrayList<Scar> getScars(String userID) {
 		if (scars.get(userID) == null) {
-			return new ArrayList<Scar>();
+			return new ArrayList<>();
 		} else {
 			return scars.get(userID);
 		}
