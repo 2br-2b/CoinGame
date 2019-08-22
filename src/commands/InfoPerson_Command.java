@@ -46,7 +46,7 @@ public class InfoPerson_Command extends Command {
 
 		/*
 		 * if (u.getScar() != null)
-		 * 
+		 *
 		 * { emb.setDescription("Cost: " + Main.addCommas(u.getCost()) + Main.CURRENCY +
 		 * "\nBoost: " + Main.addCommas(u.getBoost()) + Main.CURRENCY + "\nScar: " +
 		 * u.getScar().toStringOfOne()); } else {
