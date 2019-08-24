@@ -62,7 +62,7 @@ public class Inv_Command extends Command {
 		emb.setDescription(str);
 		emb.setColor(Main.embedColor);
 
-		if (Main.upgrades.get(id).size() > 10) {
+		if (Main.upgrades.get(id).size() > 150) {
 
 			EmbedBuilder emb2 = new EmbedBuilder();
 
@@ -82,7 +82,8 @@ public class Inv_Command extends Command {
 					if (listOfEmbeds.get(listOfEmbeds.size() - 1).length() + line.length() > 200) {
 						listOfEmbeds.add(line);
 					} else {
-						listOfEmbeds.set(listOfEmbeds.size() - 1, listOfEmbeds.get(listOfEmbeds.size() - 1) + line);
+						listOfEmbeds.set(listOfEmbeds.size() - 1,
+								listOfEmbeds.get(listOfEmbeds.size() - 1) + line + "\n");
 					}
 				}
 
