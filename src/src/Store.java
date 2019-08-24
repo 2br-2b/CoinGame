@@ -57,10 +57,46 @@ public class Store extends ListenerAdapter {
 			new Upgrade("The Piece of Resistance", 10000, 69, 1), new Upgrade("Thanos/'Sword", 2014000, 2023, 1),
 			new Upgrade("Legolas/'s Bow", 301800, 120, 1), new Upgrade("Oculus", 39999, 10, 10), };
 
+	private static ArrayList<ArrayList<Upgrade>> sortedStore = new ArrayList<>();
 
 	public Store() {
 
+		sortStore();
+
+		for (int i = 0; i < sortedStore.size(); i++) {
+			ArrayList<Upgrade> l = sortedStore.get(i);
+			System.out.print(i + ": ");
+			if (l == null) {
+				System.out.println(0);
+			} else {
+				System.out.println(l.size());
+			}
+
+			if (i == 7)
+				System.out.println("-----");
+		}
+
 		randomizeStore();
+	}
+
+	private void sortStore() {
+
+		sortedStore = new ArrayList<>();
+
+		for (int i = 0; i < Math.log(Long.MAX_VALUE); i++) {
+			sortedStore.add(new ArrayList<Upgrade>());
+		}
+
+		for (Upgrade u : randomStuff) {
+			int power = (int) Math.log(u.getCost());
+			sortedStore.get(power).add(u);
+
+		}
+
+		while (sortedStore.get(sortedStore.size() - 1).size() == 0) {
+			sortedStore.remove(sortedStore.size() - 1);
+		}
+
 	}
 
 	public static void randomizeStore() {
