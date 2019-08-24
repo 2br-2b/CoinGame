@@ -12,7 +12,6 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class Store extends ListenerAdapter {
 
-	public static String apostrophe = "'";
 	public static String millionPrefix = "**$**";
 	public static String billionPrefix = "**$$**";
 	public static String longPrefix = ":gem:";
@@ -106,7 +105,7 @@ public class Store extends ListenerAdapter {
 		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
 			return;
 
-		String message = e.getMessage().getContentRaw();
+		String message = e.getMessage().getContentRaw().replaceAll("‘", "'");
 		c = e.getChannel();
 
 		if (e.getMessage().getCreationTime().isAfter(lastRandomized.plusHours(1))) {
@@ -130,7 +129,7 @@ public class Store extends ListenerAdapter {
 		Upgrade theUpgrade = null;
 
 		for (Upgrade up : Main.upgrades.get(e.getAuthor().getId())) {
-			if (up.getName().toLowerCase().equals(name.toLowerCase())) {
+			if (up.getName().toLowerCase().equals(name.replaceAll("‘", "'").toLowerCase())) {
 				theUpgrade = up;
 				break;
 			}
@@ -206,7 +205,7 @@ public class Store extends ListenerAdapter {
 	public static void userGiveUserUpgrade(String idgiver, String togive, String idgiven, MessageChannel c) {
 		for (Upgrade up : Main.upgrades.get(idgiver)) {
 
-			if (up.getName().toLowerCase().equals(togive.toLowerCase())) {
+			if (up.getName().toLowerCase().equals(togive.replaceAll("‘", "'").toLowerCase())) {
 
 				up.minusOne();
 				if (up.getQuantity() < 1) {
@@ -225,7 +224,7 @@ public class Store extends ListenerAdapter {
 
 	public static boolean removeItem(String id, String upgradeName) {
 		for (Upgrade up : Main.upgrades.get(id)) {
-			if (up.getName().equalsIgnoreCase(upgradeName)) {
+			if (up.getName().equalsIgnoreCase(upgradeName.replaceAll("‘", "'"))) {
 				up.minusOne();
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
@@ -239,7 +238,7 @@ public class Store extends ListenerAdapter {
 
 	public static Upgrade removeAndReturnItem(String id, String upgradeName) {
 		for (Upgrade up : Main.upgrades.get(id)) {
-			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
+			if (up.getName().toLowerCase().equals(upgradeName.replaceAll("‘", "'").toLowerCase())) {
 				up.minusOne();
 				if (up.getQuantity() < 1) {
 					Main.upgrades.get(id).remove(up);
@@ -253,7 +252,7 @@ public class Store extends ListenerAdapter {
 
 	public static Upgrade getUsersItem(String id, String upgradeName) {
 		for (Upgrade up : Main.upgrades.get(id)) {
-			if (up.getName().equalsIgnoreCase(upgradeName)) {
+			if (up.getName().equalsIgnoreCase(upgradeName.replaceAll("‘", "'"))) {
 				return up;
 			}
 		}
@@ -262,7 +261,7 @@ public class Store extends ListenerAdapter {
 
 	public static boolean hasItem(String id, String upgradeName) {
 		for (Upgrade up : Main.upgrades.get(id)) {
-			if (up.getName().toLowerCase().equals(upgradeName.toLowerCase())) {
+			if (up.getName().toLowerCase().equals(upgradeName.replaceAll("‘", "'").toLowerCase())) {
 				return true;
 			}
 		}
@@ -272,7 +271,7 @@ public class Store extends ListenerAdapter {
 
 	public static Upgrade getUpgradeOfName(String name) {
 		for (Upgrade u : Main.masterUpgradeList) {
-			if (u.getName().equalsIgnoreCase(name)) {
+			if (u.getName().equalsIgnoreCase(name.replaceAll("‘", "'"))) {
 				return u;
 			}
 		}
@@ -282,8 +281,7 @@ public class Store extends ListenerAdapter {
 
 	public static String outdatedPrefix = "**V**";
 	public static Upgrade[] pastUpgrades = {
-			new Upgrade(outdatedPrefix, "Limited-Edition Collector" + apostrophe + "s Edition Easter Egg", 1000, 100,
-					5),
+			new Upgrade(outdatedPrefix, "Limited-Edition Collector/'s Edition Easter Egg", 1000, 100, 5),
 			new Upgrade(outdatedPrefix, "Yay", 30, 1, 20), new Upgrade(outdatedPrefix, "Hmm", 10, 10, 1),
 			new Upgrade(outdatedPrefix, "Hax", 1, 500, 1), new Upgrade(outdatedPrefix, "Lol", 42, 24, 1),
 			new Upgrade(outdatedPrefix, "Crisp $1,000,000,000 bill", 999999999, 0, 100),
@@ -300,5 +298,20 @@ public class Store extends ListenerAdapter {
 			new Upgrade(outdatedPrefix, "Stocks", (int) (Math.random() * 100000), (int) (Math.random() * 100),
 					(int) (Math.random() * 30)),
 			// new Upgrade("Kidney on eBay", 57050000, 2, 1),
-			new Upgrade(outdatedPrefix, "Star Wars Meme", 100, 1, 1) };
+			new Upgrade(outdatedPrefix, "Star Wars Meme", 100, 1, 1),
+
+			new Upgrade(outdatedPrefix, "The Physical Impossibility of Death in the Mind of Someone Living", 12000000,
+					1991),
+			new Upgrade(outdatedPrefix + " :basketball:", " Evan Perlmutter/'s Fanhood", 3500, 25, 1),
+			new Upgrade(outdatedPrefix, "Fire-Breathing Rubber Duckie", 1000, 1, 10),
+			new Upgrade(outdatedPrefix, "Gold Plated Bugatti Veyron", 10000000, 1500, 1),
+			new Upgrade(outdatedPrefix, "Magnetic Floating Bed", 1600000, 2000, 1),
+			new Upgrade(outdatedPrefix, "insure.com Domain", 16000000, 12345, 1),
+			new Upgrade(outdatedPrefix, "Crystal Piano", 3200000, 2008, 1),
+			new Upgrade(outdatedPrefix, "Gram of Antimatter", 62500000000L, 7654321, 10),
+			new Upgrade(outdatedPrefix, "Huia Bird Feather", 10000, 10, 12),
+			new Upgrade(outdatedPrefix, "141-year-old newspaper", 230000000, 141, 1),
+			new Upgrade(outdatedPrefix, "Charles Hollander chess set", 600000, 16, 7),
+
+	};
 }
