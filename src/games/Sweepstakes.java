@@ -9,7 +9,7 @@ import src.Upgrade;
 public class Sweepstakes extends ListenerAdapter {
 
 	private boolean inRace = false;
-	private final static int ODDS = 100;
+	private final static int ODDS = 300;
 	private static int timesRun = (int) (ODDS * Math.random());
 	private Upgrade u;
 
