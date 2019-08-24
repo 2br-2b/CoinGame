@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
-import scars.Scar;
-import scars.ScarHandler;
 import src.Main;
 import src.Upgrade;
 
@@ -37,10 +35,6 @@ public class Boost_Command extends Command {
 			ArrayList<Upgrade> list = Main.upgrades.get(id);
 			for (Upgrade u : list) {
 				boost += u.getTotalBoost();
-			}
-
-			for (Scar s : ScarHandler.getScars(id)) {
-				boost += s.getTotalBoost();
 			}
 
 			if (boost < 1) {

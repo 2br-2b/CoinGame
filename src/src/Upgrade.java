@@ -2,8 +2,6 @@ package src;
 
 import java.io.Serializable;
 
-import scars.Scar;
-
 public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 
 	private static final long serialVersionUID = 1L;
@@ -11,12 +9,8 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	private long cost;
 	private int boostRate;
 	private int quantity;
-	private Scar effect;
-	private int charges;
-	private int maxCharges;
-	private boolean isUsed;
 
-	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity, Scar effect) {
+	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
 		if (prefix.equals("") || prefix == null) {
 			if (cost > Integer.MAX_VALUE) {
 				this.prefix = Store.longPrefix;
@@ -35,19 +29,6 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		this.boostRate = boostRate;
 		this.quantity = quantity;
 
-		if (effect != null) {
-			this.charges = effect.getQuantity();
-		} else {
-			this.charges = quantity;
-		}
-		maxCharges = charges;
-		this.effect = effect;
-
-		isUsed = false;
-	}
-
-	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
-		this(prefix, name, cost, boostRate, quantity, null);
 	}
 
 	public Upgrade(String prefix, String name, long cost, int boostRate) {
@@ -65,7 +46,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	}
 
 	public Upgrade(Upgrade u) {
-		this(u.getPrefix(), u.getName(), u.getCost(), u.getBoost(), 1, u.getScar());
+		this(u.getPrefix(), u.getName(), u.getCost(), u.getBoost(), 1);
 	}
 
 	@Override
@@ -123,48 +104,15 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		return quantity;
 	}
 
-	public Scar getEffect() {
-		return effect;
-	}
-
-	public Scar getScar() {
-		return getEffect();
-	}
-
-	public int getCharges() {
-		return charges;
-	}
-
-	public int getMaxCharges() {
-		return maxCharges;
-	}
-
-	public boolean isUsed() {
-		return isUsed;
-	}
-
 	@Override
 	public void plusOne() {
 		quantity++;
-		charges++;
 	}
 
 	@Override
 	public void minusOne() {
 		quantity--;
-		if (charges > quantity) {
-			charges = quantity;
-		}
-	}
 
-	public boolean useCharge() {
-		if (charges > 0) {
-			isUsed = true;
-			charges--;
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	@Override

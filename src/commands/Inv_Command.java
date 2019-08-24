@@ -6,8 +6,6 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
 import net.dv8tion.jda.core.EmbedBuilder;
-import scars.Scar;
-import scars.ScarHandler;
 import src.Main;
 import src.Upgrade;
 
@@ -49,10 +47,6 @@ public class Inv_Command extends Command {
 				boost += u.getTotalBoost();
 				str += "\n`" + u.getQuantity() + "x` " + u.getNamePrefix() + ": `" + Main.addCommas(u.getBoost()) + "`"
 						+ Main.CURRENCY;
-			}
-
-			for (Scar s : ScarHandler.getScars(id)) {
-				boost += s.getTotalBoost();
 			}
 
 			if (boost < 1) {

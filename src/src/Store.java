@@ -9,7 +9,6 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import scars.Scar;
 
 public class Store extends ListenerAdapter {
 
@@ -27,75 +26,38 @@ public class Store extends ListenerAdapter {
 	public static String burnWord = "Fiery Explosion";
 	public static String swordWord = "Merely a flesh wound!";
 
-	public static Upgrade[] randomStuff = {
-
-			new Upgrade(weaponPrefix, "Batarang", 10000, 7, 10, new Scar("Batarang Knockout!", 2, "Batarang")),
-			new Upgrade(weaponPrefix, "Rocket", 100000, 1, 10, new Scar(explosionWord, 18, "Rocket")),
-			new Upgrade(weaponPrefix, "Nuclear Bomb", 190000, 19, 5,
-					new Scar("Nuclear " + explosionWord, 1, "Nuclear Bomb")),
-			new Upgrade(weaponPrefix, "Baby Shark", 2639860696L, 50000, 1, new Scar("Shark Bite", 10, "Baby Shark")),
-			new Upgrade(weaponPrefix, "Smash Ball", 500000, 30, 6,
-					new Scar("Smashed by Fox with No Items on Final Destination", 30, "Smash Ball")),
-			new Upgrade(weaponPrefix, "Captain America" + apostrophe + "s Shield", 17871941, 30, 1,
-					new Scar("Didn't watch your LANGUAGE!", 1, "Captain America" + apostrophe + " Shield")),
-			new Upgrade(weaponPrefix, "Death Star", 1138000, 100, 2,
-					new Scar("They fired when ready", 100, 2, "Death Star")),
-			new Upgrade(weaponPrefix, "Infinity Gauntlet", Integer.MAX_VALUE, 6666, 1,
-					new Scar("\"Aw, Snap\" Moment", 600, "Infinity Gauntlet")),
-			new Upgrade(weaponPrefix, "Fire-Breathing Rubber Duckie", 1000, 1, 10,
-					new Scar(burnWord, 1, "Fire-Breathing Rubber Duckie")),
-			new Upgrade(weaponPrefix, "Sword", 10000, 3, 100, new Scar(swordWord, 1, "Sword")),
-			new Upgrade(weaponPrefix + " :ring:", "Ring of Power", 100000, 100, 19,
-					new Scar("Lost a finger", 10, 2, "Ring of Power")),
-			new Upgrade(weaponPrefix, "Stormbreaker", 100000, 1000, 1, new Scar("Head Shot", 30, 2, "Stormbreaker")),
-			new Upgrade(weaponPrefix, "Shark Repellent Bat Spray", 1996, 10, 4,
-					new Scar("Helicopter Crash", 7, "Shark Repellent Bat Spray")),
-			new Upgrade(weaponPrefix, "Bowcaster", 150000, 4, 10, new Scar("Wookie Shot", 10, 5, "Bowcaster")),
-			new Upgrade(weaponPrefix, "Lightsaber", 800000, 1977, 6, new Scar("Lost a hand", 15, 7, "Lightsaber")),
-			new Upgrade(weaponPrefix, "Tank", 8580000, 150, 10, new Scar("Shot by a Tank", 10, "Tank")),
-			new Upgrade(weaponPrefix, "Pet Dragon", 10000000, 3000, 5, new Scar(burnWord, 5, 3, "Pet Dragon")),
-			new Upgrade(weaponPrefix, "Mjolnir", 4490000, 3000, 1, new Scar("Unworthily Hammered", 1, "Mjolnir")),
-			new Upgrade(weaponPrefix, "The Ultimate Ultimate Weapon", 123000000, 1640, 6,
-					new Scar("Lack of Inner Piece", 1, "The Ultimate Ultimate Weapon")),
-			new Upgrade(weaponPrefix, "The Tumbler Batmobile", 18000000, 493, 1,
-					new Scar("Uncoolness for not being Batman", 10, "The Tumbler Batmobile")),
-			new Upgrade(weaponPrefix, "Bug", 1, -1, 128, new Scar("Bug Bite", 1, "Bug")),
-			new Upgrade(weaponPrefix, "Shards of Narsil", 20000, 20, 6,
-					new Scar("Got a splinter", 1, "Shards of Narsil")),
-			new Upgrade(weaponPrefix, "Genesis Device", 123456789, 100, 1,
-					new Scar("I remade your planet!", 2285, "Genesis Device")),
-			new Upgrade(weaponPrefix, "Phaser Rifle", 200000, 1, 1, new Scar("Phaser Beam", 10, 5, "Phaser Rifle")),
-			new Upgrade(weaponPrefix, "Six-Shooter", 200000, 10, 1, new Scar("Shot", 3, 6, "Six-Shooter")),
-			new Upgrade(weaponPrefix, "Lego Brick", 10, 0, 100, new Scar("Step on a Brick", 1, 1, "Lego Brick")),
-
-			new Upgrade(healingPrefix, "Medpack", 10000000, 100, 10, new Scar("Medpack", -100, 3, "Medpack")),
-			new Upgrade(healingPrefix, "Sandwitch", 50000, 1, 10, new Scar("Sandwitch", -1, 1, "Sandwitch")),
-			new Upgrade(healingPrefix, "Water Bottle", 10000, 1, 10, new Scar("Water", -1, 1, "Water Bottle")),
-
+	public static Upgrade[] randomStuff = { new Upgrade("Batarang", 10000, 14, 10),
+			new Upgrade("Rocket", 100000, 100, 10), new Upgrade("Nuclear Bomb", 190000, 190, 5),
+			new Upgrade("Baby Shark", 2639860696L, 2000231, 1), new Upgrade("Smash Ball", 500000, 300, 6),
+			new Upgrade("Captain America/'s Shield", 17871941, 15000, 1), new Upgrade("Death Star", 113800, 100, 2),
+			new Upgrade("Infinity Gauntlet", Integer.MAX_VALUE, 6666, 1), new Upgrade("Sword", 10000, 3, 100),
+			new Upgrade(":ring:", " Ring of Power", 100000, 100, 19), new Upgrade("Stormbreaker", 100000, 1000, 1),
+			new Upgrade("Shark Repellent Bat Spray", 1996, 10, 4), new Upgrade("Bowcaster", 150000, 4, 10),
+			new Upgrade("Lightsaber", 800000, 1977, 6), new Upgrade("Tank", 858000, 150, 10),
+			new Upgrade("Pet Dragon", 630000, 3000, 5), new Upgrade("Mjolnir", 4490000, 3000, 1),
+			new Upgrade("The Ultimate Ultimate Weapon", 1230000, 1640, 6),
+			new Upgrade("The Tumbler Batmobile", 18000000, 493, 1), new Upgrade("Bug", 1, -1, 128),
+			new Upgrade("Shards of Narsil", 20000, 20, 6), new Upgrade("Genesis Device", 123456789, 100, 1),
+			new Upgrade("Phaser Rifle", 200000, 1, 1), new Upgrade("Six-Shooter", 200000, 10, 1),
+			new Upgrade("Lego Brick", 10, 0, 100), new Upgrade("Medpack", 100000, 100, 10),
+			new Upgrade("Sandwitch", 50000, 1, 10), new Upgrade("Water Bottle", 10000, 1, 10),
 			new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
-			new Upgrade("Darth Vader" + apostrophe + "s Helmet", 2000000, 1138, 1),
-			new Upgrade("Kylo Ren" + apostrophe + "s Helmet", 200000, 135, 1),
+			new Upgrade("Darth Vader/'s Helmet", 1138000, 1138, 1), new Upgrade("Kylo Ren/'s Helmet", 200000, 135, 1),
 			new Upgrade("All of the Pokemon", 1510000, 809, 1), new Upgrade("Shield", 5000, 1, 200),
-			new Upgrade("Mario" + apostrophe + "s Hat", 100000, 100, 1), new Upgrade("Popcorn", 1000, 1, 100),
+			new Upgrade("Mario/'s Hat", 100000, 100, 1), new Upgrade("Popcorn", 1000, 1, 100),
 			new Upgrade("Debug Byte", 1, 0, 256), new Upgrade("Easy Button", 10000, 13, 10),
-			new Upgrade(":cookie:", "Cookie", 100, 30, 10), new Upgrade("A bad feeling about this", 120000, 1138, 1),
+			new Upgrade(":cookie:", " Cookie", 100, 30, 10), new Upgrade("A bad feeling about this", 120000, 1138, 1),
 			new Upgrade("Blender (for food)", 10000, 2, 7), new Upgrade("Blender (the program)", 100000, 28, 10),
-			new Upgrade("Kirk" + apostrophe + "s Glasses", 1701, 10, 1), new Upgrade("iPhone XR", 100000, 1, 1),
+			new Upgrade("Kirk/'s Glasses", 1701, 10, 1), new Upgrade("iPhone XR", 100000, 1, 1),
 			new Upgrade("Stormtrooper Helmet", 100000, 5, 10), new Upgrade("Diamond Armor", 5307786900L, 1000, 1),
-			new Upgrade("Wayne Manor", 800000000, 150000),
-			new Upgrade("Because I" + apostrophe + "m Batman!", 682450750, 54321),
-			new Upgrade("Hubble Telescope", 2870000000L, 199000),
-			new Upgrade("International Space Station", 50400000000L, 1961990),
-			new Upgrade("1963 Ferrari GTO", 52000000, 1963, 5),
-			new Upgrade("Gold Plated Bugatti Veyron", 10000000, 1500),
-			new Upgrade("The Physical Impossibility of Death in the Mind of Someone Living", 12000000, 1991),
-			new Upgrade("Magnetic Floating Bed", 1600000, 2000), new Upgrade("insure.com Domain", 16000000, 12345),
-			new Upgrade("Crystal Piano", 3200000, 2008), new Upgrade("Gram of Antimatter", 62500000000L, 7654321, 10),
-			new Upgrade("Huia Bird Feather", 10000, 10, 12), new Upgrade("141-year-old newspaper", 230000000, 141, 1),
-			new Upgrade("Charles Hollander chess set", 600000, 16, 7), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
-			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3),
-			new Upgrade(":basketball:", "Evan Perlmutter" + apostrophe + "s Fanhood", 3500, 25, 1),
-			new Upgrade("Book", 451, 1, 10), new Upgrade("The Piece of Resistance", 10000, 69, 1), };
+			new Upgrade("Wayne Manor", 800000000, 150000, 1), new Upgrade("Because I/'m Batman!", 682450750, 54321, 1),
+			new Upgrade("Hubble Telescope", 2870000000L, 199000, 1),
+			new Upgrade("International Space Station", 50400000000L, 1961990, 1),
+			new Upgrade("1963 Ferrari GTO", 52000000, 1963, 5), new Upgrade("Ferrari Enzo", 1325000, 55, 7),
+			new Upgrade("Honus Wagner Rookie Card", 21000000, 1909, 3), new Upgrade("Book", 451, 1, 10),
+			new Upgrade("The Piece of Resistance", 10000, 69, 1), new Upgrade("Thanos/'Sword", 2014000, 2023, 1),
+			new Upgrade("Legolas/'s Bow", 301800, 120, 1), new Upgrade("Oculus", 39999, 10, 10), };
+
 
 	public Store() {
 

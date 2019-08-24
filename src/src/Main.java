@@ -40,8 +40,6 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.User;
-import scars.Scar;
-import scars.ScarHandler;
 
 public class Main {
 
@@ -133,9 +131,6 @@ public class Main {
 			// replaceAllEverywhere(m.getUpgrade());
 		}
 
-		replaceAllEverywhere(
-				new Upgrade("**H**", "Medpack", 10000000, 100, 10, new Scar("Medpack", -100, 3, "Medpack")));
-
 		removeBadUsers();
 
 		System.out.println("Ready!");
@@ -158,7 +153,6 @@ public class Main {
 	private static void removeBadUsers() {
 		removeBadUsers(bal);
 		removeBadUsers(upgrades);
-		removeBadUsers(ScarHandler.scars);
 		removeBadUsers(PointsAdder.coolingDown);
 		serializeStuff();
 	}
@@ -221,21 +215,6 @@ public class Main {
 			return;
 		}
 
-		try {
-			FileInputStream fis = new FileInputStream("CoinGameScars.ser");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			ScarHandler.scars = (HashMap<String, ArrayList<Scar>>) ois.readObject();
-			ois.close();
-			fis.close();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-			return;
-		} catch (ClassNotFoundException c) {
-			System.out.println("Class not found");
-			c.printStackTrace();
-			return;
-		}
-
 		/*
 		 * try { FileInputStream fis = new FileInputStream("CoinGameCoolingDown.ser");
 		 * ObjectInputStream ois = new ObjectInputStream(fis); PointsAdder.coolingDown =
@@ -283,16 +262,6 @@ public class Main {
 			ioe.printStackTrace();
 		}
 
-		try {
-			FileOutputStream fos = new FileOutputStream("CoinGameScars.ser");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(ScarHandler.scars);
-			oos.close();
-			fos.close();
-			// System.out.println("Serialized HashMap data is saved in CoinGameScars.ser");
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
 	}
 
 	public static void replaceAllEverywhere(ArrayList<Upgrade> upgradeList) {
@@ -310,7 +279,7 @@ public class Main {
 			ArrayList<Upgrade> upgradeList = upgrades.get(id);
 
 			for (Upgrade u : upgradeList) {
-				if (u.getName().equalsIgnoreCase(oldUpgradeName) && !u.isUsed()) {
+				if (u.getName().equalsIgnoreCase(oldUpgradeName)) {
 					int q = u.getQuantity();
 					upgradeList.remove(u);
 					for (int i = 0; i < q; i++) {

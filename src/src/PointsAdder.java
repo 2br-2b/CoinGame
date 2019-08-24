@@ -11,11 +11,9 @@ import java.util.HashMap;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import scars.Scar;
-import scars.ScarHandler;
 
 public class PointsAdder extends ListenerAdapter {
-	public static HashMap<String, OffsetDateTime> coolingDown = new HashMap<String, OffsetDateTime>();
+	public static HashMap<String, OffsetDateTime> coolingDown = new HashMap<>();
 	public static final int COOLDOWN_SECONDS = 20;
 	private static final int MONEY_PER_MESSAGE = 1;
 
@@ -37,10 +35,6 @@ public class PointsAdder extends ListenerAdapter {
 
 				}
 
-				for (Scar s : ScarHandler.getScars(e.getAuthor().getId())) {
-					boost += s.getTotalBoost();
-				}
-
 				if (boost < 1) {
 					boost = 1;
 				}
@@ -58,11 +52,6 @@ public class PointsAdder extends ListenerAdapter {
 					boost += u.getBoost();
 				}
 			}
-
-			for (Scar s : ScarHandler.getScars(e.getAuthor().getId())) {
-				boost += s.getTotalBoost();
-			}
-
 			if (boost < 1) {
 				boost = 1;
 			}
