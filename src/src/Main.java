@@ -30,6 +30,7 @@ import commands.Merge_Command;
 import commands.Merges_Command;
 import commands.Pay_Command;
 import commands.RandomizeStore_Command;
+import commands.Sell_Command;
 import commands.Set_Command;
 import commands.Store_Command;
 import games.Play_Command;
@@ -82,6 +83,7 @@ public class Main {
 
 		builder.addCommands(new Store_Command());
 		builder.addCommands(new Buy_Command());
+		builder.addCommands(new Sell_Command());
 		builder.addCommands(new Info_Command());
 		builder.addCommands(new Give_Command());
 		builder.addCommands(new Pay_Command());

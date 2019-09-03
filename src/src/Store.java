@@ -141,49 +141,11 @@ public class Store extends ListenerAdapter {
 		if (!Main.BOTS_ALLOWED && e.getAuthor().isBot())
 			return;
 
-		String message = e.getMessage().getContentRaw().replaceAll("‘", "'");
 		c = e.getChannel();
 
 		if (e.getMessage().getCreationTime().isAfter(lastRandomized.plusHours(1))) {
 			randomizeStore();
 		}
-		if (message.startsWith(Main.PREFIX + "sell")) {
-			sellUpgrade(e);
-		}
-
-	}
-
-	private void sellUpgrade(MessageReceivedEvent e) {
-		String[] mList = e.getMessage().getContentRaw().split(" ");
-
-		String name = mList[1];
-
-		for (int i = 2; i < mList.length; i++) {
-			name += " " + mList[i];
-		}
-
-		Upgrade theUpgrade = null;
-
-		for (Upgrade up : Main.upgrades.get(e.getAuthor().getId())) {
-			if (up.getName().toLowerCase().equals(name.replaceAll("‘", "'").toLowerCase())) {
-				theUpgrade = up;
-				break;
-			}
-		}
-
-		if (removeItem(e.getAuthor().getId(), name)) {
-			int paid = (int) (theUpgrade.getCost() * (Math.random() * 0.2 + 0.85));
-			if (theUpgrade.getCost() == 0) {
-				paid = (int) (10000 * (Math.random() * 0.2 + 0.85));
-			}
-			PointsAdder.addCoins(e.getAuthor().getId(), paid);
-			e.getChannel().sendMessage(e.getAuthor().getAsMention() + " was paid " + Main.addCommas(paid)
-					+ Main.CURRENCY + " for his " + theUpgrade.getName() + ".").queue();
-			addToStore(theUpgrade);
-		} else {
-			e.getChannel().sendMessage("Couldn't remove " + name).queue();
-		}
-
 	}
 
 	public static void giveUserUpgrade(User u, Upgrade toBuy, ArrayList<Upgrade> list) {
