@@ -20,15 +20,15 @@ public class MergeHandler {
 		possibleMerges.add(new Mergable("Nuclear Bomb", "Rocket",
 				new Upgrade(prefix + " " + Store.weaponPrefix, "Nuclear Missile", 5900000, 450, 5)));
 		possibleMerges.add(new Mergable("Popcorn", "Rocket", new Upgrade(prefix, "Popped Popcorn", 10000, 10)));
-		possibleMerges.add(new Mergable("Kirk/'s Glasses", "Mario/'s Hat",
-				new Upgrade(prefix, "A Great Disguise", 10000000, 500)));
+		possibleMerges.add(
+				new Mergable("Kirks Glasses", "Marios Hat", new Upgrade(prefix, "A Great Disguise", 10000000, 500)));
 		possibleMerges.add(new Mergable("Nuclear Missile", "Easy Button",
 				new Upgrade(prefix + " " + Store.weaponPrefix, "Nuclear War", 1000000, 1000, 1)));
 		possibleMerges.add(new Mergable("Blender (for food)", "Blender (the program)",
 				new Upgrade(prefix, "Blender (the world)", 279, 280)));
 		possibleMerges.add(new Mergable("Hmm", "Hax", new Upgrade(prefix, "Ham", 300, 500)));
-		possibleMerges.add(new Mergable("Mjolnir", "Captain America/' Shield",
-				new Upgrade(prefix + " " + Store.weaponPrefix, "The Avengers/' Weapons", 10708070000L, 10000, 1)));
+		possibleMerges.add(new Mergable("Mjolnir", "Captain America Shield",
+				new Upgrade(prefix + " " + Store.weaponPrefix, "The Avengers Weapons", 10708070000L, 10000, 1)));
 		possibleMerges.add(new Mergable("Mjolnir", "Stormbreaker",
 				new Upgrade(prefix + " " + Store.weaponPrefix, "Thor", 2011201700, 13579, 1)));
 		possibleMerges.add(new Mergable("Debug Byte", "Debug Byte", new Upgrade(prefix, "Debug Kilobyte", 1000, 1)));

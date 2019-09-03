@@ -60,7 +60,7 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
-		jda = new JDABuilder(AccountType.BOT).setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XMtYjg.ZChMtNriH1MrpduZ0Q-He_SQ_f4")
+		jda = new JDABuilder(AccountType.BOT).setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XWP6DA.G0Njpu6_l4ej1wIT421mLjNHvQ4")
 				.build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
