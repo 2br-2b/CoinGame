@@ -29,6 +29,7 @@ import commands.Inv_Command;
 import commands.Merge_Command;
 import commands.Merges_Command;
 import commands.Pay_Command;
+import commands.RandomizeStore_Command;
 import commands.Set_Command;
 import commands.Store_Command;
 import games.Play_Command;
@@ -97,6 +98,7 @@ public class Main {
 
 		// builder.addCommands(new Help_Command());
 		builder.addCommands(new Set_Command());
+		builder.addCommands(new RandomizeStore_Command());
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
