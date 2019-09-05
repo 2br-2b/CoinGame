@@ -26,6 +26,7 @@ import commands.Add_Command;
 import commands.Bal_Command;
 import commands.Boost_Command;
 import commands.Buy_Command;
+import commands.Feedback_Command;
 import commands.Give_Command;
 import commands.Info_Command;
 import commands.Inv_Command;
@@ -104,6 +105,7 @@ public class Main {
 		// builder.addCommands(new Help_Command());
 		builder.addCommands(new Set_Command());
 		builder.addCommands(new RandomizeStore_Command());
+		builder.addCommands(new Feedback_Command());
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
