@@ -14,6 +14,7 @@ public class Add_Command extends Command {
 		super.arguments = "amount";
 		super.hidden = true;
 		super.ownerCommand = true;
+		super.guildOnly = false;
 
 	}
 

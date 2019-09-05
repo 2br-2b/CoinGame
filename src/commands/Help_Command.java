@@ -15,6 +15,7 @@ public class Help_Command extends Command {
 		super.name = "help";
 		super.help = "shows specific help menu";
 		super.arguments = "prefix/merge";
+		super.guildOnly = false;
 
 	}
 

@@ -18,6 +18,7 @@ public class Buy_Command extends Command {
 		super.name = "buy";
 		super.help = "buys something";
 		super.arguments = "item to buy";
+		super.guildOnly = false;
 
 	}
 
@@ -28,7 +29,7 @@ public class Buy_Command extends Command {
 		if (Main.upgrades.containsKey(event.getAuthor().getId())) {
 			list = Main.upgrades.get(event.getAuthor().getId());
 		} else {
-			list = new ArrayList<Upgrade>();
+			list = new ArrayList<>();
 		}
 
 		Upgrade toBuy = null;

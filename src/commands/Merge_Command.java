@@ -19,6 +19,7 @@ public class Merge_Command extends Command {
 		super.name = "merge";
 		super.help = "merges more than one upgrade to make a (usually) better upgrade";
 		super.arguments = "upgrade 1, upgrade 2, …";
+		super.guildOnly = false;
 		// super.cooldown = 60;
 
 	}
@@ -28,6 +29,7 @@ public class Merge_Command extends Command {
 		super.name = "merge";
 		super.help = "merges more than one upgrade to make a (usually) better upgrade";
 		super.arguments = "upgrade 1, upgrade 2, …";
+		super.guildOnly = false;
 		waiter = w;
 
 	}
@@ -41,7 +43,7 @@ public class Merge_Command extends Command {
 			if (items.length < 2)
 				return;
 
-			ArrayList<String> itemArrayList = new ArrayList<String>();
+			ArrayList<String> itemArrayList = new ArrayList<>();
 			for (String s : items) {
 				s = s.trim();
 				if (Store.hasItem(event.getAuthor().getId(), s)) {
@@ -75,16 +77,16 @@ public class Merge_Command extends Command {
 
 		/*
 		 * if (Math.random() < 2) return;
-		 * 
+		 *
 		 * if (event.getAuthor().isBot() && !Main.BOTS_ALLOWED) return;
-		 * 
+		 *
 		 * if (event.getMessage().getContentRaw().contains(",")) return;
-		 * 
+		 *
 		 * int repetitions = 2; try { repetitions = Integer.parseInt(event.getArgs()); }
 		 * catch (Exception e) { }
-		 * 
+		 *
 		 * merge = new MergeThread(event, repetitions); merge.start();
-		 * 
+		 *
 		 */
 
 	}

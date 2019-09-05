@@ -13,6 +13,7 @@ public class RandomizeStore_Command extends Command {
 		super.help = "randomizes the store";
 		super.hidden = true;
 		super.ownerCommand = true;
+		super.guildOnly = false;
 
 	}
 

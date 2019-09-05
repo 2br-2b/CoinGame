@@ -16,6 +16,7 @@ public class Inv_Command extends Command {
 		super.name = "inv";
 		super.help = "get a user's inventory";
 		super.arguments = "(@mention)";
+		super.guildOnly = false;
 		// super.cooldown = 60;
 
 	}
@@ -24,8 +25,11 @@ public class Inv_Command extends Command {
 	protected void execute(CommandEvent event) {
 		String id;
 		try {
-			id = event.getArgs().replace("!", "").trim().substring(2, 20);
-		} catch (StringIndexOutOfBoundsException e) {
+			id = event.getArgs().replace("!", "").replace("<@", "").replace(">", "").trim();
+			if (id.equals("") || id.equals("<@>")) {
+				throw new Exception();
+			}
+		} catch (Exception e) {
 			id = event.getAuthor().getId();
 		}
 

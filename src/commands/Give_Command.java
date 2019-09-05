@@ -13,6 +13,7 @@ public class Give_Command extends Command {
 		super.name = "give";
 		super.help = "gives another person an upgrade";
 		super.arguments = "@mention item";
+		super.guildOnly = false;
 
 	}
 

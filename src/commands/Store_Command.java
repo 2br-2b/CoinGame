@@ -17,6 +17,7 @@ public class Store_Command extends Command {
 		super();
 		super.name = "store";
 		super.help = "shows the store";
+		super.guildOnly = false;
 		// super.cooldown = 60;
 
 	}

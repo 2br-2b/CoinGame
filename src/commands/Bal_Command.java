@@ -12,6 +12,7 @@ public class Bal_Command extends Command {
 		super.name = "bal";
 		super.help = "get a user's balance";
 		super.arguments = "(@mention)";
+		super.guildOnly = false;
 		// super.cooldown = 60;
 
 	}

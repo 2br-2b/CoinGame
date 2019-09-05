@@ -20,7 +20,8 @@ public class Game_Hangman extends Command implements Game {
 		super.aliases = a;
 		super.help = "plays hangman";
 		super.arguments = "letter";
-		games = new HashMap<String, HangmanGame>();
+		games = new HashMap<>();
+		super.guildOnly = false;
 	}
 
 	@Override

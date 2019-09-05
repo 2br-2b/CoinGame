@@ -14,6 +14,7 @@ public class Info_Command extends Command {
 		super.name = "info";
 		super.help = "gives info on an item";
 		super.arguments = "item";
+		super.guildOnly = false;
 
 	}
 

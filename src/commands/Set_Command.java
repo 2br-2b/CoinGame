@@ -15,6 +15,7 @@ public class Set_Command extends Command {
 		super.arguments = "id, amount";
 		super.ownerCommand = true;
 		super.hidden = true;
+		super.guildOnly = false;
 		// super.cooldown = 60;
 
 	}

@@ -12,10 +12,11 @@ public class InfoPerson_Command extends Command {
 
 	public InfoPerson_Command() {
 		super();
-		super.name = "info";
+		super.name = "infop";
 		super.help = "gives info on an item in a person's inventory";
-		super.arguments = "item";
+		super.arguments = "@mention item";
 		super.hidden = true;
+		super.guildOnly = false;
 
 	}
 

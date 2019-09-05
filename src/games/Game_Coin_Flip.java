@@ -22,6 +22,7 @@ public class Game_Coin_Flip extends Command implements Game {
 		super.arguments = "amount";
 		super.cooldown = 10;
 		maxPay = 10000;
+		super.guildOnly = false;
 	}
 
 	@Override
@@ -74,7 +75,7 @@ public class Game_Coin_Flip extends Command implements Game {
 
 	// @Override
 	public ArrayList<String> getUsers() {
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
 
 }

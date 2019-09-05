@@ -15,6 +15,7 @@ public class Boost_Command extends Command {
 		super.name = "boost";
 		super.help = "get a user's boost level";
 		super.arguments = "(@mention)";
+		super.guildOnly = false;
 		// super.cooldown = 60;
 
 	}
