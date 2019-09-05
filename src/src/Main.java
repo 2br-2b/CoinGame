@@ -6,8 +6,11 @@
 package src;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -60,8 +63,8 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
-		jda = new JDABuilder(AccountType.BOT).setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XWP6DA.G0Njpu6_l4ej1wIT421mLjNHvQ4")
-				.build().awaitReady();
+
+		jda = new JDABuilder(AccountType.BOT).setToken(getKey()).build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
 		// jda.addEventListener(new GetHelp());
@@ -151,6 +154,22 @@ public class Main {
 			}
 		}
 		ask.close();
+
+	}
+
+	private static String getKey() {
+		BufferedReader keyFile;
+		try {
+			keyFile = new BufferedReader(new FileReader("key.txt"));
+			return keyFile.readLine();
+		} catch (FileNotFoundException e) {
+			System.err.println("Please save the key in a file `key.txt`!");
+			System.exit(-1);
+		} catch (IOException e) {
+			System.err.println("Something went wrong.  Please try again.");
+			System.exit(-2);
+		}
+		return null;
 
 	}
 
