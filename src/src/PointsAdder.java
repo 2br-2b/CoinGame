@@ -26,7 +26,7 @@ public class PointsAdder extends ListenerAdapter {
 			if (e.getMessage().getCreationTime()
 					.isAfter(coolingDown.get(e.getAuthor().getId()).plusSeconds(COOLDOWN_SECONDS))) {
 
-				int boost = 0;
+				long boost = 0;
 				if (Main.upgrades.containsKey(e.getAuthor().getId())) {
 					ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 					for (Upgrade u : list) {
@@ -45,7 +45,7 @@ public class PointsAdder extends ListenerAdapter {
 				return;
 		} else {
 
-			int boost = 0;
+			long boost = 0;
 			if (Main.upgrades.containsKey(e.getAuthor().getId())) {
 				ArrayList<Upgrade> list = Main.upgrades.get(e.getAuthor().getId());
 				for (Upgrade u : list) {

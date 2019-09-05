@@ -15,6 +15,7 @@ public class Sell_Command extends Command {
 		super.name = "sell";
 		super.help = "sells an item";
 		super.arguments = "item to sell";
+		super.guildOnly = false;
 
 	}
 
@@ -38,8 +39,8 @@ public class Sell_Command extends Command {
 				paid = (int) (10000 * (Math.random() * 0.2 + 0.85));
 			}
 			PointsAdder.addCoins(event.getAuthor().getId(), paid);
-			event.reply(event.getAuthor().getAsMention() + "was paid " + Main.addCommas(paid) + Main.CURRENCY
-					+ "for his " + theUpgrade.getName() + ".");
+			event.reply(event.getAuthor().getAsMention() + " was paid " + Main.addCommas(paid) + Main.CURRENCY
+					+ " for his " + theUpgrade.getName() + ".");
 			Store.addToStore(theUpgrade);
 		} else {
 			event.replyError("Couldn't remove " + name);

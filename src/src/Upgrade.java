@@ -7,10 +7,10 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	private static final long serialVersionUID = 1L;
 	private String name, prefix;
 	private long cost;
-	private int boostRate;
+	private long boostRate;
 	private int quantity;
 
-	public Upgrade(String prefix, String name, long cost, int boostRate, int quantity) {
+	public Upgrade(String prefix, String name, long cost, long boostRate, int quantity) {
 		if (prefix.equals("") || prefix == null) {
 			if (cost > Integer.MAX_VALUE) {
 				this.prefix = Store.longPrefix;
@@ -31,17 +31,17 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 
 	}
 
-	public Upgrade(String prefix, String name, long cost, int boostRate) {
+	public Upgrade(String prefix, String name, long cost, long boostRate) {
 		this(prefix, name, cost, boostRate, 1);
 	}
 
-	public Upgrade(String name, long cost, int boostRate, int quantity) {
+	public Upgrade(String name, long cost, long boostRate, int quantity) {
 
 		this("", name, cost, boostRate, quantity);
 
 	}
 
-	public Upgrade(String name, long cost, int boostRate) {
+	public Upgrade(String name, long cost, long boostRate) {
 		this(name, cost, boostRate, 1);
 	}
 
@@ -91,11 +91,11 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	}
 
 	@Override
-	public int getBoost() {
+	public long getBoost() {
 		return boostRate;
 	}
 
-	public int getTotalBoost() {
+	public long getTotalBoost() {
 		return boostRate * quantity;
 	}
 

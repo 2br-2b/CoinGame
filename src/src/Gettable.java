@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package src;
 
@@ -17,5 +17,5 @@ public interface Gettable {
 
 	public int getQuantity();
 
-	public int getBoost();
+	public long getBoost();
 }
