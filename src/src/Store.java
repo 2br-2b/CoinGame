@@ -45,7 +45,7 @@ public class Store extends ListenerAdapter {
 			new Upgrade("Darth Vader's Helmet", 1138000, 7486, 1), new Upgrade("Crisp $1,000,000 bill", 999999, 0, 100),
 			new Upgrade("Tank", 858000, 3750, 10), new Upgrade("Lightsaber", 300000, 1977, 6),
 			new Upgrade("Pet Dragon", 630000, 3030, 5), new Upgrade("Smash Ball", 400000, 1500, 6),
-			new Upgrade("Legolas's Bow", 301800, 2110, 1), new Upgrade("Phaser Rifle", 200000, 1000, 1),
+			new Upgrade("Legolas' Bow", 301800, 2110, 1), new Upgrade("Phaser Rifle", 200000, 1000, 1),
 			new Upgrade("Six-Shooter", 130364, 600, 6), new Upgrade("Kylo Ren's Helmet", 200000, 1350, 1),
 			new Upgrade("Nuclear Bomb", 500235, 2390, 5), new Upgrade("Bowcaster", 155893, 563, 10),
 			new Upgrade("Genesis Device", 765482, 4570, 1), new Upgrade("A bad feeling about this", 166830, 1138, 1),
@@ -122,7 +122,7 @@ public class Store extends ListenerAdapter {
 	}
 
 	public static void randomizeStore() {
-		int randomItems = 8;
+		int randomItems = 9;
 
 		// Name, cost, boost, inventory
 		store = new ArrayList<>();
@@ -131,7 +131,8 @@ public class Store extends ListenerAdapter {
 		for (int i = 0; i < randomItems; i++) {
 			Upgrade randomUpgrade = randomStuff[(int) (Math.random() * randomStuff.length)];
 
-			while (store.contains(randomUpgrade) || randomUpgrade.getQuantity() < 1) {
+			while (store.contains(randomUpgrade) || randomUpgrade.getQuantity() < 1
+					|| randomUpgrade.getCost() > Integer.MAX_VALUE) {
 				randomUpgrade = randomStuff[(int) (Math.random() * randomStuff.length)];
 			}
 
@@ -139,6 +140,16 @@ public class Store extends ListenerAdapter {
 
 		}
 
+		for (int i = 0; i < 2; i++) {
+			Upgrade randomUpgrade = randomStuff[(int) (Math.random() * randomStuff.length)];
+
+			while (store.contains(randomUpgrade) || randomUpgrade.getQuantity() < 1
+					|| randomUpgrade.getCost() <= Integer.MAX_VALUE) {
+				randomUpgrade = randomStuff[(int) (Math.random() * randomStuff.length)];
+			}
+
+			store.add(randomUpgrade);
+		}
 		Collections.sort(store);
 		lastRandomized = OffsetDateTime.now();
 

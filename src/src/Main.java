@@ -140,6 +140,8 @@ public class Main {
 			// replaceAllEverywhere(m.getUpgrade());
 		}
 
+		replaceAllEverywhere("Legolas's Bow", new Upgrade("Legolas' Bow", 301800, 2110, 1));
+
 		removeBadUsers();
 
 		System.out.println("Ready!");
