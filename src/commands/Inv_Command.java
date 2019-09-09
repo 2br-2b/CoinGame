@@ -66,7 +66,7 @@ public class Inv_Command extends Command {
 		emb.setDescription(str);
 		emb.setColor(Main.embedColor);
 
-		if (Main.upgrades.get(id).size() > 150) {
+		if (str.length() > 1000) {
 
 			EmbedBuilder emb2 = new EmbedBuilder();
 
