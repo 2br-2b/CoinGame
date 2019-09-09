@@ -7,7 +7,8 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	private static final long serialVersionUID = 1L;
 	private String name, prefix;
 	private long cost;
-	private long boostRate;
+	private int boostRate;
+	private long boost = boostRate;
 	private int quantity;
 
 	public Upgrade(String prefix, String name, long cost, long boostRate, int quantity) {
@@ -26,7 +27,7 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 		}
 		this.name = name;
 		this.cost = cost;
-		this.boostRate = boostRate;
+		this.boost = boostRate;
 		this.quantity = quantity;
 
 	}
@@ -55,10 +56,12 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 	}
 
 	public String toStringWithoutNumber() {
+		if (boostRate != 0)
+			boost = boostRate;
 		String str = getNamePrefix() + " (" + getCostString() + Main.CURRENCY;
 
 		if (getBoost() != 0) {
-			str += ", provides a boost of " + Main.addCommas(boostRate) + Main.CURRENCY;
+			str += ", provides a boost of " + Main.addCommas(boost) + Main.CURRENCY;
 		}
 
 		str += ")";
@@ -92,11 +95,15 @@ public class Upgrade implements Comparable<Upgrade>, Serializable, Gettable {
 
 	@Override
 	public long getBoost() {
-		return boostRate;
+		if (boostRate != 0)
+			boost = boostRate;
+		return boost;
 	}
 
 	public long getTotalBoost() {
-		return boostRate * quantity;
+		if (boostRate != 0)
+			boost = boostRate;
+		return boost * quantity;
 	}
 
 	@Override

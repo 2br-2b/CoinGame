@@ -29,6 +29,10 @@ public class Store_Command extends Command {
 
 		String str = "";
 
+		if (Store.store.size() == 0) {
+			Store.randomizeStore();
+		}
+
 		for (Upgrade u : Store.store) {
 			str += u + "\n";
 		}

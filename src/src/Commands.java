@@ -18,17 +18,17 @@ public class Commands {
 
 			switch (initialCommand) {
 
-			// giveitem <userID> <item_boost> <item_name>
+			// giveitem <userID> <item_name>
 			case "giveitem":
 				userID = commandAsList[1];
 
-				String name = commandAsList[3];
+				String name = commandAsList[2];
 
-				for (int i = 4; i < commandAsList.length; i++) {
+				for (int i = 3; i < commandAsList.length; i++) {
 					name += " " + commandAsList[i];
 				}
 
-				Store.giveUserUpgrade(userID, new Upgrade(name, 0, Integer.parseInt(commandAsList[2])));
+				Store.giveUserUpgrade(userID, Store.getUpgradeOfName(name));
 				break;
 
 			// givemoney <userID> <amount>

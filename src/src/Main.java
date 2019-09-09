@@ -6,8 +6,11 @@
 package src;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +26,7 @@ import commands.Add_Command;
 import commands.Bal_Command;
 import commands.Boost_Command;
 import commands.Buy_Command;
+import commands.Feedback_Command;
 import commands.Give_Command;
 import commands.Info_Command;
 import commands.Inv_Command;
@@ -60,8 +64,8 @@ public class Main {
 
 	public static void main(String args[]) throws Exception {
 		System.out.println("Coin Games");
-		jda = new JDABuilder(AccountType.BOT).setToken("NTY4MjQ4MTg2NzQxOTgxMTk1.XWP6DA.G0Njpu6_l4ej1wIT421mLjNHvQ4")
-				.build().awaitReady();
+
+		jda = new JDABuilder(AccountType.BOT).setToken(getKey()).build().awaitReady();
 
 		jda.addEventListener(new PointsAdder());
 		// jda.addEventListener(new GetHelp());
@@ -101,6 +105,7 @@ public class Main {
 		// builder.addCommands(new Help_Command());
 		builder.addCommands(new Set_Command());
 		builder.addCommands(new RandomizeStore_Command());
+		builder.addCommands(new Feedback_Command());
 
 		builder.setOwnerId("351804839820525570");
 		builder.setCoOwnerIds("544600923112996901");
@@ -135,6 +140,8 @@ public class Main {
 			// replaceAllEverywhere(m.getUpgrade());
 		}
 
+		replaceAllEverywhere("Legolas's Bow", new Upgrade("Legolas' Bow", 301800, 2110, 1));
+
 		removeBadUsers();
 
 		System.out.println("Ready!");
@@ -151,6 +158,22 @@ public class Main {
 			}
 		}
 		ask.close();
+
+	}
+
+	private static String getKey() {
+		BufferedReader keyFile;
+		try {
+			keyFile = new BufferedReader(new FileReader("key.txt"));
+			return keyFile.readLine();
+		} catch (FileNotFoundException e) {
+			System.err.println("Please save the key in a file `key.txt`!");
+			System.exit(-1);
+		} catch (IOException e) {
+			System.err.println("Something went wrong.  Please try again.");
+			System.exit(-2);
+		}
+		return null;
 
 	}
 
