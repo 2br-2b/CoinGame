@@ -62,11 +62,9 @@ public class Inv_Command extends Command {
 
 		EmbedBuilder emb = new EmbedBuilder();
 
-		emb.setTitle(Main.getUserFromID(id).getName() + "'s Inventory");
-		emb.setDescription(str);
-		emb.setColor(Main.embedColor);
+		int MAX_EMBED_LENGTH = 1000;
 
-		if (str.length() > 1000) {
+		if (str.length() > MAX_EMBED_LENGTH) {
 
 			EmbedBuilder emb2 = new EmbedBuilder();
 
@@ -77,17 +75,17 @@ public class Inv_Command extends Command {
 
 			event.reply(emb2.build());
 
-			if (str.length() > 170) {
+			if (str.length() > MAX_EMBED_LENGTH) {
 
 				ArrayList<String> listOfEmbeds = new ArrayList<>();
 				listOfEmbeds.add("");
 
 				for (String line : str.split("\n")) {
-					if (listOfEmbeds.get(listOfEmbeds.size() - 1).length() + line.length() > 200) {
+					if (listOfEmbeds.get(listOfEmbeds.size() - 1).length() + line.length() > MAX_EMBED_LENGTH) {
 						listOfEmbeds.add(line);
 					} else {
 						listOfEmbeds.set(listOfEmbeds.size() - 1,
-								listOfEmbeds.get(listOfEmbeds.size() - 1) + line + "\n");
+								listOfEmbeds.get(listOfEmbeds.size() - 1) + "\n" + line);
 					}
 				}
 
@@ -107,6 +105,9 @@ public class Inv_Command extends Command {
 			}
 
 		} else {
+			emb.setTitle(Main.getUserFromID(id).getName() + "'s Inventory");
+			emb.setDescription(str);
+			emb.setColor(Main.embedColor);
 			event.reply(emb.build());
 		}
 
