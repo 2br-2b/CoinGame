@@ -28,6 +28,7 @@ import commands.Boost_Command;
 import commands.Buy_Command;
 import commands.Feedback_Command;
 import commands.Give_Command;
+import commands.InfoPerson_Command;
 import commands.Info_Command;
 import commands.Inv_Command;
 import commands.Merge_Command;
@@ -89,6 +90,7 @@ public class Main {
 		builder.addCommands(new Buy_Command());
 		builder.addCommands(new Sell_Command());
 		builder.addCommands(new Info_Command());
+		builder.addCommands(new InfoPerson_Command());
 		builder.addCommands(new Give_Command());
 		builder.addCommands(new Pay_Command());
 
@@ -127,17 +129,17 @@ public class Main {
 
 		for (Upgrade u : Store.randomStuff) {
 			masterUpgradeList.add(new Upgrade(u));
-			// replaceAllEverywhere(u);
+			replaceAllEverywhere(u);
 		}
 
 		for (Upgrade u : Store.pastUpgrades) {
 			masterUpgradeList.add(new Upgrade(u));
-			// replaceAllEverywhere(u);
+			replaceAllEverywhere(u);
 		}
 
 		for (Mergable m : MergeHandler.possibleMerges) {
 			masterUpgradeList.add(new Upgrade(m.getUpgrade()));
-			// replaceAllEverywhere(m.getUpgrade());
+			replaceAllEverywhere(m.getUpgrade());
 		}
 
 		replaceAllEverywhere("Legolas's Bow", new Upgrade("Legolas' Bow", 301800, 2110, 1));
