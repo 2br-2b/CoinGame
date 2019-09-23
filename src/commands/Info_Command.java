@@ -41,6 +41,8 @@ public class Info_Command extends Command {
 			}
 		}
 
+		event.replyError("Couldn't find that item!");
+
 	}
 
 }
