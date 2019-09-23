@@ -31,7 +31,7 @@ public class Boost_Command extends Command {
 
 		String str = "<@!" + id + "> has a boost of ";
 
-		int boost = 1;
+		long boost = 1;
 		if (Main.upgrades.containsKey(id)) {
 			ArrayList<Upgrade> list = Main.upgrades.get(id);
 			for (Upgrade u : list) {
