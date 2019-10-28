@@ -148,6 +148,8 @@ public class Main {
 
 		System.out.println("Ready!");
 
+		printJson();
+
 		String str = "";
 		Scanner ask = new Scanner(System.in); // Create a Scanner object
 		while (!str.equals("Goodbye!")) {
@@ -161,6 +163,55 @@ public class Main {
 		}
 		ask.close();
 
+	}
+
+	private static void printJson() {
+		System.out.print("{");
+		ArrayList<String> keyset = new ArrayList<>(bal.keySet());
+		for (String key : keyset) {
+			System.out.print('"');
+			p(key);
+			System.out.print("\": {\n\"balance\": ");
+			System.out.print(bal.get(key));
+			p(",\"boost\": ");
+
+			long boost = 1;
+			if (Main.upgrades.containsKey(key)) {
+				ArrayList<Upgrade> list = Main.upgrades.get(key);
+				for (Upgrade u : list) {
+					boost += u.getTotalBoost();
+				}
+
+				if (boost < 1) {
+					boost = 1;
+				}
+			}
+
+			System.out.print(boost);
+			p(",\"upgrades\": {");
+			try {
+				for (Upgrade u : upgrades.get(key)) {
+					System.out.print('"');
+					p(u.getName());
+					p("\": {\"name\": \"");
+					p(u.getName());
+					p("\",\"quantity\": ");
+					System.out.println(u.getQuantity());
+					p("},");
+				}
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			p("}");
+
+			p("},");
+		}
+		System.out.print("}");
+
+	}
+
+	private static void p(String s) {
+		System.out.print(s);
 	}
 
 	private static String getKey() {
