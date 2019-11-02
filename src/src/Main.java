@@ -166,14 +166,14 @@ public class Main {
 	}
 
 	private static void printJson() {
-		System.out.print("{");
+		String s = "{";
 		ArrayList<String> keyset = new ArrayList<>(bal.keySet());
 		for (String key : keyset) {
-			System.out.print('"');
-			p(key);
-			System.out.print("\": {\n\"balance\": ");
-			System.out.print(bal.get(key));
-			p(",\"boost\": ");
+			s += "\n\"";
+			s += key;
+			s += "\": {\n\"balance\": ";
+			s += bal.get(key);
+			s += ",\"boost\": ";
 
 			long boost = 1;
 			if (Main.upgrades.containsKey(key)) {
@@ -187,31 +187,30 @@ public class Main {
 				}
 			}
 
-			System.out.print(boost);
-			p(",\"upgrades\": {");
+			s += boost;
+			s += ",\"upgrades\": {";
 			try {
 				for (Upgrade u : upgrades.get(key)) {
-					System.out.print('"');
-					p(u.getName());
-					p("\": {\"name\": \"");
-					p(u.getName());
-					p("\",\"quantity\": ");
-					System.out.println(u.getQuantity());
-					p("},");
+					s += '"';
+					s += u.getName();
+					s += "\": {\"name\": \"";
+					s += u.getName();
+					s += "\",\"quantity\": ";
+					s += u.getQuantity();
+					s += "},";
 				}
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-			p("}");
+			s += "}";
 
-			p("},");
+			s += "},";
 		}
-		System.out.print("}");
+		s.substring(0, s.length());
+		s += "}";
 
-	}
+		System.out.println(s);
 
-	private static void p(String s) {
-		System.out.print(s);
 	}
 
 	private static String getKey() {
