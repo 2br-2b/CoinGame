@@ -199,9 +199,7 @@ public class Main {
 					s += u.getQuantity();
 					s += "},";
 				}
-			} catch (NullPointerException e) {
-				e.printStackTrace();
-			}
+			} catch (NullPointerException e) {}
 			s += "}";
 
 			s += "},";
