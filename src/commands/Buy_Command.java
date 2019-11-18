@@ -24,6 +24,17 @@ public class Buy_Command extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
+		try{
+			Thread.sleep(100);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if (event.getAuthor().isBot())
+			return;
+
+		while(Store.reseting);
+		
 		ArrayList<Upgrade> list;
 
 		if (Main.upgrades.containsKey(event.getAuthor().getId())) {

@@ -20,6 +20,7 @@ public class Store extends ListenerAdapter {
 	private static MessageChannel c = null;
 	public static ArrayList<Upgrade> store;
 	public static OffsetDateTime lastRandomized;
+	public static boolean reseting = true;
 
 	public static String explosionWord = "Explosion";
 	public static String burnWord = "Fiery Explosion";
@@ -123,6 +124,7 @@ public class Store extends ListenerAdapter {
 	}
 
 	public static void randomizeStore() {
+		reseting = true;
 		int randomItems = 9;
 
 		// Name, cost, boost, inventory
@@ -139,6 +141,7 @@ public class Store extends ListenerAdapter {
 
 			store.add(randomUpgrade);
 
+
 		}
 
 		for (int i = 0; i < 2; i++) {
@@ -153,6 +156,8 @@ public class Store extends ListenerAdapter {
 		}
 		Collections.sort(store);
 		lastRandomized = OffsetDateTime.now();
+
+		reseting = false;
 
 	}
 

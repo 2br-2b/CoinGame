@@ -21,7 +21,17 @@ public class Sell_Command extends Command {
 
 	@Override
 	protected void execute(CommandEvent event) {
+		try{
+			Thread.sleep(100);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		if (event.getAuthor().isBot())
+			return;
 
+		while(Store.reseting);
+		
 		String name = event.getArgs().replaceAll("‘", "'").toLowerCase();
 
 		Upgrade theUpgrade = null;
